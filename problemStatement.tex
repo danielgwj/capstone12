@@ -1,0 +1,67 @@
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+
+% *** CITATION PACKAGES ***
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
+
+\usepackage{geometry}
+\geometry{margin=0.75in}
+
+\begin{document}
+\onecolumn
+\begin{titlepage}
+\title{Better Graphics For A Robotics Grasping GUI\\ Problem Statement \\  [0.5em] 
+	\large CS461: Senior Software Engineering Project \\ Fall 2016}
+
+\author{Justin~Bibler,
+        Matthew~Huang,
+        and~Daniel~Goh,}
+		
+\IEEEtitleabstractindextext{%
+\begin{abstract}
+The current OpenRave simulation has outdated graphics. 
+The goal is to take this existing robot grasping visualization interface and augment it with warm cool shaders, shadows and silhouettes. 
+This will help users understand the geometric relationship between the grasping hand and the object it is trying to pick up. 
+We’ll be doing this by incorporating shaders, shadows, and silhouettes into the existing simulation.
+\end{abstract}
+}
+
+% make the title area
+\maketitle
+
+\end{titlepage}
+
+\section{Problem Definition}
+The robot grasping model that is within OpenRave does not meet the client’s needs. 
+It is currently difficult to see and understand the shapes and contact points within the simulation due to outdated graphics. 
+Because of this, users are unwilling or unable to give proper responses to the simulation.
+
+\section{Proposed Solution}
+To improve the robotic grasping visualization in OpenRave, 
+we will be adding in 3 features that help users understand the simulation’s 
+geometry and movement. These 3 features are shaders, shadows and silhouettes. \par
+Firstly, we are going to add warm cool shaders that highlight 3D objects in an 
+unrealistic way so that users can easily understand the shape of an object. 
+After the shaders are implemented, our focus will be changed to adding shadows 
+to the OpenRave visualization. The addition of shadows will make it easier for 
+users to locate the positions of objects and better understand an object’s movement 
+in the simulation. Finally, we will create silhouettes for the 3D objects to help 
+users better understand it’s geometry within the simulation. \par
+We will show a demo comparison of the before and after at expo in addition to a 
+poster that detail what we’ve added to improve the visualization of the simulation.
+
+\section{Performance Metrics}
+We will be using the 3 features that we have proposed as our performance metrics. 
+It will be based on whether or not the 3 features are implemented within the 
+simulation. We will be using our client’s response to determine if the 3 
+features were implemented correctly.
+
+\end{document}
+
+
