@@ -25,10 +25,13 @@
 		
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-The current OpenRave simulation has outdated graphics. 
-The goal is to take this existing robot grasping visualization interface and augment it with warm cool shaders, shadows and silhouettes. 
-This will help users understand the geometric relationship between the grasping hand and the object it is trying to pick up. 
-We’ll be doing this by incorporating shaders, shadows, and silhouettes into the existing simulation.
+The current OpenRave simulation has outdated graphics.
+Our plan is to take this existing robot grasping visualization interface and augment it with warm cool shaders, shadows and silhouettes.
+Warm cool shaders add contrast to objects while still maintaining their visibility.
+Shadows highlight the position and movement of objects in the simulation.
+Silhouettes make objects visually distinct from one another.
+All of these additions will help users understand the geometric relationship between the grasping hand and the object it is trying to pick up. 
+Our goal is to increase user confidence when answering questions about the simulation.
 \end{abstract}
 }
 
@@ -38,30 +41,40 @@ We’ll be doing this by incorporating shaders, shadows, and silhouettes into th
 \end{titlepage}
 
 \section{Problem Definition}
-The robot grasping model that is within OpenRave does not meet the client’s needs. 
-It is currently difficult to see and understand the shapes and contact points within the simulation due to outdated graphics. 
-Because of this, users are unwilling or unable to give proper responses to the simulation.
+The robot grasping model that is within OpenRave does not meet the client’s needs.
+It is currently difficult to see and understand the shapes and contact points within the simulation due to outdated graphics.
+Because of this, users aren’t confident in giving proper responses to the simulation.
 
 \section{Proposed Solution}
-To improve the robotic grasping visualization in OpenRave, 
-we will be adding in 3 features that help users understand the simulation’s 
-geometry and movement. These 3 features are shaders, shadows and silhouettes. \par
-Firstly, we are going to add warm cool shaders that highlight 3D objects in an 
-unrealistic way so that users can easily understand the shape of an object. 
-After the shaders are implemented, our focus will be changed to adding shadows 
-to the OpenRave visualization. The addition of shadows will make it easier for 
-users to locate the positions of objects and better understand an object’s movement 
-in the simulation. Finally, we will create silhouettes for the 3D objects to help 
-users better understand it’s geometry within the simulation. \par
-We will show a demo comparison of the before and after at expo in addition to a 
-poster that detail what we’ve added to improve the visualization of the simulation.
+To improve the robotic grasping visualization in OpenRave, we will be adding in 3 features that help users understand the simulation’s geometry and movement. 
+These 3 features are warm cool shaders, shadows and silhouettes. \par
+
+Firstly, we are going to add warm cool shaders that highlight 3D objects in an unrealistic way. 
+These shaders are unrealistic because they use unnatural lighting to highlight every part of the object. 
+This will allow users to easily understand an object’s geometry and depth inside the simulation.
+After the shaders are implemented, our focus will be changed to adding shadows to the OpenRave visualization. 
+The addition of shadows will make it easier for users to locate the positions of objects and better understand an object’s movement in the simulation. 
+Finally, we will create silhouettes for the 3D objects to help users better understand distinctions between separate objects in the simulation. \par
+
+We believe that these implementations will allow users to give confident responses to questions about the simulation.
+At expo, we will show a demo comparison of the before and after of the robotic grasping simulation. 
+Along with this, we will have a poster describing the features we implemented into the simulation. 
+Our description will go into detail of how these features were implemented, and why we believe them to be improvements.
 
 \section{Performance Metrics}
-We will be using the 3 features that we have proposed as our performance metrics. 
-It will be based on whether or not the 3 features are implemented within the 
-simulation. We will be using our client’s response to determine if the 3 
-features were implemented correctly.
+We will be using the 3 features that we have proposed as our performance metrics.
+Each feature has its own scale of how well it’s been implemented. 
+Warm cool shaders should maximize contrast in the object while still maintaining dynamic range of object visibility. 
+The client would measure our warm cool shader implementation by how well an object’s 3D geometry is highlighted by the warm cool shader, while still maintaining total visibility of the object’s shape. 
+Specifically, an object should be shaded in such a manner that no part of the shape isn’t visible or “blacked out” by the warm cool shader.
+Shadows should effectively highlight an object’s position within a 3D space, without appearing unnatural or pixelated. 
+Our client will measure the shadows by how pixilated the shadows are, and by how well the shadow displays the object’s geometry onto another surface. 
+Silhouettes should better highlight object separation without sacrificing object depth. 
+This will be measured by how clear object distinction is highlighted by the silhouettes.
+Our augmentation will also be measured by how aesthetically pleasing it is. 
+In our case aesthetically pleasing would mean: shadows, and shaders are not pixelated, silhouette lines are smooth, and our additions don’t affect the simulation’s frames per second (FPS).  
 
 \end{document}
+
 
 
