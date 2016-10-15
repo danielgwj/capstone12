@@ -21,7 +21,7 @@
 
 \author{Justin~Bibler,
         Matthew~Huang,
-        and~Daniel~Goh,}
+        and~Daniel~Goh}
 		
 \IEEEtitleabstractindextext{%
 \begin{abstract}
@@ -63,16 +63,29 @@ Our description will go into detail of how these features were implemented, and 
 
 \section{Performance Metrics}
 We will be using the 3 features that we have proposed as our performance metrics.
-Each feature has its own scale of how well it’s been implemented. 
+Each feature has its own scale of how well it’s been implemented. \par
 Warm cool shaders should maximize contrast in the object while still maintaining dynamic range of object visibility. 
 The client would measure our warm cool shader implementation by how well an object’s 3D geometry is highlighted by the warm cool shader, while still maintaining total visibility of the object’s shape. 
-Specifically, an object should be shaded in such a manner that no part of the shape isn’t visible or “blacked out” by the warm cool shader.
+Specifically, an object should be shaded in such a manner that no part of the shape isn’t visible or “blacked out” by the warm cool shader. \par
 Shadows should effectively highlight an object’s position within a 3D space, without appearing unnatural or pixelated. 
-Our client will measure the shadows by how pixilated the shadows are, and by how well the shadow displays the object’s geometry onto another surface. 
+Our client will measure the shadows by how pixilated the shadows are, and by how well the shadow displays the object’s geometry onto another surface. \par
 Silhouettes should better highlight object separation without sacrificing object depth. 
-This will be measured by how clear object distinction is highlighted by the silhouettes.
+This will be measured by how clear object distinction is highlighted by the silhouettes. \par
 Our augmentation will also be measured by how aesthetically pleasing it is. 
 In our case aesthetically pleasing would mean: shadows, and shaders are not pixelated, silhouette lines are smooth, and our additions don’t affect the simulation’s frames per second (FPS).  
+
+\vfill
+
+\noindent\begin{tabular}{ll}
+\makebox[2.5in]{\hrulefill} & \makebox[2.5in]{\hrulefill}\\
+Cindy Grimm & Date\\[8ex]% adds space between the signatures
+\makebox[2.5in]{\hrulefill} & \makebox[2.5in]{\hrulefill}\\
+Justin Bibler & Date\\[8ex]% adds space between the signatures
+\makebox[2.5in]{\hrulefill} & \makebox[2.5in]{\hrulefill}\\
+Matthew Huang & Date\\[8ex]% adds space between the signatures
+\makebox[2.5in]{\hrulefill} & \makebox[2.5in]{\hrulefill}\\
+Daniel Goh & Date\\
+\end{tabular}
 
 \end{document}
 
