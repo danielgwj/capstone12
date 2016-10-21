@@ -25,7 +25,10 @@
 		
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-The current OpenRave simulation has outdated graphics.
+Humans are good at interacting with objects, however they aren't good at explaining the thought behind the action.
+Robots are bad at grasping objects.
+Thus, a simulation has been created to help improve robot grasping algorithms by collecting knowledge about the human decision making process.
+However, the simulation (OpenRave) currently has outdated graphics.
 Our plan is to take this existing robot grasping visualization interface and augment it with warm cool shaders, shadows and silhouettes.
 Warm cool shaders add contrast to objects while still maintaining their visibility.
 Shadows highlight the position and movement of objects in the simulation.
@@ -41,9 +44,15 @@ Our goal is to increase user confidence when answering questions about the simul
 \end{titlepage}
 
 \section{Problem Definition}
-The robot grasping model that is within OpenRave does not meet the client’s needs.
-It is currently difficult to see and understand the shapes and contact points within the simulation due to outdated graphics.
+Humans are good at interacting with objects, however they aren't good at explaining the thought behind the action.
+Robots, on the other hand, are bad at picking up objects; this is because there is a lack of a robot grasping model.
+The intention of this research project is to improve the robot grasping model by accomplishing two sub-goals.
+The first sub-goal is to design better data capture methods and protocols so that we can elicit knowledge about the human decision-making process in a form that's useful for grasping algorithms.
+The second is to design better graphical tools so that the data capture methods can be tested online.
+However, the current graphical tools are not up to modern visual standards.
+It is hard to see and understand the shapes and contact points within the simulation due to outdated graphics.
 Because of this, users aren’t confident in giving proper responses to the simulation.
+Thus, the graphical tools does not collect meaningful data which makes it difficult to accomplish the second sub-goal.
 
 \section{Proposed Solution}
 To improve the robotic grasping visualization in OpenRave, we will be adding in 3 features that help users understand the simulation’s geometry and movement. 
@@ -78,11 +87,11 @@ In our case aesthetically pleasing would mean: shadows, and shaders are not pixe
 
 \noindent\begin{tabular}{ll}
 \makebox[2.5in]{\hrulefill} & \makebox[2.5in]{\hrulefill}\\
-Cindy Grimm & Date\\[8ex]% adds space between the signatures
+Cindy Grimm & Date\\[4ex]% adds space between the signatures
 \makebox[2.5in]{\hrulefill} & \makebox[2.5in]{\hrulefill}\\
-Justin Bibler & Date\\[8ex]% adds space between the signatures
+Justin Bibler & Date\\[4ex]% adds space between the signatures
 \makebox[2.5in]{\hrulefill} & \makebox[2.5in]{\hrulefill}\\
-Matthew Huang & Date\\[8ex]% adds space between the signatures
+Matthew Huang & Date\\[4ex]% adds space between the signatures
 \makebox[2.5in]{\hrulefill} & \makebox[2.5in]{\hrulefill}\\
 Daniel Goh & Date\\
 \end{tabular}
