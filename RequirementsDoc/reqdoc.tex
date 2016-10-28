@@ -90,69 +90,132 @@ Silhouettes make objects visually distinct from one another.
 All of these additions will help users understand the geometric relationship between the grasping hand and the object it is trying to pick up. 
 Our goal is to increase user confidence when answering questions about the simulation.
 
-{\bf Keywords:} OpenGL, OpenRave, shaders, silhouettes, shadows, robotic simulation,
+{\bf Keywords:} OpenInventor, OpenGL, OpenRave, shaders, warm cool shaders, silhouettes, shadows, robotic simulation, geometry, visualization, render,
 software requirements specification, system requirements specifications
 \end{large}
 \end{flushleft}
 
 \newpage
 
-
 \end{titlepage}
 
 \section*{Introduction}
-
+Humans are good at interacting with objects, however they aren't good at explaining the thought behind the action.
+Robots, on the other hand, are bad at picking up objects; this is because there is a lack of a robot grasping model.
+The intention of this research project is to improve the robot grasping model by accomplishing two sub-goals.
+The first sub-goal is to design better data capture methods and protocols so that we can elicit knowledge about the human decision-making process in a form that's useful for grasping algorithms.
+The second is to design better graphical tools so that the data capture methods can be tested online.
+However, the current graphical tools are not up to modern visual standards.
+It is hard to see and understand the shapes and contact points within the simulation due to outdated graphics.
+Because of this, users aren't confident in giving proper responses to the simulation.
+Thus, the graphical tools does not collect meaningful data which makes it difficult to accomplish the second sub-goal. \\
 
 \section*{Participants}
+Cindy Grimm, Matthew Huang, Daniel Goh and Justin Bibler \\ 
+
 
 \newpage
 
 \tableofcontents
 
-
 \newpage
 
 \section{Overview}
+This document describes requirements needed to enhance the current openrave simulation. 
+Clause 2 lists the references made to other documents. 
+Clause 3 provides definitions of specific terms used.
+Clause 4 lists the specific requirements that will be met.
+This includes the external interface requirements, functional requirements, performance requirements, design constraints, software system attributes, and other requirements.
 
 \vfill
 
+\section{References}
+
 \section{Definitions}
+\subsection{\textbf{Contract:}}
+A legally binding document agreed upon by the customer and supplier. This includes the technical and organizational requirements, cost, and schedule for a product. A contract may also contain informal but useful information such as the commitments or expectations of the parties involved.
+ 
+\subsection{\textbf{Customer:}}
+The person, or persons, who pay for the product and usually (but not necessarily) decide the requirements. In the context of this recommended practice the customer and the supplier may be members of the same organization.
+
+\subsection{\textbf{Supplier:}}
+The person, or persons, who produce a product for a customer. In the context of this recommended practice, the customer and the supplier may be members of the same organization.
+
+\subsection{\textbf{User:}}
+The person, or persons, who operate or interact directly with the product. The user(s) and the customer(s) are often not the same person(s).
 
 \vfill
 
 \newpage
 
 \section{Specific requirements}
+\vspace{5mm}
 
 \subsection{External interface requirements}
-\subsubsection{User interfaces}
-\subsubsection{Hardware interfaces}
-\subsubsection{Software interfaces}
-\subsubsection{Communications interfaces}
+\vspace{5mm}
+The purpose of the software's output is to give a visual understanding of the robot's grasping capabilities.
+The software will accept an input simulation file (.py file) through the console.
+The software will then output a simulation onto a new window.
 
 \vfill
 
 \subsection{Functional requirements}
+\vspace{5mm}
+The system shall render the scene and output to a new window.
+The rendered scene shall include all 3D objects to be displayed in the scene with correct* geoemtry.
+The scene shall also include:
+\begin{itemize}
+\item Warm cool shaders
+\item Shadows
+\item Silhouettes
+\end{itemize}
+The system shall continously rerender the scene until completion of the simulation or software termination.
 
 \vfill
 
 \subsection{Performance requirements}
+\vspace{5mm}
+The system output should maintain a minimum stable 30FPS on an average modern computer*.
+The system will only run one simulation per window.
+The initial scene will be rendered within the first 30 seconds after accepting an input file.
 
 \vfill
 
 \subsection{Design constraints}
+\vspace{5mm}
+The system currently utilizes outdated OpenGL libraries.
+The location of the main render loop is not known to the customer.
 
 \vfill
 
 \subsection{Software system attributes}
+\vspace{5mm}
+\subsubsection{Reliability}
+\vspace{5mm}
+The system shall always run properly created simulations.
+
+\subsubsection{Maintainability}
+\vspace{5mm}
+The implemented system will be easily maintained and upgraded. 
+Functions should be easily testable and well documented.
+Functions should have single, clear purposes; they should not overlap in what they do.
+
+
+\subsubsection{Portability}
+\vspace{5mm}
+The system shall work on modern Windows operating systems as well as Linux.
 
 \vfill
 
 \subsection{Other requirements}
+\vspace{5mm}
+The outdated OpenGL libraries will be updated to utilize more modern libraries.
 
 \vfill
 
 \newpage
+
+\vfill
 
 \noindent\begin{tabular}{ll}
 \makebox[2.5in]{\hrulefill} & \makebox[2.5in]{\hrulefill}\\
