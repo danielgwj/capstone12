@@ -77,7 +77,7 @@ IEEE Std 830-1993) \\
 
 \vfill
 
-\begin{large}
+\begin{normalsize}
 {\bf Abstract:}
 Humans are good at interacting with objects, however they aren't good at explaining the thought behind the action.
 Robots are bad at grasping objects.
@@ -92,7 +92,7 @@ Our goal is to increase user confidence when answering questions about the simul
 
 {\bf Keywords:} OpenInventor, OpenGL, OpenRave, shaders, warm cool shaders, silhouettes, shadows, robotic simulation, geometry, visualization, render,
 software requirements specification, system requirements specifications
-\end{large}
+\end{normalsize}
 \end{flushleft}
 
 \newpage
@@ -100,6 +100,7 @@ software requirements specification, system requirements specifications
 \end{titlepage}
 
 \section*{Introduction}
+\vspace{3mm}
 Humans are good at interacting with objects, however they aren't good at explaining the thought behind the action.
 Robots, on the other hand, are bad at picking up objects; this is because there is a lack of a robot grasping model.
 The intention of this research project is to improve the robot grasping model by accomplishing two sub-goals.
@@ -111,6 +112,7 @@ Because of this, users aren't confident in giving proper responses to the simula
 Thus, the graphical tools does not collect meaningful data which makes it difficult to accomplish the second sub-goal. \\
 
 \section*{Participants}
+\vspace{3mm}
 Cindy Grimm, Matthew Huang, Daniel Goh and Justin Bibler \\ 
 
 
@@ -121,6 +123,7 @@ Cindy Grimm, Matthew Huang, Daniel Goh and Justin Bibler \\
 \newpage
 
 \section{Overview}
+\vspace{3mm}
 This document describes requirements needed to enhance the current openrave simulation. 
 Clause 2 lists the references made to other documents. 
 Clause 3 provides definitions of specific terms used.
@@ -131,7 +134,10 @@ This includes the external interface requirements, functional requirements, perf
 
 \section{References}
 
+\vfill
+
 \section{Definitions}
+\vspace{3mm}
 \subsection{\textbf{Contract:}}
 A legally binding document agreed upon by the customer and supplier. This includes the technical and organizational requirements, cost, and schedule for a product. A contract may also contain informal but useful information such as the commitments or expectations of the parties involved.
  
@@ -149,10 +155,10 @@ The person, or persons, who operate or interact directly with the product. The u
 \newpage
 
 \section{Specific requirements}
-\vspace{5mm}
+\vspace{3mm}
 
 \subsection{External interface requirements}
-\vspace{5mm}
+\vspace{3mm}
 The purpose of the software's output is to give a visual understanding of the robot's grasping capabilities.
 The software will accept an input simulation file (.py file) through the console.
 The software will then output a simulation onto a new window.
@@ -160,7 +166,7 @@ The software will then output a simulation onto a new window.
 \vfill
 
 \subsection{Functional requirements}
-\vspace{5mm}
+\vspace{3mm}
 The system shall render the scene and output to a new window.
 The rendered scene shall include all 3D objects to be displayed in the scene with correct* geoemtry.
 The scene shall also include:
@@ -174,7 +180,7 @@ The system shall continously rerender the scene until completion of the simulati
 \vfill
 
 \subsection{Performance requirements}
-\vspace{5mm}
+\vspace{3mm}
 The system output should maintain a minimum stable 30FPS on an average modern computer*.
 The system will only run one simulation per window.
 The initial scene will be rendered within the first 30 seconds after accepting an input file.
@@ -182,39 +188,40 @@ The initial scene will be rendered within the first 30 seconds after accepting a
 \vfill
 
 \subsection{Design constraints}
-\vspace{5mm}
+\vspace{3mm}
 The system currently utilizes outdated OpenGL libraries.
 The location of the main render loop is not known to the customer.
 
 \vfill
 
 \subsection{Software system attributes}
-\vspace{5mm}
+\vspace{3mm}
 \subsubsection{Reliability}
 \vspace{5mm}
 The system shall always run properly created simulations.
 
 \subsubsection{Maintainability}
-\vspace{5mm}
+\vspace{3mm}
 The implemented system will be easily maintained and upgraded. 
 Functions should be easily testable and well documented.
 Functions should have single, clear purposes; they should not overlap in what they do.
 
 
 \subsubsection{Portability}
-\vspace{5mm}
+\vspace{3mm}
 The system shall work on modern Windows operating systems as well as Linux.
 
 \vfill
 
 \subsection{Other requirements}
-\vspace{5mm}
+\vspace{3mm}
 The outdated OpenGL libraries will be updated to utilize more modern libraries.
 
 \vfill
 
 \newpage
 
+\null
 \vfill
 
 \noindent\begin{tabular}{ll}
