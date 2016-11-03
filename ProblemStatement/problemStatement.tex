@@ -44,19 +44,16 @@ Our goal is to increase user confidence when answering questions about the simul
 \end{titlepage}
 
 \section{Problem Definition}
-Humans are good at interacting with objects, however they aren't good at explaining the thought behind the action.
-Robots, on the other hand, are bad at picking up objects; this is because there is a lack of a robot grasping model.
-The intention of this research project is to improve the robot grasping model by accomplishing two sub-goals.
-The first sub-goal is to design better data capture methods and protocols so that we can elicit knowledge about the human decision-making process in a form that's useful for grasping algorithms.
-The second is to design better graphical tools so that the data capture methods can be tested online.
-However, the current graphical tools are not up to modern visual standards.
-It is hard to see and understand the shapes and contact points within the simulation due to outdated graphics.
+Currently, our client is using visualizations, of a robot hand grasping objects, to collect data online.
+This data is used to create a model of the human grasp.
+However, the current graphics in the visualizations are outdated.
+It is hard to see and understand the shapes and contact points represented in the scene.
 Because of this, users aren't confident in giving proper responses to the simulation.
-Thus, the graphical tools does not collect meaningful data which makes it difficult to accomplish the second sub-goal.
+Thus, the graphics need to be updated to allow meaningful data to be collected.
 
 \section{Proposed Solution}
 To improve the robotic grasping visualization in OpenRave, we will be adding in 3 features that help users understand the simulation's geometry and movement. 
-These 3 features are warm cool shaders, shadows and silhouettes. \par
+These three features are warm cool shaders, shadows and silhouettes. \par
 
 Firstly, we are going to add warm cool shaders that highlight 3D objects in an unrealistic way. 
 These shaders are unrealistic because they use unnatural lighting to highlight every part of the object. 
