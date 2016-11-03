@@ -10,7 +10,9 @@
   \usepackage{cite}
 \fi
 
+\usepackage{lscape}
 \usepackage{textcomp}
+\usepackage{pgfgantt}
 \usepackage{geometry}
 \geometry{margin=0.75in}
 
@@ -101,15 +103,12 @@ software requirements specification, system requirements specifications
 
 \section*{Introduction}
 \vspace{3mm}
-Humans are good at interacting with objects, however they aren't good at explaining the thought behind the action.
-Robots, on the other hand, are bad at picking up objects; this is because there is a lack of a robot grasping model.
-The intention of this research project is to improve the robot grasping model by accomplishing two sub-goals.
-The first sub-goal is to design better data capture methods and protocols so that we can elicit knowledge about the human decision-making process in a form that's useful for grasping algorithms.
-The second is to design better graphical tools so that the data capture methods can be tested online.
-However, the current graphical tools are not up to modern visual standards.
-It is hard to see and understand the shapes and contact points within the simulation due to outdated graphics.
+Currently, our client is using visualizations, of a robot hand grasping objects, to collect data online.
+This data is used to create a model of the human grasp.
+However, the current graphics in the visualizations are outdated.
+It is hard to see and understand the shapes and contact points represented in the scene.
 Because of this, users aren't confident in giving proper responses to the simulation.
-Thus, the graphical tools does not collect meaningful data which makes it difficult to accomplish the second sub-goal. \\
+Thus, the graphics need to be updated to allow meaningful data to be collected. \\
 
 \section*{Participants}
 \vspace{3mm}
@@ -137,19 +136,24 @@ This includes the external interface requirements, functional requirements, perf
 \vfill
 
 \section{Definitions}
+\begin{flushleft}
 \vspace{3mm}
-\subsection{\textbf{Contract:}}
+\textbf{Contract:}
 A legally binding document agreed upon by the customer and supplier. This includes the technical and organizational requirements, cost, and schedule for a product. A contract may also contain informal but useful information such as the commitments or expectations of the parties involved.
- 
-\subsection{\textbf{Customer:}}
+
+\vspace{3mm}
+\textbf{Customer:}
 The person, or persons, who pay for the product and usually (but not necessarily) decide the requirements. In the context of this recommended practice the customer and the supplier may be members of the same organization.
 
-\subsection{\textbf{Supplier:}}
+\vspace{3mm}
+\textbf{Supplier:}
 The person, or persons, who produce a product for a customer. In the context of this recommended practice, the customer and the supplier may be members of the same organization.
 
-\subsection{\textbf{User:}}
+\vspace{3mm}
+\textbf{User:}
 The person, or persons, who operate or interact directly with the product. The user(s) and the customer(s) are often not the same person(s).
 
+\end{flushleft}
 \vfill
 
 \newpage
@@ -220,6 +224,35 @@ The outdated OpenGL libraries will be updated to utilize more modern libraries.
 \vfill
 
 \newpage
+
+\begin{landscape}
+\section{Gantt Chart}
+\begin{ganttchart}{27}
+\gantttitle{2016}{9} 
+\gantttitle{2017}{18} \\
+\gantttitlelist{10,...,12}{3} 
+\gantttitlelist{1,...,6}{3} \\
+\ganttgroup{Shady Robots}{1}{27} \\
+\ganttbar{Explore and familiarize knowledge with the simulation}{1}{6} \\ % end of november
+\ganttlinkedbar{Implement warm cool shaders in simulation}{7}{12} \\ % 2 month
+\ganttmilestone{Warm Cool Shaders Implementation Milestone}{12} \\
+\ganttlinkedbar{Implement silhouettes in simulation}{13}{18} \\ % 1 month
+\ganttmilestone{Silhouettes Implementation Milestone}{18} \\
+\ganttbar{Implement shadows in simulation}{19}{23} \\ % 3 months
+\ganttmilestone{Shadows Implementation Milestone}{23} \\
+\ganttbar{Finalize and prepare for expo}{24}{27} \\
+\ganttlink{elem2}{elem3}
+\ganttlink{elem3}{elem4}
+\ganttlink{elem4}{elem5}
+\ganttlink{elem5}{elem6}
+\ganttlink{elem6}{elem7}
+\ganttlink{elem7}{elem8}
+\end{ganttchart}
+\newline
+\begin{center}
+Gantt Chart for Shady Robots's Senior Design Project
+\end{center}
+\end{landscape}
 
 \null
 \vfill
