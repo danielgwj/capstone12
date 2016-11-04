@@ -81,19 +81,13 @@ IEEE Std 830-1993) \\
 
 \begin{normalsize}
 {\bf Abstract:}
-Humans are good at interacting with objects, however they aren't good at explaining the thought behind the action.
-Robots are bad at grasping objects.
-Thus, a simulation has been created to help improve robot grasping algorithms by collecting knowledge about the human decision making process.
-However, the simulation (OpenRave) currently has outdated graphics.
-Our plan is to take this existing robot grasping visualization interface and augment it with warm cool shaders, shadows and silhouettes.
-Warm cool shaders add contrast to objects while still maintaining their visibility.
-Shadows highlight the position and movement of objects in the simulation.
-Silhouettes make objects visually distinct from one another.
-All of these additions will help users understand the geometric relationship between the grasping hand and the object it is trying to pick up. 
-Our goal is to increase user confidence when answering questions about the simulation.
+Our customer is using a simulation to create visuals that are used for online data collection.
+This simulation is using outdated libraries which result in outdated graphics.
+We, as the supplier define the requirements necessary to accomplish our customer's request.
+The request being to update the simulation's graphics with warm cool shaders, shadows and silhouettes.
 
 {\bf Keywords:} OpenInventor, OpenGL, OpenRave, shaders, warm cool shaders, silhouettes, shadows, robotic simulation, geometry, visualization, render,
-software requirements specification, system requirements specifications
+vertex lines, software requirements specification, system requirements specifications
 \end{normalsize}
 \end{flushleft}
 
@@ -104,39 +98,43 @@ software requirements specification, system requirements specifications
 \section*{Introduction}
 \vspace{3mm}
 Currently, our client is using visualizations, of a robot hand grasping objects, to collect data online.
-This data is used to create a model of the human grasp.
-However, the current graphics in the visualizations are outdated.
+These visualizations are created from a simulation program (OpenRave), the data collected is used to create a model of the human grasp.
+However, the current graphics in the simulation are outdated.
 It is hard to see and understand the shapes and contact points represented in the scene.
 Because of this, users aren't confident in giving proper responses to the simulation.
 Thus, the graphics need to be updated to allow meaningful data to be collected. \\
 
+
 \section*{Participants}
 \vspace{3mm}
 Cindy Grimm, Matthew Huang, Daniel Goh and Justin Bibler \\ 
-
 
 \newpage
 
 \tableofcontents
 
 \newpage
-
+\begin{flushleft}
 \section{Overview}
 \vspace{3mm}
-This document describes requirements needed to enhance the current openrave simulation. 
+This document describes requirements needed to enhance the current OpenRave simulation. 
 Clause 2 lists the references made to other documents. 
 Clause 3 provides definitions of specific terms used.
 Clause 4 lists the specific requirements that will be met.
 This includes the external interface requirements, functional requirements, performance requirements, design constraints, software system attributes, and other requirements.
 
-\vfill
-
 \section{References}
 
-\vfill
+Gooch Shading \footnote{\label{note1}ECGLAB. Gooch Shading. Retrieved from: https://lva.cg.tuwien.ac.at/ecg/wiki/doku.php?id=students:gooch}
+\vspace{3mm}
+
+IEEE Std 830-1998, IEEE Recommended Practice for Software Requirements Specifications \footnote{\label{note2}IEEE publications are available from the Institute of Electrical and Electronics Engineers, 445 Hoes Lane, P.O. Box 1331, Piscataway, NJ 08855-1331, USA.}
+\vspace{3mm}
+
+Silhouette Extraction \footnote{\label{note3}Gooch, Bruce. Silhouette Extraction. Retrieved from: http://www.cs.rutgers.edu/~decarlo/readings/gooch-sg03c.pdf}
 
 \section{Definitions}
-\begin{flushleft}
+
 \vspace{3mm}
 \textbf{Contract:}
 A legally binding document agreed upon by the customer and supplier. This includes the technical and organizational requirements, cost, and schedule for a product. A contract may also contain informal but useful information such as the commitments or expectations of the parties involved.
@@ -147,14 +145,11 @@ The person, or persons, who pay for the product and usually (but not necessarily
 
 \vspace{3mm}
 \textbf{Supplier:}
-The person, or persons, who produce a product for a customer. In the context of this recommended practice, the customer and the supplier may be members of the same organization.
+The person, or persons, who produce a product for a customer.
 
 \vspace{3mm}
 \textbf{User:}
 The person, or persons, who operate or interact directly with the product. The user(s) and the customer(s) are often not the same person(s).
-
-\end{flushleft}
-\vfill
 
 \newpage
 
@@ -167,36 +162,60 @@ The purpose of the software's output is to give a visual understanding of the ro
 The software will accept an input simulation file (.py file) through the console.
 The software will then output a simulation onto a new window.
 
-\vfill
-
 \subsection{Functional requirements}
 \vspace{3mm}
 The system shall render the scene and output to a new window.
-The rendered scene shall include all 3D objects to be displayed in the scene with correct* geoemtry.
-The scene shall also include:
-\begin{itemize}
-\item Warm cool shaders
-\item Shadows
-\item Silhouettes
-\end{itemize}
-The system shall continously rerender the scene until completion of the simulation or software termination.
+The rendered scene shall include all 3D objects to be displayed in the scene with correct geometry.
+No objects should have clashing vertex lines, and all shapes should be drawn as intended by the user.
+Refer to Fig. 1 below.
 
-\vfill
+\begin{figure} [h]
+  \includegraphics[width=\linewidth]{squares.jpg}
+  \caption
+{ \newline \hspace{\linewidth}
+Square 1: Vertex lines drawn correctly resulting in desired geometry. \newline \hspace{\linewidth}
+Square 2: Vertex lines cross resulting in undesired geometry. \newline \hspace{\linewidth}
+Square 3: Incorrect vertex line drawing resulting in undesired geometry.}
+  \label{fig:squares}
+\end{figure}
+
+\vspace{3mm}
+
+The scene shall include:
+\subsubsection{Warm cool shaders}
+Refer to "Description" section of Gooch Shading listed in this document's references section.
+
+\subsubsection{Shadows}
+A dark area or shape produced by a body coming between rays of light and a surface.
+
+\subsubsection{Silhouettes}
+Refer to "Definition of a Silhouette" section of Silhouette Extraction listed in this document's references section.
+
+\vspace{3mm}
+The system shall continuously re-render the scene until completion of the simulation or software termination.
 
 \subsection{Performance requirements}
 \vspace{3mm}
-The system output should maintain a minimum stable 30FPS on an average modern computer*.
-The system will only run one simulation per window.
-The initial scene will be rendered within the first 30 seconds after accepting an input file.
+\begin{itemize}
+\item The system output should maintain a minimum stable 30FPS on an average modern computer.
+\begin{itemize}
+\item Modern computer defined by the Oregon State University (OSU) EECS minimum laptop requirements: \\
+Intel Core i5 or i7, or AMD A8 and AMD A10 APU
+8GB RAM
 
-\vfill
+\end{itemize}
+\item The system will only run one simulation per window.
+\item The initial scene will be rendered within the first 30 seconds after accepting an input file.
+\end{itemize}
 
 \subsection{Design constraints}
 \vspace{3mm}
-The system currently utilizes outdated OpenGL libraries.
-The location of the main render loop is not known to the customer.
+\begin{itemize}
+\item The system currently utilizes outdated OpenGL libraries.
+\item The location of the main render loop is not known to the customer.
+\item OpenRave is not open sourced.
+\end{itemize}
 
-\vfill
 
 \subsection{Software system attributes}
 \vspace{3mm}
@@ -204,22 +223,23 @@ The location of the main render loop is not known to the customer.
 \vspace{5mm}
 The system shall always run properly created simulations.
 
+
 \subsubsection{Maintainability}
 \vspace{3mm}
-The implemented system will be easily maintained and upgraded. 
-Functions should be easily testable and well documented.
-Functions should have single, clear purposes; they should not overlap in what they do.
-
+The system shall:
+\begin{itemize}
+\item Be easily maintained and upgraded. 
+\item Have well documented and easily testable functions.
+\item Have functions with single, clear purposes; they should not overlap in what they do.
+\end{itemize}
 
 \subsubsection{Portability}
 \vspace{3mm}
-The system shall work on modern Windows operating systems as well as Linux.
-
-\vfill
+The system shall work on Windows 7, 8.1, 10 operating systems as well as Linux.
 
 \subsection{Other requirements}
 \vspace{3mm}
-The outdated OpenGL libraries will be updated to utilize more modern libraries.
+The outdated OpenGL libraries will be updated to utilize OpenGL 3.0 libraries.
 
 \vfill
 
@@ -236,9 +256,9 @@ The outdated OpenGL libraries will be updated to utilize more modern libraries.
 \ganttbar{Explore and familiarize knowledge with the simulation}{1}{6} \\ % end of november
 \ganttlinkedbar{Implement warm cool shaders in simulation}{7}{12} \\ % 2 month
 \ganttmilestone{Warm Cool Shaders Implementation Milestone}{12} \\
-\ganttlinkedbar{Implement silhouettes in simulation}{13}{18} \\ % 1 month
-\ganttmilestone{Silhouettes Implementation Milestone}{18} \\
-\ganttbar{Implement shadows in simulation}{19}{23} \\ % 3 months
+\ganttlinkedbar{Implement silhouettes in simulation}{13}{15} \\ % 1 month
+\ganttmilestone{Silhouettes Implementation Milestone}{15} \\
+\ganttbar{Implement shadows in simulation}{16}{23} \\ % 3 months
 \ganttmilestone{Shadows Implementation Milestone}{23} \\
 \ganttbar{Finalize and prepare for expo}{24}{27} \\
 \ganttlink{elem2}{elem3}
@@ -250,9 +270,11 @@ The outdated OpenGL libraries will be updated to utilize more modern libraries.
 \end{ganttchart}
 \newline
 \begin{center}
-Gantt Chart for Shady Robots's Senior Design Project
+Gantt Chart for Shady Robots' Senior Design Project
 \end{center}
 \end{landscape}
+
+\newpage
 
 \null
 \vfill
@@ -267,6 +289,8 @@ Matthew Huang & Date\\[4ex]% adds space between the signatures
 \makebox[2.5in]{\hrulefill} & \makebox[2.5in]{\hrulefill}\\
 Daniel Goh & Date\\
 \end{tabular}
+
+\end{flushleft}
 
 \end{document}
 
