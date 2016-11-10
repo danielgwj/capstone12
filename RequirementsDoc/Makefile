@@ -1,3 +1,5 @@
+PATH  := /usr/local/apps/tex_live/current/bin/x86_64-linux:/bin:/sbin:/usr/local/bin:/usr/bin:/usr/local/apps/bin:/usr/bin/X11:/nfs/stak/students/g/gohd/bin:.
+
 LATEX	= latex -shell-escape
 BIBTEX	= bibtex
 DVIPS	= dvips
@@ -15,11 +17,14 @@ all: pdf
 
 pdf:
 	latex reqdoc.tex
+	biber reqdoc
+	latex reqdoc.tex
+	latex reqdoc.tex
 	dvips -R -Poutline -t letter reqdoc.dvi -o reqdoc.ps
 	ps2pdf reqdoc.ps
 
 clean:
-	rm -f *.pdf *.ps *.dvi *.out *.log *.aux *.bbl *.blg *.pyg
+	rm -f *.pdf *.ps *.dvi *.out *.log *.aux *.bbl *.blg *.pyg *.toc *.gz *.bib *.bcf *.xml
 
 .PHONY: all show clean ps pdf showps
 
