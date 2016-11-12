@@ -1,4 +1,4 @@
-\documentclass[10pt,journal,compsoc]{IEEEtran}
+\documentclass[10pt,journal,compsoc,draftclsnofoot]{IEEEtran}
 
 \usepackage{tocloft}
 \usepackage{lscape}
@@ -76,13 +76,13 @@
 
 \newpage
 \null
-\vspace{35mm}
+\vspace{10mm}
 
 \begin{flushleft}
 \begin{bfseries}
 	\vskip2mm
 	\Huge{Requirements Document for\\ Better Graphics For A Robotics Grasping GUI}\\
-	\vspace{30mm}
+	\vspace{15mm}
 	\textbf{\huge Shady Robots} \\
 	\vskip2mm
 	\large{Group 12}
@@ -329,32 +329,25 @@ The outdated OpenGL libraries will be updated to utilize OpenGL 3.0 libraries.
 \begin{landscape}
 \section{Gantt Chart}
 \vfill
-\begin{ganttchart}[hgrid, vgrid={*2{draw=none}, dotted}]{1}{27}
-\gantttitle{2016}{9} 
-\gantttitle{2017}{18} \\
-\gantttitlelist{10,...,12}{3} 
-\gantttitlelist{1,...,6}{3} \\
-\ganttgroup{Shady Robots}{1}{27} \\
-\ganttbar{Explore and familiarize knowledge with the simulation}{1}{6} \\ % end of november
-\ganttlinkedbar{Implement warm cool shaders in simulation}{7}{12} \\ % 2 month
-\ganttmilestone{Warm Cool Shaders Implementation Milestone}{12} \\
-\ganttlinkedbar{Implement silhouettes in simulation}{13}{15} \\ % 1 month
-\ganttmilestone{Silhouettes Implementation Milestone}{15} \\
-\ganttbar{Identify render loop}{16}{18} \\ % 1 month
-\ganttbar{Switch to 2-pass rendering}{19}{20} \\ % 0.67 month
-\ganttbar{Implement shadows in simulation}{21}{23} \\ % 1 month
-\ganttmilestone{Shadows Implementation Milestone}{23} \\
-\ganttbar{Aesthetic evaluation}{24}{27} \\
-\ganttbar{Conduct user interviews for performance metrics}{24}{25} \\ % 0.67 month
-\ganttbar{Finalize and prepare for expo}{26}{27} \\
-\ganttlink{elem2}{elem3}
-\ganttlink{elem3}{elem4}
-\ganttlink{elem4}{elem5}
-\ganttlink{elem5}{elem6}
-\ganttlink{elem6}{elem7}
-\ganttlink{elem7}{elem8}
-\ganttlink{elem8}{elem9}
-\ganttlink{elem9}{elem10}
+\begin{ganttchart}[hgrid, vgrid={{draw=none}, dotted}]{1}{36}
+\gantttitle{Fall 2016}{12} 
+\gantttitle{Winter 2017}{12}
+\gantttitle{Spring 2017}{12} \\
+\gantttitlelist{1,...,12}{1} 
+\gantttitlelist{1,...,12}{1}
+\gantttitlelist{1,...,12}{1} \\
+\ganttbar{Familiarize Project}{1}{8} \\
+\ganttbar{Identify render loop}{9}{16} \\ 
+\ganttbar{Implement warm cool shaders in simulation}{9}{16} \\ 
+\ganttmilestone{Warm Cool Shaders Implementation Milestone}{16} \\
+\ganttbar{Implement silhouettes in simulation}{9}{16} \\
+\ganttmilestone{Silhouettes Implementation Milestone}{16} \\
+\ganttbar{Switch to 2-pass rendering}{17}{22} \\ 
+\ganttbar{Implement shadows in simulation}{17}{22} \\ 
+\ganttmilestone{Shadows Implementation Milestone}{22} \\
+\ganttbar{Aesthetic evaluation and maintenance}{23}{26} \\
+\ganttbar{Conduct user interviews}{25}{30} \\
+\ganttbar{Finalize and prepare for expo}{29}{34} \\
 \end{ganttchart}
 \newline
 \begin{center}
