@@ -1,0 +1,208 @@
+\documentclass[10pt,journal,compsoc,draftclsnofoot]{IEEEtran}
+
+\usepackage{tocloft}
+\usepackage{lscape}
+\usepackage{textcomp}
+\usepackage{pgfgantt}
+\usepackage{geometry}
+\geometry{margin=0.75in}
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+\usepackage[backend=biber]{biblatex}
+
+\bibliography{techreview}
+ \begin{filecontents}{techreview.bib}
+@misc{gooch,
+ author = {ECG Wiki},
+ title = {Gooch Shading},
+ url      = {https://lva.cg.tuwien.ac.at/ecg/wiki/doku.php?id=students:gooch}
+}
+
+@article{ieee830,
+ author = {IEEE Computer Society},
+ title = {IEEE Recommended Practice for Software Requirements Specifications},
+ publisher = {The Institute of Electrical and Electronics Engineers, Inc.},
+ year      = 1998,
+ month     = 10,
+ isbn      = {0-7381-0332-2}
+}
+
+@misc{shadow,
+ author = {LearnOpenGL},
+ title = {Shadow Mapping},
+ url      = {http://learnopengl.com/\#!Advanced-Lighting/Shadows/Shadow-Mapping}
+}
+
+@misc{silhouette,
+ author = {Bruce Gooch},
+ title = {Silhouette Extraction},
+ url      = {http://www.cs.rutgers.edu/~decarlo/readings/gooch-sg03c.pdf}
+}
+\end{filecontents}
+
+\begin{document}
+\onecolumn
+
+\begin{titlepage}
+\null
+\vspace{20mm}
+
+\begin{flushleft}
+\begin{bfseries}
+	\vskip2mm
+	\Huge{Technology Review for\\ Better Graphics For A Robotics Grasping GUI}\\
+	\vspace{30mm}
+	\textbf{\huge Shady Robots} \\
+	\vskip2mm
+	\large{Group 12}
+	\vskip5mm
+	\Large{Justin Bibler \\
+	Matthew Huang \\
+	Daniel Goh \\}
+\end{bfseries}
+
+\vspace{15mm}
+\Large{CS461: Senior Software Engineering Project} \\
+\Large{Fall 2016} \\
+
+\vspace{10mm}
+
+\today
+
+\vfill
+
+\begin{normalsize}
+{\bf Abstract:}
+Our customer is using a simulation to create visuals that are used for online data collection.
+This simulation is using outdated libraries which result in outdated graphics.
+We, as the supplier, compare and contrast the different technology and methods that will be used during the phase of the project to ensure the project's success.
+\end{normalsize}
+\end{flushleft}
+
+\end{titlepage}
+
+\begin{flushleft}
+
+\section{Overview}
+\vspace{3mm}
+The technology review document is used to determine the best approach of implementation for the project. 
+Clause 2 lists the references made to other documents.
+Clause 3 lists each team member's role in the project and accomplishment goals.
+Clauses 4 to 6 are the technology review that is carried out by each team member.
+Clause 4 reviews the technology to be used to carry out runtime analysis. performance benchmarks, and best practices to implement shadows.
+Clause 5 reviews the best practices to implement shaders, best practices to implement silhouttes, and technology to be used to ensure maintainability of the project's source code.
+Clause 6 review the methods to create user interviews, run user interviews, and tools to analyze the respondants data.
+
+\section{References}
+\vspace{3mm}
+
+Gooch Shading \footfullcite{gooch}
+\vspace{3mm}
+
+IEEE Std 830-1998, IEEE Recommended Practice for Software Requirements Specifications \footfullcite{ieee830}
+\vspace{3mm}
+
+Shadow Mapping \footfullcite{shadow}
+\vspace{3mm}
+
+Silhouette Extraction \footfullcite{silhouette}
+
+\newpage
+
+\section{Roles and Accomplishment Goals}
+
+\newpage
+
+\section{Technology Review of}
+\large{By Justin Bibler}
+
+\subsection{Tech 1}
+
+\subsubsection{Method 1}
+
+\subsubsection{Method 2}
+
+\subsubsection{Method 3}
+
+\subsection{Tech 2}
+
+\subsubsection{Method 1}
+
+\subsubsection{Method 2}
+
+\subsubsection{Method 3}
+
+\subsection{Tech 3}
+
+\subsubsection{Method 1}
+
+\subsubsection{Method 2}
+
+\subsubsection{Method 3}
+
+\newpage
+
+\section{Technology Review of}
+\large{By Matthew Huang}
+
+\subsection{Tech 1}
+
+\subsubsection{Method 1}
+
+\subsubsection{Method 2}
+
+\subsubsection{Method 3}
+
+\subsection{Tech 2}
+
+\subsubsection{Method 1}
+
+\subsubsection{Method 2}
+
+\subsubsection{Method 3}
+
+\subsection{Tech 3}
+
+\subsubsection{Method 1}
+
+\subsubsection{Method 2}
+
+\subsubsection{Method 3}
+
+\newpage
+
+
+\section{Methods to create user interviews, run user interviews, and tools to analyze the respondants data}
+\large{By Daniel Goh}
+\subsection{Tech 1}
+
+\subsubsection{Method 1}
+
+\subsubsection{Method 2}
+
+\subsubsection{Method 3}
+
+\subsection{Tech 2}
+
+\subsubsection{Method 1}
+
+\subsubsection{Method 2}
+
+\subsubsection{Method 3}
+
+\subsection{Tech 3}
+
+\subsubsection{Method 1}
+
+\subsubsection{Method 2}
+
+\subsubsection{Method 3}
+
+\end{flushleft}
+
+\end{document}
+
+
+
