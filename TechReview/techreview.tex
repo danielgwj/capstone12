@@ -10,35 +10,29 @@
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
 
-\usepackage[backend=biber]{biblatex}
-
-\bibliography{techreview}
- \begin{filecontents}{techreview.bib}
-@misc{gooch,
- author = {ECG Wiki},
- title = {Gooch Shading},
- url      = {https://lva.cg.tuwien.ac.at/ecg/wiki/doku.php?id=students:gooch}
+\begin{filecontents}{techreview.bib}
+@misc{userResearch,
+ author = {usability.gov},
+ title = {User Research Methods},
+ url      = {https://www.usability.gov/how-to-and-tools/methods/user-research/index.html}
 }
 
-@article{ieee830,
- author = {IEEE Computer Society},
- title = {IEEE Recommended Practice for Software Requirements Specifications},
- publisher = {The Institute of Electrical and Electronics Engineers, Inc.},
- year      = 1998,
- month     = 10,
- isbn      = {0-7381-0332-2}
+@article{usabilitynet,
+ author = {John Brooke},
+ title = {SUS - A quick and dirty usability scale},
+ url      = {http://www.usabilitynet.org/trump/documents/Suschapt.doc}
 }
 
-@misc{shadow,
- author = {LearnOpenGL},
- title = {Shadow Mapping},
- url      = {http://learnopengl.com/\#!Advanced-Lighting/Shadows/Shadow-Mapping}
+@misc{google,
+ author = {Google},
+ title = {Google Terms of Service},
+ url      = {https://www.google.com/policies/terms/}
 }
 
-@misc{silhouette,
- author = {Bruce Gooch},
- title = {Silhouette Extraction},
- url      = {http://www.cs.rutgers.edu/~decarlo/readings/gooch-sg03c.pdf}
+@misc{surveymonkey,
+ author = {SurveyMonkey},
+ title = {SurveyMonkey and IRB Guidelines},
+ url      = {http://help.surveymonkey.com/articles/en\_US/kb/How-does-SurveyMonkey-adhere-to-IRB-guidelines}
 }
 \end{filecontents}
 
@@ -83,7 +77,7 @@ We, as the supplier, compare and contrast the different technology and methods t
 
 \end{titlepage}
 
-\begin{flushleft}
+
 
 \section{Overview}
 \vspace{3mm}
@@ -92,26 +86,20 @@ Clause 2 lists the references made to other documents.
 Clause 3 lists each team member's role in the project and accomplishment goals.
 Clauses 4 to 6 are the technology review that is carried out by each team member.
 Clause 4 reviews the technology to be used to carry out runtime analysis. performance benchmarks, and best practices to implement shadows.
-Clause 5 reviews the best practices to implement shaders, best practices to implement silhouttes, and technology to be used to ensure maintainability of the project's source code.
-Clause 6 review the methods to create user interviews, run user interviews, and tools to analyze the respondants data.
-
-\section{References}
-\vspace{3mm}
-
-Gooch Shading \footfullcite{gooch}
-\vspace{3mm}
-
-IEEE Std 830-1998, IEEE Recommended Practice for Software Requirements Specifications \footfullcite{ieee830}
-\vspace{3mm}
-
-Shadow Mapping \footfullcite{shadow}
-\vspace{3mm}
-
-Silhouette Extraction \footfullcite{silhouette}
-
-\newpage
+Clause 5 reviews the best practices to implement shaders, best practices to implement silhouettes, and technology to be used to ensure maintainability of the project's source code.
+Clause 6 review usability inspection methods, run user interviews, and tools to analyze the respondents data.
 
 \section{Roles and Accomplishment Goals}
+
+\subsection{Justin Bibler}
+
+\subsection{Matthew Huang}
+
+\subsection{Daniel Goh}
+My role within Shady Robots is to measure the improvement that is implemented into the simulation.
+Usability inspection methods will be a standard of metrics to determine if the project has reached the end goal.
+The goal within this document is to compare and contrast the different available usability inspection methods, data collection tools, and analytical and visualization tools.
+After reviewing the various tools, a final verdict of the review is presented at the end of each section.
 
 \newpage
 
@@ -174,33 +162,224 @@ Silhouette Extraction \footfullcite{silhouette}
 \newpage
 
 
-\section{Methods to create user interviews, run user interviews, and tools to analyze the respondants data}
+\section{Usability inspection methods, how to carry out the selected inspection method, and the tools to analyze the gathered data}
 \large{By Daniel Goh}
-\subsection{Tech 1}
 
-\subsubsection{Method 1}
+\normalsize
+\subsection{Usability Inspection Methods}
+Usability inspection will be carried out to measure the improvement between the starting and the end phase of the project.
+Usability.gov lists multiple usability inspection methods that can be used to determine the usability of an interface.
+The three main inspection methods that suits this project scope include: Individual Interviews, Online Surveys, and System Usability Scale (SUS). \cite{userResearch}
+This section will be used to review various inspection methods and select one that will best suit this project.
 
-\subsubsection{Method 2}
+\subsubsection{Individual Interviews \cite{userResearch}}
+An individual interview is an inspection method in which a interviewer talks to the participant for 30 minutes to an hour.
+During this interview, the interviewer is tasked to gain a deeper understanding of the participants.
+This includes taking note of the participant's attitudes, beliefs, desires, and experiences.
 
-\subsubsection{Method 3}
+Guidelines to conduct individual interviews as defined by usability.gov are as follows:
+\begin{itemize}
+\item Define the aim of the study and select relevant participants.
+\item Prepare interview protocol which includes questions and probes to use during the interview.
+\item Create a comfortable interview situation by asking questions in a neutral manner and be attentive for probe queues.
+\item Get permission to tape interview session, and have one or more note takers during the interview.
+\end{itemize}
 
-\subsection{Tech 2}
+Benefits of Individual Interviews:
+\begin{itemize}
+\item Researchers will be able to gain a better understanding of individual participants.
+\item Researchers will be able to observe the participant's body language and facial emotions during the interview.
+\item Researchers will be able to receive additional insights that might not have occurred to the interviewer.
+\end{itemize}
 
-\subsubsection{Method 1}
+\subsubsection{Online Surveys \cite{userResearch}} 
+An online survey is a form of feedback that is done over the internet.
+This inspection method is structured as a questionnaire, and is published online to gather feedback from a broad audience.
+The data is then stored within a database, and a survey tool is used to analyze the data.
 
-\subsubsection{Method 2}
+Guidelines to conduct individual interviews as defined by usability.gov are as follows:
+\begin{itemize}
+\item Identify purpose of the survey.
+\item Determine and select target audience that will best suit the project.
+\item Identify methods to collect data and limitations to data collection.
+\item Create brief surveys.
+\item Provide estimated time to completion up front, and show progress of survey to participants.
+\item Mix in open-ended questions with closed questions.
+\item Allow participants to choose to answer in-depth questions through a follow-up session.
+\end{itemize}
 
-\subsubsection{Method 3}
+Benefits of Online Surveys:
+\begin{itemize}
+\item Researchers will be able to reach to a broader audience.
+\item Researchers will be able to learn who the users are.
+\item Users will be more willing to participate as it would not take up too much time.
+\item A wide variety of survey tools are available online.
+\item Cost efficient for researchers.
+\end{itemize}
 
-\subsection{Tech 3}
+\subsubsection{The System Usability Scale ~\cite{userResearch}} 
+The System Usability Scale (SUS) is a tool created by John Brooke in 1986.
+The SUS method is structured as a ten item questionnaire that requires users to rate individual items with five response options; from Strongly agree to Strongly disagree.
 
-\subsubsection{Method 1}
+Guidelines to conduct System Usability Scale as defined by usability.gov and UsabilityNet.org are as follows:
+\begin{itemize}
+\item Participants should not spend time thinking about items for a long time, instead they should record their immediate response. \cite{usabilitynet}
+\item The questionnaire are defined and covers the need for support, training, and complexity of system usability.
+\item Data gathered through this method needs to be "normalized" to produce a percentile ranking.
+\end{itemize}
 
-\subsubsection{Method 2}
+Benefits of The System Usability Scale:
+\begin{itemize}
+\item Easy to scale to administer to participants.
+\item Study can yield reliable results, even on small sample sizes
+\item The System Usability Scale is an industry standard, and is credible in differentiating usable systems from unusable ones.
+\end{itemize}
 
-\subsubsection{Method 3}
+\subsubsection{Verdict}
+After reviewing the available usability inspection methods, the \textbf{online survey method} would be a better fit for our project.
+By utilizing online surveys, the project would be able to collect more insight from a larger and broader audience.
+Individual interviews would not be appropriate as our project does not require an emotional understanding of the participant's thoughts and body language.
+The System Usability Scale employs questions that dives too deep into the system, and would introduce scope creep in comparison to the requirements provided by our customer.
+Thus, the (BOLD)online survey method will be utilized as a usability inspection method to measure the success of the project.
 
-\end{flushleft}
+\newpage
+
+\subsection{How to carry out selected inspection method: Online Surveys}
+There are many survey tools available online.
+This section reviews the various survey tools that are free to use.
+The reviews are done after using the survey tools first-handedly.
+
+\subsubsection{Google Forms}
+This section covers the pros and cons of Google's survey tool, Google Forms.
+
+Pros of Google Forms for our project purpose:
+\begin{itemize}
+\item Allows unlimited questions in a form
+\item Collected data are visualized as pie charts
+\item Collected data can be exported into Google Spreadsheets (Google's equivalent of Microsoft Excel)
+\item Collected data can be exported as a .CSV file to be use with other data analysis tools
+\item Allows images and videos to be added into each survey questions without the need to host them externally
+\item Allows unlimited respondents to take the survey
+\end{itemize}
+
+Cons of Google Forms for our project purpose:
+\begin{itemize}
+\item As the collected data are stored on Google's remote servers, we are giving Google (and their affiliated partners) "a worldwide license to use, host. store, reproduce, create derivative works, communicate, publish, publicly perform, publicly display and distribute" the content \cite{google}
+\end{itemize}
+
+\subsubsection{Survey Monkey}
+This section covers the pros and cons of Survey Monkey.
+
+Pros of Survey Monkey for our project purpose:
+\begin{itemize}
+\item Well known as an online survey tool
+\item Contains a variety of different questions types
+\item Has a dedicated "SurveyMonkey and IRB Guidelines" under the policies section
+\item Provides assistance with IRB approvals by providing "evidence permission to use the SurveyMonkey platform to conduct research" \cite{surveymonkey}
+\end{itemize}
+
+Cons of Survey Monkey for our project purpose:
+\begin{itemize}
+\item Only allows 10 questions
+\item Only allows 100 respondents
+\item No data export capability
+\item No data reporting capability
+\end{itemize}
+
+\subsubsection{Typeform}
+This section covers the pros and cons of Typeform.
+
+Pros of Typeform for our project purpose:
+\begin{itemize}
+\item Allows unlimited questions
+\item Allows unlimited respondents
+\item Supports data export
+\item Respondent's input can be piped into other questions (User inputs their name for the first question, and the second question can access their name and call them by name in upcoming questions)
+\item Interface is modern and beautifully designed
+\end{itemize}
+
+Cons of Typeform for our project purpose:
+\begin{itemize}
+\item Uses keyboard as main input for survey questions
+\end{itemize}
+
+\subsubsection{Verdict}
+After reviewing various survey tools, \textbf{Google Forms} comes in as the best choice that fits the selected usability inspection method.
+Our survey will not collect sensitive information (e.g. social security numbers, credit card numbers etc.), thus it is safe if Google make the data accessible to the public.
+The purpose of the survey (to compare the simulation visuals prior to enhancement and after enhancement) is unrelated to the original research, and does not need to be kept confidential.
+
+\newpage
+
+\subsection{Data analysis tools to analyze and visualize collected data}
+Data analysis and visualization tools are used in enterprise situations to allow massive data to be processed into meaningful data.
+With the inspection method and survey tools selected, a suitable data analysis and visualization tool will be needed to process the raw data.
+As the selected survey tool allows CSV (comma separated value files) to be exported, the review will only include tools that can process CSV files and that are free of charge.
+The reviews for data analysis and visualization tools are done after using the applications first-handedly. 
+
+\subsubsection{Google Forms, Google Sheets}
+Google has a wide range of applications in their portfolio, and the survey tool selected, Google Forms come with an integrated pie chart visualizer.
+However, users will be able to transfer the survey data into Google Sheets for a more complete data analysis environment.
+
+Pros of using Google's visualization for our project purpose:
+\begin{itemize}
+\item Easily transferable across Google platforms
+\item Easily shared across multiple collaborators
+\item Simple, light weight and easy to use
+\item Work can be done in a web browser
+\item Keeps records of previous spreadsheet versions for reverting purposes
+\end{itemize}
+
+Cons of using Google's visualization for our project purpose:
+\begin{itemize}
+\item Limited chart types
+\item Google (and their affiliated partners) is given "a worldwide license to use, host. store, reproduce, create derivative works, communicate, publish, publicly perform, publicly display and distribute" the content \cite{google}
+\end{itemize}
+
+\subsubsection{Microsoft Excel}
+Microsoft Excel is an application that requires a subscription fee (as a part of Office 365) to access.
+However, as an Oregon State University student, we have access to use the software with a student license.
+Microsoft Excel is the leader of all spreadsheet applications.
+
+Pros of using Microsoft Excel for our project purpose:
+\begin{itemize}
+\item Easy to create charts from CSV files
+\item Contains many chart customization options
+\item Allows the user to manipulate and show the data in many different ways through PivotCharts
+\end{itemize}
+
+Cons of using Microsoft Excel for our project purpose:
+\begin{itemize}
+\item History keeping of excel files are not reliable
+\item PivotCharts requires user overhead to correctly manipulate
+\end{itemize}
+
+\subsubsection{d3.js}
+D3.js is a JavaScript library that is used to manipulate documents based on the data that is fed into it.
+D3 emphasizes it's output on web standards, and only requires an internet browser to show the visualization of data.
+
+Pros of using D3.js for our project purpose:
+\begin{itemize}
+\item Contains many beautifully designed templates that can be used
+\item Code base is open sourced
+\item Can display dynamic visualization on web pages
+\item Visualization updates on the fly as data gets updated
+\end{itemize}
+
+Cons of using D3.js for our project purpose:
+\begin{itemize}
+\item Not a thorough data analysis tool, but mainly a data visualization tool
+\item Has a steep learning curve to get things running
+\end{itemize}
+
+\subsubsection{Verdict}
+After reviewing the different data analysis and visualization tools, \textbf{Google Sheets} will be used for data analysis and visualization purposes.
+As many of the project documents reside in a collaborative Google Drive, migrating the data analysis portion out from a well constructed ecosystem is not necessary.
+With Google Sheets, the spreadsheet can be worked on collaboratively and can be shared with the customer for better transparency on the ongoing data analysis. 
+
+\newpage
+
+\bibliographystyle{IEEEtran}
+\bibliography{techreview}
 
 \end{document}
 

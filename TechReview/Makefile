@@ -17,7 +17,7 @@ all: pdf
 
 pdf:
 	latex techreview.tex
-	biber techreview
+	bibtex techreview
 	latex techreview.tex
 	latex techreview.tex
 	dvips -R -Poutline -t letter techreview.dvi -o techreview.ps
