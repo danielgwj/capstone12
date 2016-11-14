@@ -34,6 +34,48 @@
  title = {SurveyMonkey and IRB Guidelines},
  url      = {http://help.surveymonkey.com/articles/en\_US/kb/How-does-SurveyMonkey-adhere-to-IRB-guidelines}
 }
+
+@misc{debugging,
+author = {Microsoft},
+title = {Standard Debugging Techniques},
+url = {https://msdn.microsoft.com/en-us/library/windows/hardware/hh439390(v=vs.85).aspx}
+}
+
+@misc{maintainability,
+author = {Markus Pizka, Florian Deißenböck},
+title = {How to effectively define and measure maintainability},
+url = {http://www.itestra.de/fileadmin/Redaktion/Documents/07\_itestra\_define\_and\_measure\_maintainability.pdf}
+}
+
+@misc{version,
+author = {git},
+title = {Getting Started - About Version Control},
+url = {https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control}
+}
+
+@misc{refactoring,
+author = {c2},
+title = {What Is Refactoring},
+url = {http://wiki.c2.com/?WhatIsRefactoring}
+}
+
+@misc{lightmapping,
+author = {Alan Baylis},
+title = {Lightmapping Tutorial},
+url = {http://www.alsprogrammingresource.com/lightmapping\_tutorial.html}
+}
+
+@misc{volume,
+author = {Josh Beam},
+title = {Tutorial - Stenciled Shadow Voumes in OpenGL},
+url = {http://joshbeam.com/articles/stenciled\_shadow\_volumes\_in\_opengl/}
+}
+
+@misc{shadowMapping,
+author = {opengl-tutorial},
+title = {Tutorial 16 : Shadow mapping},
+url = {http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-16-shadow-mapping/}
+}
 \end{filecontents}
 
 \begin{document}
@@ -92,6 +134,22 @@ Clause 6 review usability inspection methods, run user interviews, and tools to 
 \section{Roles and Accomplishment Goals}
 
 \subsection{Justin Bibler}
+My roles within this project vary from each other, and are not one cohesive singular responsibility.
+I have two responsibilities that have a conclusive end, and a responsibility that is maintained throughout the entire project.
+The first of the two conclusive responsibilities that I have is to locate where in the code the rendering is happening.
+This responsibility is critically important to the entirety of the group, as without knowledge of the location of the rendering function it is difficult to implement shaders.
+Secondly, I will be overseeing the implementation of the shadows.
+Shadows help define where 3d objects are within a computer simulation, thus our client requested them to be implemented to improve the current graphics.
+Finally, my last responsibility is to assure code maintainability.
+This means that once our group has finished with the project our additions to the code will be well documented, commented, and easily understandable.
+Making it easy for our shader implementations to be changed and adjusted easily to fit our client's needs.
+\indent
+Within the "Identification of Rendering loop, Methods of code maintainability, and Shadows" section I compare and contrast three different methods and tools available to conduct and maintain my responsibilities.
+How the comparison of methods and tools will be conducted is: I will first explain what the responsibility is and it's relevance to the group and the project.
+I will then list a tool or method and how it is used or conducted.
+Next, I will list and analyze the benefits and negatives of a tools usage.
+At the end of each section I discuss my opinion on the usage of the method.
+Finally, after listing all of the available different method and tools I will give my verdict on what will be used.
 
 \subsection{Matthew Huang}
 
@@ -103,32 +161,277 @@ After reviewing the various tools, a final verdict of the review is presented at
 
 \newpage
 
-\section{Technology Review of}
+section{Identification of Rendering loop, Methods of code maintainability, and Shadows}
 \large{By Justin Bibler}
 
-\subsection{Tech 1}
+\normalsize
+\subsection{Identification of Rendering loop}
+Our project requires our group to make new implementations into the existing openrave code.
+However, the location of the rendering functions within openrave are not entirely know to our client.
+Therefore, the responsibility of locating these functions has been given to our group.
+This responsibility is very important to the entirety of the project.
+Most of our new implementations into the code will be reliant on the use of shaders;
+ if the location of the rendering functions are unknown to us it would be extremely difficult for us to make good shader implementations.
+Thus, to identify the location of the rendering functions the three most fitting methods would be: Reading Static Code, debugging, external references, and documentation.
 
-\subsubsection{Method 1}
+\subsubsection{Reading Static Code}
+This is a very basic method in which a programmer simply reads over and reviews static code.
+In this case the openrave source code would be read over to identify how the rendering function is working.
 
-\subsubsection{Method 2}
+Benefits of Reading Static Code:
+\begin{itemize}
+\item The entire system can be understood at a very low level.
+\item Locations of specific functions within the code can be identified.
+\item Exact implementation of functions can be understood.
+\end{itemize}
 
-\subsubsection{Method 3}
+Negatives of Reading Static Code:
+\begin{itemize}
+\item This method can become very time consuming depending on the size and complexity of the code.
+\item Code may difficult to read depending on how it is implemented.
+\item Inefficient, a programmer will most likely have to flip around multiple source files to figure out how things are working together.
+\end{itemize}
 
-\subsection{Tech 2}
+\paragraph{Conclusion}
+\vspace{3mm}
+Reading static code might be too simple of a method to conduct by itself.
+It would definitely help me get a good understanding of how the code is function.
+However, as mentioned in the negatives of this method it may be too time consuming.
+The source code for openrave is quite large, and I have minimal experience working on a project this large scale so it would be difficult for me to jump right in and simply read code.
+Perhaps if this method were to be paired with another it could be useful.
 
-\subsubsection{Method 1}
+\subsubsection{Debugging}
+Debugging is a process where a programmer will use tools, and programming methods to locate errors in code.
+Many different forms and tools exist to conduct debugging.\cite{debugging}
+Thus, I will narrow the scope down to one specific form a debugging: breakpoints, and step through.
+Breakpoints stop an executable and breaks into the debugger.
+This allows a programmer to analyze the code and execute debugger commands.\cite{debugging}
 
-\subsubsection{Method 2}
+Benefits of Debugging:
+\begin{itemize}
+\item Lots of available tools.
+\item Lots of available methods.
+\item Powerful control over code.
+\item Executable within most modern IDEs.
+\end{itemize}
 
-\subsubsection{Method 3}
+Negatives of Debugging
+\begin{itemize}
+\item Difficult to conduct on large projects.
+\item Stepping through code can become time consuming.
+\end{itemize}
 
-\subsection{Tech 3}
+\paragraph{Conclusion}
+\vspace{3mm}
+Debugging is a good method that would help me accomplish my goal.
+If I were to use a method such as breakpoints and step through code at certain points, it could become a very helpful resource to use.
+However, due to the size of the program I am not exactly sure how easy it will be to debug.
 
-\subsubsection{Method 1}
+\subsubsection{External References, and Documentation}
+Much like reading static code this is a very simple and obvious method that can be used to locate the rendering function.
+This method is where a programmer will read through the available documentation to understand how the system works.
+In this method a programmer will also contact other programmers who are working on the code currently, or have worked on the code in the past.
+With the intention of receiving guidance on how the system works.
 
-\subsubsection{Method 2}
+Benefits of External References, and Documentation:
+\begin{itemize}
+\item Easy to get answers to specific questions.
+\item Documentation gives a good understanding of the entirety of a system.
+\end{itemize}
 
-\subsubsection{Method 3}
+Negatives of External References, and Documentation:
+\begin{itemize}
+\item There may be no documentation.
+\item External sources may not exist.
+\item Past programmers may be unresponsive.
+\end{itemize}
+
+\paragraph{Conclusion}
+\vspace{3mm}
+It's quite obvious that this is one of the best methods.
+Because I am attempting to find a specific function within the code, referring to the documentation and external sources is a good choice.
+Along with this, the GitHub that is being used for openrave has a couple of active users so it would be relatively easy to contact another programmer who is more knowledgeable to assist me.
+
+\subsubsection{Verdict}
+My verdict on methods for identifying the rendering function is that all of the proposed methods are useful.
+I will most likely begin my search in the documentation then use the knowledge I gained from the documents to traverse through the source code.
+This is because as helpful as the documentation will be, it's required of me to read the actual code so I will have an even better understanding of it.
+If I am unable to locate the rendering function through documentation and by reading the code.
+I will reach out to other programmers within the GitHub group for assistance.
+As a last result, I will be using debugging techniques to traverse through the code in attempts to locate the function.
+
+\subsection{Methods of code maintainability}
+The goal of creating maintainable code is to increase cost effectiveness.
+This means that whenever a new change needs to be made to the system, due to how the code is a designed and constructed this change will take a minimal amount of time.\cite{maintainability}
+Maintainability is important to our code, because our client wishes to have the ability to easily change and adjust our implementation of shaders into the system.
+Thus our implementations into the code should use methods that allow for an increase in the ability to quickly understand and modify code.
+These proposed methods are: Version Control, Refactoring, Documentation, and Commenting.
+
+\subsubsection{Version Control}
+Version control has become increasingly easy to maintain with the popularity of version control tools such as GitHub.
+Using version control allows for users to make copies of repositories to either use for personnel use or make altercations.
+This practices gives protection to the code, such as if programmer losses or makes a devastating alteration to the code.
+That programmer doesn't have to worry much, because they know they can pull unmodified working code from the repository.\cite{version}
+
+Benefits of using Version Control:
+\begin{itemize}
+\item Source code is easily accessible.
+\item General tests can be defined to update stable versions of code in a repository.
+\item Code is safe to accidental deletion, or introductions of major bugs.
+\end{itemize}
+
+Negatives of using Version Control:
+\begin{itemize}
+\item There aren't really any negatives
+\end{itemize}
+
+\paragraph{Conclusion}
+\vspace{3mm}
+Using version control is a obvious powerful tool.
+It essentially protects code from being lost or broken.
+If a programmer accidentally introduces a large bug into the system, then with version control it is very easy to step back and pull older versions of the code.
+In the case that a programmer accidentally deletes their code, it's easy for them to go back and simply pull it from the repository again.
+Using version control most assuredly would help increase code maintainability.
+
+\subsubsection{Refactoring}
+Refactoring is a process in which code is altered in a manner such that it does not change how the external behavior of the system works.\cite{refactoring}
+In the case of this project, refactoring would be used after our group has created a working implementation of our clients request.
+We would go back into our code, and adjust our code so that it might be smaller, more readable, and in most cases reusable.
+Such as refactoring repeated code into a singular function that can be used in multiple locations of the code.
+
+Benefits of using Refactoring:
+\begin{itemize}
+\item Easy to do.
+\item Cuts down code size.
+\item Reusable functions can be implemented and used in different locations of code.
+\item Maximizes runtime.
+\end{itemize}
+
+Negatives of using Refactoring:
+\begin{itemize}
+\item After a lot of refactoring code can become less readable.
+\end{itemize}
+
+\paragraph{Conclusion}
+\vspace{3mm}
+Refactoring is a good method to maximize code, especially when refactoring repeated code into new functions.
+If I were to refactor our implementations into the code with the client's desires in mind.
+I could most likely make it simple for them to adjust, and reuse functions throughout the program if they desire to change it.
+
+\subsubsection{Documentation, and Commenting}
+Documentation and Commenting allows new programmers to quickly get a grasp on the code.
+In the case of comments, a programmer is able to quickly understand intentions behind functions and certain operations within the code to get a better understanding of how the system works.
+And documentation of the code allows a programmer to have references to many questions related to the code.
+
+Benefits of Documentation, and Commenting:
+\begin{itemize}
+\item New programmers have references to the what, where, and why of code.
+\item Good commenting allows a programmer to get a better understanding of the code while directly reading the code.
+\item Programmers have references of how to use functions, either in the comments of a function or in the documentation.
+\end{itemize}
+
+Negatives of Documentation, and Commenting:
+\begin{itemize}
+\item Too much, and useless comments can make code look clustered and sloppy.
+\item Writing documents can become time consuming depending on the size of system.
+\end{itemize}
+
+\paragraph{Conclusion}
+\vspace{3mm}
+Early in the document I talked about how I would be using documentation to help find the rendering functions within the openrave code.
+Thus, I personally find using documentation very helpful.
+I personally would prefer to focus more heavily on documenting our additions outside of the code rather then simply using comments.
+This is because documents are simply and easier reference.
+
+\subsubsection{Verdict}
+Each of these methods has it's usefulness that I will utilize to keep the system maintainable.
+Version control allows our group to make alterations to the code without fear of losing stable versions.
+This also allows for our client to come in and make their own alterations later in the future after the project is finished.
+In regards to documentation, and commenting.
+I will be recording all the changes and additions we make to the source code.
+This allows our group, and our client to have easy references to usable functions within the system.
+Finally, I will be using refactoring when I see it fit to be used.
+Our group is not expecting to make such massive alterations into the existing code that refactoring would have a major impact.
+I also do not intend to refactor the currently written openrave code.
+
+\subsection{Shadows}
+Shadows are used to help understand where in an object is within a 3d simulation.
+However, the current graphics used in openrave do not contain shadows.
+So our client has requested that we implement shadows into the current system.
+My proposed methods are: Light mapping, Shadow volumes, and Shadow mapping.
+
+\subsubsection{Light mapping}
+A light map is simply a texture that contains information about the lighting. 
+In most cases a light map is rendered before the program is executed to speed up the programs runtime.
+Essentially, this light map is blended with textures that are intended to be lit to give off an illusion of lighting, and shadows.\cite{lightmapping}
+
+Benefits of using Light mapping:
+\begin{itemize}
+\item Easy to implement.
+\item Can be pre-rendered to increase runtime
+\end{itemize}
+
+Negatives of using Light mapping:
+\begin{itemize}
+\item Lighting is not dynamic.
+\end{itemize}
+
+\paragraph{Conclusion}
+Light mapping seems like a good choice for doing lighting and shading for static objects in openrave.
+However, because the simulation contains moving 3d objects it will most likely need more dynamic shadows.
+
+\subsubsection{Shadow Volumes}
+This form of shadowing takes advantage of the stencil buffer in openGL.
+Essentially, a shadow volume is a volume in space that contains every point in which an object could be shaded.
+Objects that collide with the shadow volume should generate shadowing on their surface according to the shadow volume.
+This is done by rendering objects shadowed pixels with different stencil values compared to their non-shadow pixels. \cite{volume}
+
+Benefits of Shadow Volumes:
+\begin{itemize}
+\item Dynamic.
+\item Relatively lightweight.
+\end{itemize}
+
+Negatives of Shadow Volumes:
+\begin{itemize}
+\item Doesn't generate the best looking shadows.
+\end{itemize}
+
+\paragraph{Conclusion}
+\vspace{3mm}
+This for of creating shadows seems relatively simple for my skill level.
+Along with this it's dynamic, and lightweight which are both good qualities our group is looking for in our shadow implementations.
+
+\subsubsection{Shadow maps}
+Shadow mapping is kind of like light mapping.
+Shadow mapping works by rendering a scene twice.
+In the first render, only the depth of each fragment is computed.
+In the second render, the scene is rendered normally.
+However, the information computed in the first render is used to calculate whether or not an object has fragments in front of it relative to the light source.
+If a fragment has a fragment from the first render blocking it, a shadow should be placed displayed. \cite{shadowMapping}
+
+Benefits of Shadow Mapping:
+\begin{itemize}
+\item Shadows are dynamic.
+\item Shadows will look good because they are fragment based.
+\end{itemize}
+
+Negatives of Shadow Mapping:
+\begin{itemize}
+\item Requires scene to be rendered multiple times.
+\item Worse runtime.
+\end{itemize}
+
+\paragraph{Conclusion}
+\vspace{3mm}
+Shadow mapping seems great, it also seems like it would create the best looking shadows for the simulation.
+However, shadow mapping would most likely greatly increase the runtime of the program and be detrimental to the FPS.
+
+\subsubsection{Verdict}
+I think that the shadow volume implementation would be the best to implement into the system.
+This is because it offer acceptable looking dynamic shadows, without sacrificing too much runtime and FPS.
+It would be great if we could implement the shadow mapping, but the computers that the simulation will be frequently ran on does not have the best GPU.
+Making shadow mapping a bad choice.
 
 \newpage
 
