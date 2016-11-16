@@ -186,7 +186,7 @@ url = {http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-16-shadow-
 
 \begin{normalsize}
 {\bf Abstract:}
-Our customer is using a simulation to create visuals that are used for online data collection.
+Our client is using a simulation to create visuals that are used for online data collection.
 This simulation is using outdated libraries which result in outdated graphics.
 We, as the supplier, compare and contrast the different technology and methods that will be used during the phase of the project to ensure the project's success.
 \end{normalsize}
@@ -594,7 +594,9 @@ Additionally, how well each are documented will be considered.
 Speed, resource cost, and implementation flexibility will also be factored in but at a lower priority. 
 This is because the speed and cost of shading implementations are more dependent on the specific implementation rather than the type of shading.
 
-\subsubsection{Table comparing non photorealistic shading technologies}
+\subsubsection{Table}
+\begin{center}
+\begin{table}[H]
 \begin{tabular}{ | m{7em} | m{7em} | m{7em} | m{7em} | m{7em} | m{7em} |  } 
 \hline
 \textbf{Technology}  & \textbf{Highlight Shape} & \textbf{Object Visibility} & \textbf{Documentation} & \textbf{Speed \& Cost} & \textbf{Flexibility} \\ \hline
@@ -602,6 +604,13 @@ Gooch Shading & Shape highlighted using warm to cool colors tones. & No parts of
 Cel Shading & Shape highlighted using few shading colors. Color hues do not blend which creates a 2D look for the shape. & Object areas have constant light intensities so they aren't typically completely black. & Widely used and well documented. Many pieces of sample code exist online. & Fast and efficient due to fewer shading colors and constant light intensities. & Lighting can be done using vertex or fragment shader.  \\ \hline
 Hatching & Shape highlighted by using textures with different number of hatches. The darker the area, the more hatches. & Darker areas of an object have more hatches drawn there meaning parts of it could be completely black. & Not as common as cel or Gooch shading but documentation still exists. & Depends on implementation. Hatches typically drawn using textures and lighting equations. & Must use both vertex and fragment shader. \\ \hline
 \end{tabular}
+\newline
+\caption{Comparing non photorealistic shading technologies}
+\label{table:nonphoto}
+\end{table}
+\end{center}
+
+\newpage
 
 \subsubsection{Discussion}
 All three shaders do well at highlighting object shape. 
@@ -688,7 +697,9 @@ Ease of implementation varies greatly between different silhouette techniques; i
 Efficiency will be determined by how the silhouette is created. Some techniques create it by drawing the object twice, others create it by traversing the object's vertices.
 Flexibility is measured by how the silhouette behaves under different situations. For example, does it work when objects overlap?
 
-\subsubsection{Table comparing silhouettes}
+\subsubsection{Table}
+\begin{center}
+\begin{table}[H]
 \begin{tabular}{ | m{7em} | m{7em} | m{7em} | m{7em} | m{7em} | m{7em} |  } 
 \hline
 \textbf{Technology}  & \textbf{Smoothness} & \textbf{Implementation Difficulty} & \textbf{Efficiency} & \textbf{Flexibility} & \textbf{Documentation} \\ \hline
@@ -696,6 +707,13 @@ Stencil Buffer Technique & Based on how the original object was drawn since its 
 Polygonal offset & Based on how the original object was drawn since its vertices to create the silhouette. & Easy. Simply draw the object twice but with an offset on one of them. & Draws the at least twice. & Struggles when objects overlap since the silhouette is a background object. & Well document since it is easy to implement and commonly used in cel shading.  \\ \hline
 Edge Detection & Based on how the original object was drawn since its vertices to create the silhouette. & Varies depending on the edge detection algorithm used. & Traverse through every vertex of the object. Efficiency also dependent on edge detection algorithm. & Handles overlapping objects well since separate objects have their own edge lists. & Not well documented. Resources mostly come from forum posts and stackoverflow questions. \\ \hline
 \end{tabular}
+\newline
+\caption{Comparing silhouettes technologies}
+\label{table:silhouettes}
+\end{table}
+\end{center}
+
+\newpage
 
 \subsubsection{Discussion}
 All three silhouette drawing methods have the ability to create smooth silhouettes since they are all based on how the object was drawn.
@@ -754,7 +772,9 @@ Usability is measured by how easy it is to install and use.
 Documentation is measured by how many resources on the debugger are available online.
 The first two factors will be of higher priority than the third because not having certain features is much more important than amount of documentation.
 
-\subsubsection{Table comparing run time analysis technologies}
+\subsubsection{Table}
+\begin{center}
+\begin{table}[H]
 \begin{tabular}{ | m{7em} | m{7em} | m{7em} | m{7em} | m{7em} | m{7em} |  } 
 \hline
 \textbf{Technology}  & \textbf{Program tracing and tracking} & \textbf{Other Relevant Features} & \textbf{Usability} & \textbf{Available Platforms} & \textbf{Documentation} \\ \hline
@@ -763,6 +783,13 @@ Uses a GUI to display resource consumption. & Windows and Linux. & Well document
 GLSL\-Debugger & Included & None & Source code available online. Must build and compile yourself. Uses a GUI to display program tracing. & Windows and Linux. & Not very well documented. Their website has enough documentation to get the debugger built.  \\ \hline
 GLIntercept & Included & Resource leak tracing, tracking of error states, function timer logs. & Source code available online. Must copy files over and edit certain files to debug. No GUI. & Windows. & Well documented. Github page has detailed list of features and short tutorial on how to use it. \\ \hline
 \end{tabular}
+\newline
+\caption{Comparing run time analysis technologies}
+\label{table:runtime}
+\end{table}
+\end{center}
+
+\newpage
 
 \subsubsection{Discussion}
 As far as features go, all of the debugger have the minimum necessary features to warrant use (I.E. program tracing).
@@ -794,11 +821,11 @@ GLSL-Debugger was not chosen because it was too simple (in terms of features) an
 \normalsize
 \subsection{Usability Inspection Methods}
 Usability inspection will be carried out to measure the improvement between the starting and the end phase of the project.
-Usability.gov lists multiple usability inspection methods that can be used to determine the usability of an interface.
-The three main inspection methods that suits this project scope include: Individual Interviews, Online Surveys, and System Usability Scale (SUS). \cite{userResearch}
+Usability.gov lists multiple usability inspection methods that can be used to determine the usability of an interface. \cite{userResearch}
+The three main inspection methods that suits this project scope include: Individual Interviews, Online Surveys, and System Usability Scale (SUS).
 This section will be used to review various inspection methods and select one that will best suit this project.
 
-\subsubsection{Individual Interviews \cite{userResearch}}
+\subsubsection{Individual Interviews}
 An individual interview is an inspection method in which a interviewer talks to the participant for 30 minutes to an hour.
 During this interview, the interviewer is tasked to gain a deeper understanding of the participants.
 This includes taking note of the participant's attitudes, beliefs, desires, and experiences.
@@ -818,7 +845,7 @@ Benefits of Individual Interviews:
 \item Researchers will be able to receive additional insights that might not have occurred to the interviewer.
 \end{itemize}
 
-\subsubsection{Online Surveys \cite{userResearch}} 
+\subsubsection{Online Surveys} 
 An online survey is a form of feedback that is done over the internet.
 This inspection method is structured as a questionnaire, and is published online to gather feedback from a broad audience.
 The data is then stored within a database, and a survey tool is used to analyze the data.
@@ -843,7 +870,7 @@ Benefits of Online Surveys:
 \item Cost efficient for researchers.
 \end{itemize}
 
-\subsubsection{The System Usability Scale ~\cite{userResearch}} 
+\subsubsection{The System Usability Scale} 
 The System Usability Scale (SUS) is a tool created by John Brooke in 1986.
 The SUS method is structured as a ten item questionnaire that requires users to rate individual items with five response options; from Strongly agree to Strongly disagree.
 
@@ -861,12 +888,46 @@ Benefits of The System Usability Scale:
 \item The System Usability Scale is an industry standard, and is credible in differentiating usable systems from unusable ones.
 \end{itemize}
 
-\subsubsection{Verdict}
+\subsubsection{Goals}
+The goals of running usability inspections is used to determine if our team was able to successfully improve the current simulation's visuals.
+
+\subsubsection{Criteria}
+The criteria of selecting a suitable usability inspection method is as follows:
+\begin{itemize}
+\item Needs to easily allow participants to view and choose between two pictures (old visualization and new visualization)
+\item Needs to allow the team to get at least 20 respondents within 6 weeks
+\item Needs to take less than 10 minutes of the participants time to increase participation willingness
+\end{itemize}
+
+\subsubsection{Table}
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{ | m{10em} | m{15em} | m{15em} | m{15em} |  } 
+\hline
+\textbf{Methods}  & \textbf{Time needed of team to conduct method per session} & \textbf{Time needed of participant to participate} & \textbf{Estimated amount of people that can be reached within 6 weeks} \\ \hline
+User Interview & approx. 30 minutes  & approx. 30 minutes & approx. 20 people \\ \hline
+Online Survey & None & approx. 5 minutes & approx. 50 people \\ \hline
+System Usability Scale & approx. 10 minutes & approx. 10 minutes  &  approx. 50 people \\ \hline 
+\end{tabular}
+\newline
+\caption{Comparing the efficiency between user interviews, online surveys and using the System Usability Scale}
+\label{table:inpectionmethods}
+\end{table}
+\end{center}
+
+\subsubsection{Discussion}
+All three listed usability inspection methods are widely adopted inspection methods.
+Individual interviews would allow the team to better understand the participant's wants and thoughts, however it would require more time from the participant and the conductor of the interview.
+Online surveys would allow the team to get data with less work required for the team and the participants.
+However, the team would not be able to get additional body language queues without observing the participants directly.
+The System Usability Scale, a questionnaire like inspection method would allow the team to gather data about the simulation as a whole, however that is not within the scope of the project assigned by the client.
+
+\subsubsection{Choice}
 After reviewing the available usability inspection methods, the \textbf{online survey method} would be a better fit for our project.
 By utilizing online surveys, the project would be able to collect more insight from a larger and broader audience.
 Individual interviews would not be appropriate as our project does not require an emotional understanding of the participant's thoughts and body language.
-The System Usability Scale employs questions that dives too deep into the system, and would introduce scope creep in comparison to the requirements provided by our customer.
-Thus, the (BOLD)online survey method will be utilized as a usability inspection method to measure the success of the project.
+The System Usability Scale employs questions that dives too deep into the system, and would introduce scope creep in comparison to the requirements provided by our client.
+Thus, the \textbf{online survey method} will be utilized as a usability inspection method to measure the success of the project.
 
 \newpage
 
@@ -883,7 +944,7 @@ Pros of Google Forms for our project purpose:
 \item Allows unlimited questions in a form
 \item Collected data are visualized as pie charts
 \item Collected data can be exported into Google Spreadsheets (Google's equivalent of Microsoft Excel)
-\item Collected data can be exported as a .CSV file to be use with other data analysis tools
+\item Collected data can be exported as a .csv file to be use with other data analysis tools
 \item Allows images and videos to be added into each survey questions without the need to host them externally
 \item Allows unlimited respondents to take the survey
 \end{itemize}
@@ -929,7 +990,47 @@ Cons of Typeform for our project purpose:
 \item Uses keyboard as main input for survey questions
 \end{itemize}
 
-\subsubsection{Verdict}
+\subsubsection{Goals}
+The goal of selecting a survey tool is to allow the team to carry out the online survey inspection method as efficiently as possible.
+
+\subsubsection{Criteria}
+The criteria of selecting a suitable online survey platform is as follows:
+\begin{itemize}
+\item Needs to be free to use
+\item Needs to easily allow participants to view and choose between two pictures (old visualization and new visualization)
+\item Needs to allow participants to complete the survey across multiple device platforms with an integrated browser (e.g. Internet Explorer for Windows, Safari for macOS and iOS devices etc.)
+\item Needs to allow data export for data analysis
+\item Needs to allow at least 10 questions to be asked
+\end{itemize}
+
+\subsubsection{Table}
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{ | m{10em} | m{15em} | m{15em} | m{15em} |  } 
+\hline
+\textbf{Tools}  & \textbf{Image integration} & \textbf{Data export support} & \textbf{Number of questions allowed} \\ \hline
+Google Forms & Included  & Supports Google Sheets, .xlsx, .ods, .tsv and .csv export & Unlimited \\ \hline
+Survey Monkey & Included & Supports .xls, .xlsx, Google Sheets, .spss and .csv export & 10 \\ \hline
+Typeform & Included & Supports .xlsx and .csv export &  Unlimited \\ \hline 
+\end{tabular}
+\newline
+\caption{Comparing the survey tool features provided in Google Sheets, Survey Monkey and Typeform}
+\label{table:surveytool}
+\end{table}
+\end{center}
+
+\newpage
+
+\subsubsection{Discussion}
+All three listed survey tools are commonly used in both professional and non-professional settings.
+Google Forms and TypeForm allows unlimited questions, and does not limit the number of respondents.
+However, Google Forms supports the most data export option as Google Forms is tightly integrated with Google Sheets, which allows various sheet export options.
+Survey Monkey offers a simpler version for free from it's paid counterpart.
+The free version only allows 10 questions and 100 respondents in the free version, and this might pose to be an issue if the team decides to increase the number of questions in the survey.
+Similar to Survey Monkey, Typeform is a survey tool that offers free and PRO tiers based on the needs of the survey.
+Both Survey Monkey's and Typeforms' premium offerings (Logic jumps, priority customer support) are not vital for the survey.
+
+\subsubsection{Choice}
 After reviewing various survey tools, \textbf{Google Forms} comes in as the best choice that fits the selected usability inspection method.
 Our survey will not collect sensitive information (e.g. social security numbers, credit card numbers etc.), thus it is safe if Google make the data accessible to the public.
 The purpose of the survey (to compare the simulation visuals prior to enhancement and after enhancement) is unrelated to the original research, and does not need to be kept confidential.
@@ -939,7 +1040,7 @@ The purpose of the survey (to compare the simulation visuals prior to enhancemen
 \subsection{Data analysis tools to analyze and visualize collected data}
 Data analysis and visualization tools are used in enterprise situations to allow massive data to be processed into meaningful data.
 With the inspection method and survey tools selected, a suitable data analysis and visualization tool will be needed to process the raw data.
-As the selected survey tool allows CSV (comma separated value files) to be exported, the review will only include tools that can process CSV files and that are free of charge.
+As the selected survey tool allows csv (comma separated value files) to be exported, the review will only include tools that can process csv files and that are free of charge.
 The reviews for data analysis and visualization tools are done after using the applications first-handedly. 
 
 \subsubsection{Google Forms, Google Sheets}
@@ -997,10 +1098,50 @@ Cons of using D3.js for our project purpose:
 \item Has a steep learning curve to get things running
 \end{itemize}
 
-\subsubsection{Verdict}
+\subsubsection{Goals}
+The goal of selecting a good data analyzer/visualizer tool is allow the team to analyze and visualize data collected from the survey.
+This should be done in the most efficient manner without sacrificing the quality of the analyzed data and data visualization.
+
+\subsubsection{Criteria}
+The criteria of selecting a data analysis/visualizer tool is as follows:
+\begin{itemize}
+\item Needs to be free to use
+\item Needs to read .csv data files
+\item Needs to be supported across different operating systems
+\end{itemize}
+
+\subsubsection{Table}
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{ | m{10em} | m{15em} | m{15em} | m{15em} |  } 
+\hline
+\textbf{Tools}  & \textbf{Reads .csv files } & \textbf{Documentations} & \textbf{Cloud editing} \\ \hline
+Google Sheets & Yes  & Yes (Moderately detailed) & Yes \\ \hline
+Microsoft Excel & Yes & Yes (Very detailed) & Yes \\ \hline
+D3.js & Yes & Yes (Moderately detailed) & No \\ \hline 
+\end{tabular}
+\newline
+\caption{Comparing the features between Google Sheets, Microsoft Excel and D3.js}
+\label{table:datatools}
+\end{table}
+\end{center}
+
+\newpage
+
+\subsubsection{Discussion}
+All three listed data analysis/visualizer tools are the more commonly used tools available.
+All three tools supports .csv file importing.
+Google Sheets and Microsoft Excel (Office 365) allow cloud editing, this provides the team the convenience of accessing the data anywhere.
+With cloud editing, comes cloud backup.
+Both Google Sheets and Microsoft Excel (Office 365) backs up the data file periodically.
+This allows easy recovery from unforeseen circumstances.
+Both Microsoft Excel and D3.js offer various type of chart and visualization support, whereas Google Sheets only carries a limited number of chart types.
+However, the chart type variants does not have a significant impact on the tool choice as the provided charts within Google Sheets accommodates the conventional chart types.
+
+\subsubsection{Choice}
 After reviewing the different data analysis and visualization tools, \textbf{Google Sheets} will be used for data analysis and visualization purposes.
 As many of the project documents reside in a collaborative Google Drive, migrating the data analysis portion out from a well constructed ecosystem is not necessary.
-With Google Sheets, the spreadsheet can be worked on collaboratively and can be shared with the customer for better transparency on the ongoing data analysis. 
+With Google Sheets, the spreadsheet can be worked on collaboratively and can be shared with the client for better transparency on the ongoing data analysis. 
 
 \newpage
 
