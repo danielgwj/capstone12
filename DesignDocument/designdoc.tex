@@ -75,7 +75,7 @@ url = {http://www.pc-tools.net/win32/ptime/}
 @misc{maintain,
 author = {F. D. Markus Pizka},
 title = {How to effectively define and measure maintainability},
-url = {http://www.itestra.de/fileadmin/Redaktion/Documents/07 itestra define and measure maintainability.pdf}
+url = {http://www.itestra.de/fileadmin/Redaktion/Documents/07testradefineandmeasuremaintainability.pdf}
 }
 
 \end{filecontents}
@@ -299,6 +299,94 @@ However, a large part of it will rely more on how well our group documents the i
 It'll be important while we go forward to document both how we implemented our improvements, and how to use our improvements.
 This is because, as mentioned in the Requirement concerns, we are working off preexisting code.
 Thus, our client will need some sort of good reference of how to navigate the code, and how to make proper adjustments.
+
+
+\newpage
+
+\section{Requirement: Shadows}
+\large{By Justin Bibler}
+
+
+\normalsize
+\subsection{Software Design Description}
+Our client requires us to add shadows into the simulation's graphics.
+The addition of shadows will improve the overall graphics of the simulation, which will help a user better understand where an object is within a 3D space.
+
+\subsection{Design Stakeholders}
+Justin Bibler, Matthew Huang, and Daniel Goh
+
+\subsection{Design Concerns}
+All stakeholder share similar design concerns.
+
+Shadows design concerns:
+\begin{enumerate}
+\item Will our shadow implementations have a major impact on FPS.
+\item Will our shadows be too pixelated.
+\item Will users be able to better understand where an object is because of our shadow implementation.
+\end{enumerate}
+
+\newpage
+
+\subsection{Design Views}
+\subsubsection{Interface Design}
+This section is dedicated to talking about the graphical quality of our shadow implementation.
+
+\paragraph{Design Concerns}
+Interface design concerns:
+\begin{enumerate}
+\item Will users be able to better understand where an object is because of our shadow implementations.
+\item Will our shadows be too pixelated.
+\end{enumerate}
+
+\paragraph{Design Elements}
+\subparagraph{Name}
+Shadow Interface.
+
+\subparagraph{Type}
+Visual, or Graphic.
+
+\subparagraph{Purpose}
+Shadows with the simulation exist to better help users understand an objects location within a 3D space.
+
+\subparagraph{Relationship}
+The quality of the visuals rely heavily on the design discussed later within the Algorithmic implementation of shadows.
+
+\paragraph{Interface attribute}
+Depending on the implementation in the algorithm viewpoint, every 3D model within the simulation should have a shadow.
+Whether or not the shadow is visible is dependent on if there is a surface that the shadow volume collides with.
+These shadows should have minimal pixelation.
+In addition, the shadows should be relatively close in shape to their original models, as to not confuse what shadow is projected out from what object.
+All of this is done so that the users will easily be able to understand what shadow is related to what object, and to receive a better understanding of the 3D environment in the simulation.
+
+\newpage
+
+\subsubsection{Algorithm Viewpoint}
+This section will talk about how the shadow volume algorithm will be used to produce shadows within the simulation.
+
+\paragraph
+Algorithm design concerns:
+\begin{enumerate}
+\item Will the algorithm be costly to the simulation's FPS.
+\end{enumerate}
+
+\paragraph{Design Elements}
+\subparagraph{Name}
+Algorithmic implementation of shadows.
+
+\subparagraph{Type}
+Algorithm, or method.
+
+\subparagraph{Relationship}
+Shaders, and the Shadow Interface.
+
+\subparagraph{Design Constraints}
+The implementation of shadows will most likely rely on the knowledge we gain from implementing warm cool shaders into the simulation.
+That knowledge will allow us to better understand how the simulation is being rendered, making it easier for us to adjust and change certain shaders.
+Another constraint that we have is that there is a relatively small amount of documentation related to OpenRave and OpenInventor.
+This makes it difficult to find exactly where we need to implement shaders to get our desired results.
+
+\subparagraph{Design Entities}
+
 
 \newpage
 % Daniel's Section
