@@ -96,11 +96,10 @@
 {\bf Abstract:}
 Our customer is using a simulation to create visuals that are used for online data collection.
 This simulation is using outdated libraries which result in outdated graphics.
-We, as the supplier, define the necessary designs that will be used to accomplish our customer's request.
+Design definitions outlined in this document will be used to accomplish our customer's request.
 The request being to update the simulation's graphics with warm cool shaders, shadows and silhouettes.
 
-{\bf Keywords:} OpenInventor, OpenGL, OpenRave, shaders, warm cool shaders, silhouettes, shadows, robotic simulation, geometry, visualization, render,
-vertex lines, software requirements specification, system requirements specifications
+{\bf Keywords:} OpenInventor, OpenGL, OpenRave, shaders, warm cool shaders, silhouettes, shadows, robotic simulation, geometry, visualization, render, vertex lines
 \end{normalsize}
 \end{flushleft}
 
@@ -136,26 +135,17 @@ vertex lines, software requirements specification, system requirements specifica
 
 \newpage
 % Daniel's Section
-\section{Requirement: Allowing participants to determine project improvement through online survey.}
+\section{Requirement: Creation of Online Survey}
 \large{By Daniel Goh}
 
 \normalsize
 \subsection{Software Design Description}
-This requirement is established as a form of performance metric to determine if the visuals of the robotic simulation has improved from its initial state, and if the team's visual enhancement to the robotic simulation meets our client's needs. 
-Google Forms is the selected platform to run the online survey, and Google Sheets will be used to analyze and visualize the collected data.
+This requirement is established to allow participants to provide their input to determine if the team's visual enhancement to the robotic simulation has improved from its initial state.
+This will be fulfilled by running online surveys.
+Google Forms is the selected platform to run the online survey.
 
 \subsection{Design Stakeholders}
 Justin Bibler, Matthew Huang, and Daniel Goh
-
-\subsection{Design Concerns}
-All design stakeholders share similar design concerns to this requirement. 
-The design concern that accompanies this requirement includes:
-\begin{enumerate}
-\item If participants will be able to understand the questions of the online survey and select their choice of better visuals. 
-\item If the data collected from the survey can be visualized to reflect the collective participants’ responses.
-\end{enumerate}
-
-\newpage
 
 \subsection{Design Views}
 \subsubsection{Interface Viewpoint}
@@ -195,6 +185,19 @@ For example, stating the left visual is the improved visual in the question whil
 
 \newpage
 
+\section{Requirement: Analysis and Visualization of Collected Data}
+\large{By Daniel Goh}
+
+\normalsize
+\subsection{Software Design Description}
+The data collected from the online survey will require analysis to determine if the team's visual enhancement to the robotic simulation has improved from its initial state.
+The data will need to be organized and analyzable by the stakeholders.
+Google Sheets will be used to analyze and visualize the collected data.
+
+\subsection{Design Stakeholders}
+Justin Bibler, Matthew Huang, and Daniel Goh
+
+\subsection{Design Views}
 \subsubsection{Information Viewpoint}
 \paragraph{Design Concerns}
 Google Sheets \cite{googlesheets} is the selected platform to parse and visualize the data collected from the online survey. 
