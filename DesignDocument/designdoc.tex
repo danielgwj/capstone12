@@ -59,6 +59,25 @@
  title = {Google Sheets},
  url      = {https://www.google.com/sheets/about/}
 }
+
+@misc{fraps,
+author = {Fraps},
+title = {FRAPS},
+url = {http://www.fraps.com/}
+}
+
+@misc{ptime,
+author = {Jim Berkes},
+title = {ptime 1.0 - Accurately measure program execution time},
+url = {http://www.pc-tools.net/win32/ptime/}
+}
+
+@misc{maintain,
+author = {F. D. Markus Pizka},
+title = {How to effectively define and measure maintainability},
+url = {http://www.itestra.de/fileadmin/Redaktion/Documents/07 itestra define and measure maintainability.pdf}
+}
+
 \end{filecontents}
 
 \begin{document}
@@ -132,7 +151,154 @@ vertex lines, software requirements specification, system requirements specifica
 
 \section{Body}
 
+\newpage
 
+%Justin's section
+\section{Requirement: Measuring the Simulations Runtime, and FPS}
+\large{By Justin Bibler}
+
+\normalsize
+\subsection{Software Design Description}
+Our project requires us to measure and analyze the runtime and FPS of our altered simulation.
+This is done so that we can ensure that our additions fulfill our performance metrics: the simulation must maintain an average 30 FPS, and the initial launch of the simulation should take no more then 30 seconds.
+ If we are unable to reach these metrics our implementations will be considered incorrect, and will require revisions.
+
+\subsection{Design Stakeholders}
+Justin Bibler, Matthew Huang, and Daniel Goh
+
+\subsection{Design Concerns}
+All stakeholders share similar design concerns.
+
+Requirement design concerns:
+\begin{enumerate}
+\item Failing to meet our target FPS and runtime will result in revisions of our implementations.
+\item Will our measurements be accurate for the majority of computers.
+\item Software used for measuring may cost money.
+\end{enumerate}
+
+\newpage
+
+\subsection{Design Views}
+\subsubsection{Information Viewpoint}
+The purpose of this viewpoint is describe how information will be gathered, and how it will be analyzed.
+Our team will be using two external tools to obtain data related to the simulation's runtime and FPS.
+Firstly, FRAPS will be used to examine the FPS and export the information into a file to be analyzed.
+Secondly, ptime will be used to measure the simulation's runtime.
+
+
+\paragraph{Design Concern}
+Interface viewpoint concerns:
+\begin{enumerate}
+\item FRAPS is paid software.
+\item Will our measurements be accurate for the majority of computers.
+\end{enumerate}
+
+\paragraph{Design Elements}
+\subparagraph{Name}
+Tools and Methodology for FPS and Runtime Data Collection, and Analysis.
+
+\subparagraph{Type}
+Tools, and Method.
+
+\subparagraph{Purpose}
+Data collected will be analyzed to ensure that our implementations into the simulation meet our requirements.
+
+\subparagraph{Data attribute}
+FRAPS will be used to capture data related to FPS, this will be done by using the benchmarking tools that come with the software.
+We will run this test for one minute ten times, on five different sample simulations with our updated graphics.
+This data will be exported into a file, from here we will analyze the data by finding the mean and median across all executions.
+If these values are within a certain standard deviation of 30 FPS, our implementation will be considered correct.\par
+In regards to runtime, ptime will be run with the simulation to measure it's startup time.
+Just like how the FPS was measured, there will be ten tests on five different sample simulations.
+If the mean and median of the data is within a certain standard deviation of a 30 second runtime, then our implementation will be considered a success.
+
+\subparagraph{Author}
+FRAPS is owned by Beepa.\cite{fraps}
+Ptime is created by Jem Berkes. \cite{ptime}
+
+\subsection{Rational}
+Even though FRAPS is a paid software I've decided that it be best if we use it.
+It's ability to export data into a file allows our group to easily obtain and analyze data.
+Furthermore, our concern related to the validity of the data stems from the fact that our group members own above average computers.
+Thus, testing on our computers would most likely be inaccurate relative to the average computer.
+To circumvent this problem we plan to do most of our testing on the computers on the OSU campus.
+
+\newpage
+
+\section{Requirement: Code Maintainability}
+\large{By Justin Bibler}
+
+\normalsize
+\subsection{Software Design Description}
+The goal behind code maintainability is to increase the cost effectiveness of changes being made to a system. \cite{maintain}
+Our group has made this a requirement because our client wishes to be able to easily change, or add into our implementations.
+The primary logic behind this design is the use of good programming practices such as documentation, and commenting, but also the use of external resources which are described within the viewpoint below.
+
+\subsection{Design Stakeholders}
+Justin Bibler, Matthew Huang, and Daniel Goh
+
+\subsection{Design Concerns}
+All stakeholders share similar design concerns.
+
+Requirement design concerns:
+\begin{enumerate}
+\item Cost of static code debugging tools.
+\item Lack of documentation for preexisting code.
+\item Lack of comments for preexisting code.
+\end{enumerate}
+
+\newpage
+
+\subsection{Design Views}
+\subsubsection{Resource Viewpoint}
+External resources will be used to help us maintain and upkeep our code quality.
+The first resource we will be using, which within today's standard is almost a necessity, will be GitHub.
+GitHub is a repository that is used for code version control.
+Secondly, we will be using Cppcheck.
+Cppcheck is a static code analysis tool that examines code for bugs that a compiler may not catch.
+
+\paragraph{Design Concern}
+Interface viewpoint concerns:
+\begin{enumerate}
+\item Using Cppcheck may bring about problems within preexisting code not written by us.
+\end{enumerate}
+
+\paragraph{Design Elements}
+\subparagraph{Entities}
+Both GitHub, and Cppcheck are free to use by the public
+
+\subparagraph{Name}
+Resources for Code Maintainability.
+
+\subparagraph{Type}
+External resource.
+
+\subparagraph{Function}
+GitHub will be used for version control of the code.
+Cppcheck will be used to assist in finding and fixing bugs within our code implementations.
+
+\subparagraph{Resource attribute}
+GitHub is important because it will allow us to have easy access to past versions of code.
+Using GitHub is like a safety net that will allow us to be free with how we edit the code, because in the case that we create a massive new problem;
+it is very easy for us to pull an earlier version of the code to work on.
+Along with this GitHub also has a built in wiki that will be used to record and document our new implementations and functions within the code.
+Allowing for easy reference for ourselves and our client.\par
+Cppcheck will be used to examine our new implementations into the code.
+Using this tool will allow us to quickly find and eliminate bugs within the code.
+Few amount of bugs within code will allow us to make changing and creating new implementations safer and easier.
+
+\subparagraph{Author}
+GitHub is owned by GitHub, Inc.
+Cppcheck is open source.
+
+\subsection{Rational}
+The reason Cppcheck was decided upon was because it is open source and free, other static analysis tools cost a significant amount of money.
+Which makes the Cppcheck option the best for our group.
+Also, the design behind "Code Maintainability" can be improved by the use of the resources I talked about. 
+However, a large part of it will rely more on how well our group documents the improvements we make through resources such as GitHub.
+It'll be important while we go forward to document both how we implemented our improvements, and how to use our improvements.
+This is because, as mentioned in the Requirement concerns, we are working off preexisting code.
+Thus, our client will need some sort of good reference of how to navigate the code, and how to make proper adjustments.
 
 \newpage
 % Daniel's Section
