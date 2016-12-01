@@ -17,6 +17,7 @@ all: pdf
 
 pdf:
 	latex designdoc.tex
+	bibtex designdoc
 	latex designdoc.tex
 	latex designdoc.tex
 	dvips -R -Poutline -t letter designdoc.dvi -o designdoc.ps

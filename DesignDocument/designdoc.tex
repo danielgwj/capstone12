@@ -1,5 +1,16 @@
 \documentclass[10pt,journal,compsoc,draftclsnofoot]{IEEEtran}
 
+% Definition of \subparagraph
+\makeatletter
+\newcommand\subparagraph{%
+  \@startsection{subparagraph}{5}
+  {\parindent}
+  {3.25ex \@plus 1ex \@minus .2ex}
+  {0.75ex plus 0.1ex}
+  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\usepackage{titlesec}
 \usepackage{float}
 \usepackage{hyperref}
 \usepackage{array}
@@ -7,6 +18,8 @@
 \usepackage{lscape}
 \usepackage{textcomp}
 \usepackage{pgfgantt}
+\usepackage{amsmath}
+
 \usepackage{geometry}
 \geometry{margin=0.75in}
 
@@ -14,10 +27,39 @@
 \setcounter{secnumdepth}{4}
 
 %references go here
-% \begin{filecontents}{designdoc.bib}
+\begin{filecontents}{designdoc.bib}
 
 
-% \end{filecontents}
+
+
+
+
+
+
+@misc{googleforms,
+ author = {Google},
+ title = {Google Forms},
+ url      = {https://www.google.com/forms/about/}
+}
+
+@misc{SMquestions,
+ author = {Survey Monkey},
+ title = {Writing Good Survey Questions},
+ url      = {https://www.surveymonkey.com/mp/writing-survey-questions/}
+}
+
+@misc{SManalysis,
+ author = {Survey Monkey},
+ title = {Making Sense of the Numbers: When to Embrace Relativity, and When to Ignore It},
+ url      = {https://www.surveymonkey.com/blog/2012/06/28/making-sense-numbers-when-embrace-relativity-when-ignore-it/}
+}
+
+@misc{googlesheets,
+ author = {Google},
+ title = {Google Sheets},
+ url      = {https://www.google.com/sheets/about/}
+}
+\end{filecontents}
 
 \begin{document}
 \onecolumn
@@ -67,6 +109,9 @@ vertex lines, software requirements specification, system requirements specifica
 \end{titlepage}
 
 \section{Introduction}
+
+\begin{flushleft}
+
 \subsection{Purpose}
 
 \subsection{Scope}
@@ -78,8 +123,8 @@ vertex lines, software requirements specification, system requirements specifica
 \newpage
 
 % References
-% \bibliographystyle{IEEEtran}
-% \bibliography{designdoc}
+\bibliographystyle{IEEEtran}
+\bibliography{designdoc}
 
 \section{Glossary}
 
@@ -87,13 +132,125 @@ vertex lines, software requirements specification, system requirements specifica
 
 \section{Body}
 
-\subsection{Identified stakeholders and design concerns}
 
-\subsection{Design viewpoint}
 
-\subsection{Design view}
+\newpage
+% Daniel's Section
+\section{Requirement: Allowing participants to determine project improvement through online survey.}
+\large{By Daniel Goh}
 
-\subsection{Design rationale}
+\normalsize
+\subsection{Software Design Description}
+This requirement is established as a form of performance metric to determine if the visuals of the robotic simulation has improved from its initial state, and if the team’s visual enhancement to the robotic simulation meets our client’s needs. 
+Google Forms is the selected platform to run the online survey, and Google Sheets will be used to analyze and visualize the collected data.
+
+\subsection{Design Stakeholders}
+Justin Bibler, Matthew Huang, and Daniel Goh
+
+\subsection{Design Concerns}
+All design stakeholders share similar design concerns to this requirement. 
+The design concern that accompanies this requirement includes:
+\begin{enumerate}
+\item If participants will be able to understand the questions of the online survey and select their choice of better visuals. 
+\item If the data collected from the survey can be visualized to reflect the collective participants’ responses.
+\end{enumerate}
+
+\newpage
+
+\subsection{Design Views}
+\subsubsection{Interface Viewpoint}
+\paragraph{Design Concern}
+Google Forms is the selected service that will be utilized to carry out the online survey. 
+The design concern for the online survey will include if participants will be able to understand the questions of the online survey and select their choice of better visuals. 
+\vspace{3mm}
+
+\paragraph{Design Elements}
+\subparagraph{Name}
+Survey Interface Understandability
+
+\subparagraph{Type}
+System used to assess resulting visuals for the robot grasping simulation. 
+
+\subparagraph{Purpose}
+This element exists to help guide the creation of an online survey that is easily understood and usable by the participants. 
+
+\subparagraph{Function}
+Google Forms \cite{googleforms} is a matured survey platform that allows unlimited number of questions and the function to attach images to the created survey.
+Participants will be able to select a picture or answer based on the questions presented. 
+The questions will cover the aesthetic aspects between pictures, the presence of shadows between pictures, and identification of object relativity or position within the picture. 
+
+\subparagraph{Interface}
+Methods of interaction provided by Google Forms include:
+\begin{itemize}
+\item Allowing participants to view attached images for a question
+\item Allowing participants to select a single answer or image for a question
+\item Allowing participants to select multiple answers or images for a question (Check PLES)
+\item Participants responses will be stored as a data file within Google Forms and exportable to Google Sheets(.csv files, comma separated value files)
+\end{itemize}
+
+Users should not be overwhelmed by information in the interface while taking the survey.
+Survey questions should ask the user for a specific opinion (e.g. questions asking about presence of shadows should only focus on asking about shadows and nothing more) at a time and ideally have no more than one sentence \cite{SMquestions}. 
+Survey questions should be designed to be belanced and not biased.
+For example, stating the left visual is the improved visual in the question while asking the user to select the better visual is a form of bias.  
+
+\newpage
+
+\subsubsection{Information Viewpoint}
+\paragraph{Design Concerns}
+Google Sheets \cite{googlesheets} is the selected platform to parse and visualize the data collected from the online survey. 
+The design concern includes if the data collected can be analyzed and visualized meaningfully to reflect the collective participants’ responses.
+\vspace{3mm}
+
+\paragraph{Design Elements}
+\subparagraph{Name}
+Data Visualization
+
+\subparagraph{Type}
+System for data parsing and visualization that supports Google Forms 
+
+\subparagraph{Purpose}
+The element exists to help guide the use of Google Sheets to create data visualizations.
+
+\subparagraph{Data Attribute}
+As Google Forms and Google Sheets are under one ecosystem, Google Sheets have access to parse the data collected directly into Google Forms. 
+The resulting data content will contain individual responses on a single spreadsheet. 
+
+Questions asked will be represented on the first horizontal row. 
+Participant’s responses are time stamped and is represented as a row for each individual. 
+The participant’s responses (answer to each questions) are recorded below the questions. 
+
+\begin{center}
+\begin{table}[H]
+\caption{Spreadsheet example with data}
+\begin{tabular}{ | m{5em} | m{15em} | m{7em} | m{7em} | m{7em} |  m{7em} | } 
+\hline
+\textbf{Respondant}  & \textbf{Timestamp}  & \textbf{Question 1} & \textbf{Question 2} & \textbf{...} & \textbf{Question N} \\ \hline
+1 & 11/12/2016 20:28:39 & Choice 1 & Choice 2 & ... & Choice 2 \\ \hline
+2 & 11/13/2016 1:55:37 & Choice 1 & Choice 2 & ... & Choice 1 \\ \hline
+3 & 11/13/2016 11:56:02 & Choice 2 & Choice 2 & ... & Choice 2 \\ \hline 
+4 & 11/15/2016 23:52:12 & Choice 1 & Choice 2 & ... & Choice 1 \\ \hline 
+5 & 11/18/2016 15:51:32 & Choice 1 & Choice 1 & ... & Choice 2 \\ \hline 
+\end{tabular}
+\newline
+\label{table:Example}
+\end{table}
+\end{center}
+
+The selected data analysis method that will be used to determine the project's success will be based on frequency among all respondants \cite{SManalysis}. 
+An example model that represents the frequency method is as follow:
+
+\begin{equation}
+\frac{Number Of Choice 1 Occurence For Question 1}{Total Respondants} = x\%
+\end{equation}
+
+\vspace{3mm}
+In this example, Choice 1 for Question 1 is the visuals with enhanced shadows implementation. 
+x will need to be more than 79 in order for shadow implementations to be considered a success.
+
+The data collected will be converted into visualizations using the charting functions provided in Google Sheets. 
+For ease of understandability and quick visualization, the pie chart charting option will be used to display the collective responses. 
+
+\end{flushleft}
 
 \end{document}
 
