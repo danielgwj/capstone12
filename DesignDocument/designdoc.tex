@@ -115,11 +115,10 @@ url = {http://www.itestra.de/fileadmin/Redaktion/Documents/07testradefineandmeas
 {\bf Abstract:}
 Our customer is using a simulation to create visuals that are used for online data collection.
 This simulation is using outdated libraries which result in outdated graphics.
-We, as the supplier, define the necessary designs that will be used to accomplish our customer's request.
+Design definitions outlined in this document will be used to accomplish our customer's request.
 The request being to update the simulation's graphics with warm cool shaders, shadows and silhouettes.
 
-{\bf Keywords:} OpenInventor, OpenGL, OpenRave, shaders, warm cool shaders, silhouettes, shadows, robotic simulation, geometry, visualization, render,
-vertex lines, software requirements specification, system requirements specifications
+{\bf Keywords:} OpenInventor, OpenGL, OpenRave, shaders, warm cool shaders, silhouettes, shadows, robotic simulation, geometry, visualization, render, vertex lines
 \end{normalsize}
 \end{flushleft}
 
@@ -128,16 +127,26 @@ vertex lines, software requirements specification, system requirements specifica
 \end{titlepage}
 
 \section{Introduction}
-
 \begin{flushleft}
 
 \subsection{Purpose}
+The purpose of this document is to elaborate on the design and logic of how we will be implementing our requirements.
 
 \subsection{Scope}
+The scope of this document is solely about how new features will be implemented and how those implementations will be tested.
 
 \subsection{Context}
+Currently, our client is using visualizations, of a robot hand grasping objects, to collect data online.
+These visualizations are created from a simulation program (OpenRave); the data collected is used to create a model of the human grasp.
+However, the current graphics in the simulation are outdated.
+It is hard to see and understand the shapes and contact points represented in the scene.
+
+The context of this document is focused primarily on the visuals of the project.
 
 \subsection{Summary}
+In clauses 1 to 3, Matthew Huang outlines the design of Gooch shading, silhouettes, and run-time analysis with CodeXL respectively.
+In clauses 4 to 6, Justin Bibler outlines the design of shadow volumes, performance benchmarks using FRAPS \cite{fraps}, and methods of code maintainability.
+In clauses 7 and 8, Daniel Goh outlines the methods and guidelines to create the online survey, and methods to analyze and visualize the collected data.
 
 \newpage
 
@@ -147,9 +156,17 @@ vertex lines, software requirements specification, system requirements specifica
 
 \section{Glossary}
 
+FRAPS
+
+FPS
+
+Frequency
+
 \newpage
 
-\section{Body}
+
+
+
 
 \newpage
 
@@ -390,26 +407,17 @@ This makes it difficult to find exactly where we need to implement shaders to ge
 
 \newpage
 % Daniel's Section
-\section{Requirement: Allowing participants to determine project improvement through online survey.}
+\section{Requirement: Creation of Online Survey}
 \large{By Daniel Goh}
 
 \normalsize
 \subsection{Software Design Description}
-This requirement is established as a form of performance metric to determine if the visuals of the robotic simulation has improved from its initial state, and if the team's visual enhancement to the robotic simulation meets our client's needs. 
-Google Forms is the selected platform to run the online survey, and Google Sheets will be used to analyze and visualize the collected data.
+This requirement is established to allow participants to provide their input to determine if the team's visual enhancement to the robotic simulation has improved from its initial state.
+This will be fulfilled by running online surveys.
+Google Forms is the selected platform to run the online survey.
 
 \subsection{Design Stakeholders}
 Justin Bibler, Matthew Huang, and Daniel Goh
-
-\subsection{Design Concerns}
-All design stakeholders share similar design concerns to this requirement. 
-The design concern that accompanies this requirement includes:
-\begin{enumerate}
-\item If participants will be able to understand the questions of the online survey and select their choice of better visuals. 
-\item If the data collected from the survey can be visualized to reflect the collective participants’ responses.
-\end{enumerate}
-
-\newpage
 
 \subsection{Design Views}
 \subsubsection{Interface Viewpoint}
@@ -449,6 +457,19 @@ For example, stating the left visual is the improved visual in the question whil
 
 \newpage
 
+\section{Requirement: Analysis and Visualization of Collected Data}
+\large{By Daniel Goh}
+
+\normalsize
+\subsection{Software Design Description}
+The data collected from the online survey will require analysis to determine if the team's visual enhancement to the robotic simulation has improved from its initial state.
+The data will need to be organized and analyzable by the stakeholders.
+Google Sheets will be used to analyze and visualize the collected data.
+
+\subsection{Design Stakeholders}
+Justin Bibler, Matthew Huang, and Daniel Goh
+
+\subsection{Design Views}
 \subsubsection{Information Viewpoint}
 \paragraph{Design Concerns}
 Google Sheets \cite{googlesheets} is the selected platform to parse and visualize the data collected from the online survey. 
@@ -503,6 +524,11 @@ x will need to be more than 79 in order for shadow implementations to be conside
 
 The data collected will be converted into visualizations using the charting functions provided in Google Sheets. 
 For ease of understandability and quick visualization, the pie chart charting option will be used to display the collective responses. 
+
+\section{Conclusion}
+In conclusion, this design document will be used as a plan of action as we go forward with our implementation.
+This document is not set in stone; it may change as needed as we begin making changes to the code.
+However, it is important to note that our requirements will not change; only our approach to tackle the requirments may change.
 
 \end{flushleft}
 
