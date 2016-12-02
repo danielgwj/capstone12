@@ -29,12 +29,35 @@
 %references go here
 \begin{filecontents}{designdoc.bib}
 
+@misc{glslmix,
+author = {Igor Dykhta},
+title = {Hatching and Gooch shading in GLSL},
+url = {http://www.sunandblackcat.com/tipFullView.php?l=eng&topicid=27}
+}
 
+@misc{depthstencils,
+author = {Open.GL},
+title = {Depth and stencils},
+url = {https://open.gl/depthstencils}
+}
 
+@misc{siledges,
+author = {David Blythe},
+title = {Silhouette Edges},
+url = {ftp://ftp.sgi.com/opengl/contrib/blythe/advanced99/notes/node108.html}
+}
 
+@misc{fraps,
+author = {Fraps},
+title = {FRAPS},
+url = {http://www.fraps.com/}
+}
 
-
-
+@misc{maintain,
+author = {F. D. Markus Pizka},
+title = {How to effectively define and measure maintainability},
+url = {http://www.itestra.de/fileadmin/Redaktion/Documents/07testradefineandmeasuremaintainability.pdf}
+}
 
 @misc{googleforms,
  author = {Google},
@@ -58,18 +81,6 @@
  author = {Google},
  title = {Google Sheets},
  url      = {https://www.google.com/sheets/about/}
-}
-
-@misc{fraps,
-author = {Fraps},
-title = {FRAPS},
-url = {http://www.fraps.com/}
-}
-
-@misc{maintain,
-author = {F. D. Markus Pizka},
-title = {How to effectively define and measure maintainability},
-url = {http://www.itestra.de/fileadmin/Redaktion/Documents/07testradefineandmeasuremaintainability.pdf}
 }
 
 \end{filecontents}
@@ -138,9 +149,9 @@ It is hard to see and understand the shapes and contact points represented in th
 The context of this document is focused primarily on the visuals of the project.
 
 \subsection{Summary}
-In clauses 1 to 3, Matthew Huang outlines the design of Gooch shading, silhouettes, and run-time analysis with CodeXL respectively.
-In clauses 4 to 6, Justin Bibler outlines the design of shadow volumes, performance benchmarks using FRAPS \cite{fraps}, and methods of code maintainability.
-In clauses 7 and 8, Daniel Goh outlines the methods and guidelines to create the online survey, and methods to analyze and visualize the collected data.
+In clauses 3 to 5, Matthew Huang outlines the design of Gooch shading, silhouettes, and run-time analysis with CodeXL respectively.
+In clauses 6 to 9, Justin Bibler outlines the design of shadow volumes, performance benchmarks using FRAPS \cite{fraps}, and methods of code maintainability.
+In clauses 10 and 11, Daniel Goh outlines the methods and guidelines to create the online survey, and methods to analyze and visualize the collected data.
 
 \newpage
 
@@ -158,16 +169,250 @@ Frequency
 
 \newpage
 
+% Matt's Section
+\section{Requirement: Gooch Shading}
+\large{By Matthew Huang}
 
+\normalsize
+\subsection{Design Concerns}
+Our team is assuming that the rendering for the 3D scene is done by OpenRave and not the Qt GUI.
+The OpenGL Shading Language (GLSL) will be used to implement Gooch Shading. 
+Gooch Shading requires use of both the vertex buffer and fragment buffer.
+In its implementation, Gooch Shading makes use of a warm and cool color to highlight its objects.
+Gooch shaded objects should not have any "blacked out" areas on them.
 
+\subsection{Design Stakeholders}
+Cindy Grimm, Justin Bibler, Matthew Huang, and Daniel Goh
 
+\subsection{Context Viewpoint}
+
+\begin{figure} [H]
+  \includegraphics[scale=0.8]{Gooch_Shading_context.eps}
+  \caption
+{ \newline \hspace{\linewidth}
+Context Viewpoint Diagram that shows relation of Gooch Shading to OpenRave}
+  \label{fig:Gooch_Shading_context}
+\end{figure}
+
+\subsubsection{Design View}
+Gooch Shading will be implemented into OpenRave assuming that OpenRave is indeed the renderer.
+A successful Gooch Shading implementation will use warm and cool coloring to help improve object geometry (which will be displayed by Qt).
+Improved object geometry means improved simulation images for users of the Amazon Mechanical Turk.
+The updated images will aid user confidence in how they answer the mechanical turk questions which will improve the data collected.
+
+\subsection{Compositional Viewpoint}
+
+\begin{figure} [H]
+  \includegraphics[scale=0.9]{Gooch_Shading2_composition.eps}
+  \caption
+{ \newline \hspace{\linewidth}
+Compositional Viewpoint Diagram that shows the flow of Gooch Shading implementation to OpenRave}
+  \label{fig:Gooch_Shading2_composition}
+\end{figure}
+
+\subsubsection{Design View}
+This implementation of Gooch Shading makes use of the following entities: the vertex buffer, the fragment buffer, and the renderer (OpenRave). 
+OpenRave will supply relevant variables (camera position, object position, light position, colors, etc.) to the vertex shader.
+The vertex shader calculates the light position and passes its variables to the fragment shader.
+The fragment shader is the entity that shades the 3D objects.
+In it, it calculates the diffuse lighting along with the augmented warm and cool colors that will shade the object.
+The augmented warm and cool colors are determined by the object’s original color and the Gooch Shading weight.
+After that, linear interpolation is done on the two augmented colors to determine what the final color will be for that fragment.
+In GLSL, linear interpolation can be done using the mix() function.
+This shading will highlight the entire object leaving no completely "blacked out" areas.
+
+\newpage
+
+\subsection{Logical Viewpoint}
+
+\begin{figure} [H]
+  \includegraphics[scale=0.8]{Gooch_Shading_composition.eps}
+  \caption
+{ \newline \hspace{\linewidth}
+Logical Viewpoint Diagram that shows the implementations of Gooch Shading}
+  \label{fig:Gooch_Shading_composition}
+\end{figure}
+
+\subsubsection{Design View}
+In the code, the Gooch Shading inputs will come from the display function of the renderer.
+The display function obviously holds many variables, but will only pass the following variables to the vertex shader:
+\begin{itemize}
+\item Camera position.
+\item Object normal vector.
+\item Light position.
+\item Object position (model coordinates).
+\item Colors (warm, cool, object original).
+\end{itemize}
+
+The warm and cool colors are determined by the developer and the object color is supplied by the python file passed into OpenRave.
+The camera and object position are needed to determine the object’s world coordinates (which is done in the vertex shader).
+All these variables are written in GLSL.
+GLSL can be used if the version of OpenGL on the system is 2.0 or above; the current version on the system will be updated to meet this requirement.
+The vertex shader calculates the light vector using the object’s world coordinates and the light position. 
+Afterwards, it outputs the colors (warm, cool, object), the light vector, and the object’s normal vector to the fragment shader.
+The fragment shader will then determine the diffuse lighting for the object (diffuse lighting is the dot product of the object's normal vector with the light vector).
+Following that, it augments the warm and cool colors (using the formula: color + object\_color*gooch\_shading\_weight), and then linearly interpolates between them using the GLSL mix() function \cite{glslmix}.
+This interpolation determines the shade coloring for that specific fragment of the object.
+
+\newpage
+
+\section{Requirement: Silhouettes}
+\large{By Matthew Huang}
+
+\normalsize
+\subsection{Design Concerns}
+Silhouettes need to give the 3D shapes in the simulation solid borders so that the objects in the scene can be differentiated from each other.
+The silhouettes need to be working in situations where objects overlap with each other and under multiple viewpoints. 
+The algorithm for how the silhouettes are drawn needs to be clear.
+
+\subsection{Design Stakeholders}
+Cindy Grimm, Justin Bibler, Matthew Huang, and Daniel Goh
+
+\subsection{Context Viewpoint}
+
+\begin{figure} [H]
+  \includegraphics[scale=0.8]{Silhouettes_context.eps}
+  \caption
+{ \newline \hspace{\linewidth}
+Context Viewpoint Diagram that that shows relation of silhouettes to OpenRave}
+  \label{fig:Silhouettes_context}
+\end{figure}
+
+\subsubsection{Design View}
+The context viewpoint for silhouettes is essentially the same as the one for shaders.
+That is to say, its end goal is to improve the end user experience by enhancing the images sent to the Amazon Mechanical Turk.
+Additionally, it will also be implemented in OpenRave.
+Where it differs, however, is in how it affects the simulation images.
+Instead of highlighting 3D object geometry like the Gooch Shading will do, silhouettes will emphasize an object’s borders (I.E. where an object begins and ends).
+These silhouettes are meant to help users differentiate between objects in the simulation images.
+
+\subsection{Compositional Viewpoint}
+
+\begin{figure} [H]
+  \includegraphics[scale=0.9]{Silhouettes_composition.eps}
+  \caption
+{ \newline \hspace{\linewidth}
+Compositional Viewpoint Diagram that show relationship of Silhouettes}
+  \label{fig:Silhouettes_composition}
+\end{figure}
+
+\subsubsection{Design View}
+Silhouettes will be implemented using a combination of the Stencil Buffer along with manipulation of the view port.
+The Stencil Buffer is an optional extension of the depth buffer; both of them can be enabled in OpenRave using the glEnable() function (I.E. glEnable(GL\_STENCIL\_TEST) \cite{depthstencils}.
+The Stencil Buffer gives you control over which fragments of the object should be drawn and which shouldn’t.
+The viewport allows you to translate your objects in windows coordinates (I.E. pixels).
+The basic algorithm to implement these silhouettes is to move the object in one direction (x, y, -x, or -y), draw the object with the stencil buffer enabled, and then repeat until you have drawn in all four directions.
+The amount you move the object will affect how large of a silhouette is made.
+To draw a solid color silhouette (I.E. black), draw the silhouette using a solid color version of the object.
+Additionally, because the stencil buffer gives you control over what fragments of the object are drawn, overlapping objects are dealt with easily.
+
+\subsection{Algorithm Viewpoint}
+Silhouette Algorithm pseudo-code implementation
+
+glEnable(stencil buffer)
+glDisable(depth buffer)
+glDisable(color buffer)
+Clear(stencil buffer)
+glStencilFunc(Always Pass)	//tell the stencil buffer to let all fragments pass
+glStencilOp(Increment)		//tell stencil buffer to increment on acceptance
+glViewPort(Move +y)	//Move object by some amount of pixels in the y direction
+Display(object)		//render object
+glViewport(Move -y)
+Display(object)
+glViewport(Move +x, +y)
+Display(objecT)
+glViewport(Move -x)
+Display(object)
+glViewport(Move +x)
+glEnable(color buffer)
+glEnable(depth buffer)
+glStencilFunc(Pass if value is 2 or 3)
+
+\subsubsection{Design View}
+The pseudo-code created above was based off of the algorithm available on the opengl silhouette edges webpage \cite{siledges}.
+In general, the algorithm is easily to follow if you know how to manipulate the stencil buffer and the view port (which we do).
+To summarize, glViewport() is the function that will be translating the object in windows coordinates (I.E. pixels), glStencilFunc() is the function that gives the developer control over which fragments to render, and glStencilOp gives the developer control over what happens to the stencil value of the fragment if it’s accepted.
+The Display() function will presumably be somewhere in OpenRave and will be the function that ultimately renders the object.
+Importantly note that in total, Display() is called four times in the algorithm meaning that the object must be rendered four times to create the silhouette.
+If this factor affects the runtime of the system to the point where performance benchmarks are not met, the algorithm should be changed.
+
+\newpage
+
+\section{Requirement: Creation of Online Survey}
+\large{By Matthew Huang}
+
+\normalsize
+\subsection{Design Concerns}
+The modifications made to the current OpenRave system (Gooch Shading, silhouettes, and shadows) may slow the system down.
+As a requirement, the modified system must run at a minimum 30 frames per second (fps).
+As a requirement, the modified system must render the initial simulation image within 30 seconds.
+To assist with these requirements, the debugger shall have the ability to track function calls.
+
+\subsection{Design Stakeholders}
+Cindy Grimm, Justin Bibler, Matthew Huang, and Daniel Goh
+
+\subsection{Context Viewpoint}
+
+\begin{figure} [H]
+  \includegraphics[scale=0.9]{CodeXL_Context.eps}
+  \caption
+{ \newline \hspace{\linewidth}
+Context Viewpoint Diagram that shows relationship of CodeXL}
+  \label{fig:CodeXL_Context}
+\end{figure}
+
+\subsubsection{Design View}
+CodeXL will be primarily used to track our Gooch Shading, silhouette, and shadow implementations.
+Its main goal is to monitor the effect that these three implementation have on the OpenRave simulation.
+If the implementations cause the robotic hand simulation to drop below 30 frames per second, CodeXL should be able to pinpoint where the cause originated from.
+The goal of this is to ensure a pleasant and smooth experience for the users of the robotic hand simulation.
+
+\subsection{Dependancy Viewpoint}
+
+\begin{figure} [H]
+  \includegraphics[scale=0.9]{CodeXL_Dependency.eps}
+  \caption
+{ \newline \hspace{\linewidth}
+Dependancy Viewpoint Diagram that shows dependencies of CodeXL}
+  \label{fig:CodeXL_Dependency}
+\end{figure}
+
+\subsubsection{Design View}
+How CodeXL monitors the three implementations will depend on the performance benchmarks for the whole system.
+If the implementations are in and the performance benchmarks are met, inefficient function calls or other issues brought up by CodeXL may be ignored.
+If the implementations bring the system down below performance benchmarks, CodeXL will have to display what is happening in the system that is causing it to slow down.
+Causes like large amounts of the same function calls, long running functions, and other bugs should be tracked.
+Specifically, if the frames drop below 30fps, CodeXL should be able track which implementation (or which combination of implementations) is causing the most performance loss.
+If the silhouettes are causing significant performance loss, they will be the first to be refactored since there are many ways to implement silhouettes. 
+Gooch Shading is less flexible in its implementation so refactoring it will have a lower priority (shadows is somewhere between silhouettes and Gooch Shading).
+
+If OpenRave takes more than 30 seconds to render, problems likely exist in how we initialize our scene.
+In this situation, CodeXL will be used to primarily track activity in the Display function since that is the function the renders the initial scene.
+Other object initialization functions will not be tracked since we assume that they are pulled from libraries we have no control over.
+Additionally, performance benchmarks will only be changed as a last resort (I.E. we cannot refactor our implementations anymore).
+
+\subsection{Interface Viewpoint}
+
+\begin{figure} [H]
+  \includegraphics[scale=0.9]{CodeXL_Interface.eps}
+  \caption
+{ \newline \hspace{\linewidth}
+Interface Viewpoint Diagram that shows the interface relations of CodeXL}
+  \label{fig:CodeXL_Interface}
+\end{figure}
+
+\subsubsection{Design View}
+To monitor OpenRave, create a debug project in CodeXL and set the OpenRave executable as the debug project’s executable.
+Additionally, provide the python simulation file as a command line argument and set the source file directory to where the python file lives (this is all done in creating the debug project).
+Afterwards, execute the debug project and CodeXL will display debug information such as rendered objects, created threads, and function calls (if you turn that on).
+Note, however, that tracking function calls slows down CodeXL significantly so it shouldn’t be used for basic testing.
+Past that, CodeXL also provides access to the source code currently running directly on the CodeXL GUI.
 
 \newpage
 
 %Justin's section
 \section{Requirement: Shadows}
 \large{By Justin Bibler}
-
 
 \normalsize
 \subsection{Software Design Description}
@@ -527,6 +772,8 @@ x will need to be more than 79 in order for shadow implementations to be conside
 
 The data collected will be converted into visualizations using the charting functions provided in Google Sheets. 
 For ease of understandability and quick visualization, the pie chart charting option will be used to display the collective responses. 
+
+\newpage
 
 \section{Conclusion}
 In conclusion, this design document will be used as a plan of action as we go forward with our implementation.
