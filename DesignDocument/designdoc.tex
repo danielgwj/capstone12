@@ -66,17 +66,18 @@ title = {FRAPS},
 url = {http://www.fraps.com/}
 }
 
-@misc{ptime,
-author = {Jim Berkes},
-title = {ptime 1.0 - Accurately measure program execution time},
-url = {http://www.pc-tools.net/win32/ptime/}
-}
-
 @misc{maintain,
 author = {F. D. Markus Pizka},
 title = {How to effectively define and measure maintainability},
 url = {http://www.itestra.de/fileadmin/Redaktion/Documents/07testradefineandmeasuremaintainability.pdf}
 }
+
+@misc{shadow,
+author = {OGLdev},
+title = {Stencil Shadow Volume},
+url = {http://ogldev.atspace.co.uk/www/tutorial40/tutorial40.html}
+}
+
 
 \end{filecontents}
 
@@ -154,14 +155,116 @@ vertex lines, software requirements specification, system requirements specifica
 \newpage
 
 %Justin's section
-\section{Requirement: Measuring the Simulations Runtime, and FPS}
+\section{Requirement: Shadows}
+\large{By Justin Bibler}
+
+
+\normalsize
+\subsection{Software Design Description}
+Our client requires us to add shadows into the simulation's graphics.
+The addition of shadows will improve the overall graphics of the simulation, which will help a user better understand where an object is within a 3D space.
+
+\subsection{Design Stakeholders}
+Justin Bibler, Matthew Huang, and Daniel Goh
+
+\subsection{Design Concerns}
+All stakeholder share similar design concerns.
+
+Shadows design concerns:
+\begin{enumerate}
+\item Will our shadow implementations have a major impact on FPS.
+\item Will our shadows be too pixelated.
+\item Will users be able to better understand where an object is because of our shadow implementation.
+\end{enumerate}
+
+\newpage
+
+\subsection{Design Views}
+\subsubsection{Interface Design}
+This section is dedicated to talking about the graphical quality of our shadow implementation.
+
+\paragraph{Design Concerns}
+Interface design concerns:
+\begin{enumerate}
+\item Will users be able to better understand where an object is because of our shadow implementations.
+\item Will our shadows be too pixelated.
+\end{enumerate}
+
+\paragraph{Design Elements}
+\subparagraph{Name}
+Shadow Interface.
+
+\subparagraph{Type}
+Visual, or Graphic.
+
+\subparagraph{Purpose}
+Shadows with the simulation exist to better help users understand an objects location within a 3D space.
+
+\subparagraph{Relationship}
+The quality of the visuals rely heavily on the design discussed later within the Algorithmic implementation of shadows.
+
+\subparagraph{Interface attribute}
+Depending on the implementation in the algorithm viewpoint, every 3D model within the simulation should have a shadow.
+Whether or not the shadow is visible is dependent on if there is a surface that the shadow volume collides with.
+These shadows should have minimal pixelation.
+In addition, the shadows should be relatively close in shape to their original models, as to not confuse what shadow is projected out from what object.
+All of this is done so that the users will easily be able to understand what shadow is related to what object, and to receive a better understanding of the 3D environment in the simulation.
+
+\newpage
+
+\subsubsection{Algorithm Viewpoint}
+The idea of the shadow volume algorithm is to extend the silhouettes of objects that are in contact with light sources into volumes.
+And whenever another object falls within the shadow objects volume, it is rendered in a different way. \cite{shadow}
+
+\paragraph{Design Concerns}
+Algorithm design concerns:
+\begin{enumerate}
+\item Will the algorithm be costly to the simulation's FPS.
+\end{enumerate}
+
+\paragraph{Design Elements}
+\subparagraph{Name}
+Algorithmic implementation of shadows.
+
+\subparagraph{Type}
+Algorithm, or method.
+
+\subparagraph{Relationship}
+Shaders, and the Shadow Interface.
+
+\subparagraph{Design Constraints}
+The implementation of shadows will most likely rely on the knowledge we gain from implementing warm cool shaders into the simulation.
+That knowledge will allow us to better understand how the simulation is being rendered, making it easier for us to adjust and change certain shaders.
+Another constraint that we have is that there is a relatively small amount of documentation related to OpenRave and OpenInventor.
+This makes it difficult to find exactly where we need to implement shaders to get our desired results.
+
+\subparagraph{Processing Attribute}
+The bases of the algorithm will be using the depth fail test.
+This will be done by first rendering all the objects in the scene into the depth buffer.
+From here, we create shadow volumes for each object based on the objects silhouette projected into infinity relative to where the light is striking the object.
+Then we render the volume into the stencil buffer based off the depth fail test.
+
+Depth fail test:
+\begin{enumerate}
+\item If the depth test fails while rendering back facing polygons of the shadow volume, we increment the stencil buffer.
+\item If the depth test fails while rendering the front facing polygons of the shadow volume, we decrement the stencil buffer.
+\item Nothing happens if the test passes, or the stencil test fails.
+\end{enumerate}
+
+This depth fail test is conducted for each shadow volume.
+Once the tests have concluded, the scene will be rendered into the viewport.
+However, only the objects, or parts of objects, that have a stencil buffer value of zero will be rendered without alterations. \cite{shadow}
+
+\newpage
+
+\section{Requirement: Measuring the Simulation's FPS}
 \large{By Justin Bibler}
 
 \normalsize
 \subsection{Software Design Description}
 Our project requires us to measure and analyze the runtime and FPS of our altered simulation.
-This is done so that we can ensure that our additions fulfill our performance metrics: the simulation must maintain an average 30 FPS, and the initial launch of the simulation should take no more then 30 seconds.
- If we are unable to reach these metrics our implementations will be considered incorrect, and will require revisions.
+This is done so that we can ensure that our additions fulfill our performance metrics: the simulation must maintain an average 30 FPS.
+ If we are unable to reach this metric our implementations will be considered incorrect, and will require revisions.
 
 \subsection{Design Stakeholders}
 Justin Bibler, Matthew Huang, and Daniel Goh
@@ -181,10 +284,8 @@ Requirement design concerns:
 \subsection{Design Views}
 \subsubsection{Information Viewpoint}
 The purpose of this viewpoint is describe how information will be gathered, and how it will be analyzed.
-Our team will be using two external tools to obtain data related to the simulation's runtime and FPS.
-Firstly, FRAPS will be used to examine the FPS and export the information into a file to be analyzed.
-Secondly, ptime will be used to measure the simulation's runtime.
-
+Our team will be using an external tool to obtain data related to the simulation's FPS.
+ FRAPS will be used to examine the FPS and export the information into a file to be analyzed.
 
 \paragraph{Design Concern}
 Interface viewpoint concerns:
@@ -195,10 +296,10 @@ Interface viewpoint concerns:
 
 \paragraph{Design Elements}
 \subparagraph{Name}
-Tools and Methodology for FPS and Runtime Data Collection, and Analysis.
+Method of analyzing and collecting FPS data.
 
 \subparagraph{Type}
-Tools, and Method.
+Method.
 
 \subparagraph{Purpose}
 Data collected will be analyzed to ensure that our implementations into the simulation meet our requirements.
@@ -207,14 +308,10 @@ Data collected will be analyzed to ensure that our implementations into the simu
 FRAPS will be used to capture data related to FPS, this will be done by using the benchmarking tools that come with the software.
 We will run this test for one minute ten times, on five different sample simulations with our updated graphics.
 This data will be exported into a file, from here we will analyze the data by finding the mean and median across all executions.
-If these values are within a certain standard deviation of 30 FPS, our implementation will be considered correct.\par
-In regards to runtime, ptime will be run with the simulation to measure it's startup time.
-Just like how the FPS was measured, there will be ten tests on five different sample simulations.
-If the mean and median of the data is within a certain standard deviation of a 30 second runtime, then our implementation will be considered a success.
+If these values are within a certain standard deviation of 30 FPS, our implementation will be considered correct.
 
 \subparagraph{Author}
 FRAPS is owned by Beepa.\cite{fraps}
-Ptime is created by Jem Berkes. \cite{ptime}
 
 \subsection{Rational}
 Even though FRAPS is a paid software I've decided that it be best if we use it.
@@ -299,93 +396,6 @@ However, a large part of it will rely more on how well our group documents the i
 It'll be important while we go forward to document both how we implemented our improvements, and how to use our improvements.
 This is because, as mentioned in the Requirement concerns, we are working off preexisting code.
 Thus, our client will need some sort of good reference of how to navigate the code, and how to make proper adjustments.
-
-
-\newpage
-
-\section{Requirement: Shadows}
-\large{By Justin Bibler}
-
-
-\normalsize
-\subsection{Software Design Description}
-Our client requires us to add shadows into the simulation's graphics.
-The addition of shadows will improve the overall graphics of the simulation, which will help a user better understand where an object is within a 3D space.
-
-\subsection{Design Stakeholders}
-Justin Bibler, Matthew Huang, and Daniel Goh
-
-\subsection{Design Concerns}
-All stakeholder share similar design concerns.
-
-Shadows design concerns:
-\begin{enumerate}
-\item Will our shadow implementations have a major impact on FPS.
-\item Will our shadows be too pixelated.
-\item Will users be able to better understand where an object is because of our shadow implementation.
-\end{enumerate}
-
-\newpage
-
-\subsection{Design Views}
-\subsubsection{Interface Design}
-This section is dedicated to talking about the graphical quality of our shadow implementation.
-
-\paragraph{Design Concerns}
-Interface design concerns:
-\begin{enumerate}
-\item Will users be able to better understand where an object is because of our shadow implementations.
-\item Will our shadows be too pixelated.
-\end{enumerate}
-
-\paragraph{Design Elements}
-\subparagraph{Name}
-Shadow Interface.
-
-\subparagraph{Type}
-Visual, or Graphic.
-
-\subparagraph{Purpose}
-Shadows with the simulation exist to better help users understand an objects location within a 3D space.
-
-\subparagraph{Relationship}
-The quality of the visuals rely heavily on the design discussed later within the Algorithmic implementation of shadows.
-
-\paragraph{Interface attribute}
-Depending on the implementation in the algorithm viewpoint, every 3D model within the simulation should have a shadow.
-Whether or not the shadow is visible is dependent on if there is a surface that the shadow volume collides with.
-These shadows should have minimal pixelation.
-In addition, the shadows should be relatively close in shape to their original models, as to not confuse what shadow is projected out from what object.
-All of this is done so that the users will easily be able to understand what shadow is related to what object, and to receive a better understanding of the 3D environment in the simulation.
-
-\newpage
-
-\subsubsection{Algorithm Viewpoint}
-This section will talk about how the shadow volume algorithm will be used to produce shadows within the simulation.
-
-\paragraph
-Algorithm design concerns:
-\begin{enumerate}
-\item Will the algorithm be costly to the simulation's FPS.
-\end{enumerate}
-
-\paragraph{Design Elements}
-\subparagraph{Name}
-Algorithmic implementation of shadows.
-
-\subparagraph{Type}
-Algorithm, or method.
-
-\subparagraph{Relationship}
-Shaders, and the Shadow Interface.
-
-\subparagraph{Design Constraints}
-The implementation of shadows will most likely rely on the knowledge we gain from implementing warm cool shaders into the simulation.
-That knowledge will allow us to better understand how the simulation is being rendered, making it easier for us to adjust and change certain shaders.
-Another constraint that we have is that there is a relatively small amount of documentation related to OpenRave and OpenInventor.
-This makes it difficult to find exactly where we need to implement shaders to get our desired results.
-
-\subparagraph{Design Entities}
 
 
 \newpage
