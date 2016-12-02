@@ -222,7 +222,7 @@ OpenRave will supply relevant variables (camera position, object position, light
 The vertex shader calculates the light position and passes its variables to the fragment shader.
 The fragment shader is the entity that shades the 3D objects.
 In it, it calculates the diffuse lighting along with the augmented warm and cool colors that will shade the object.
-The augmented warm and cool colors are determined by the object’s original color and the Gooch Shading weight.
+The augmented warm and cool colors are determined by the object's original color and the Gooch Shading weight.
 After that, linear interpolation is done on the two augmented colors to determine what the final color will be for that fragment.
 In GLSL, linear interpolation can be done using the mix() function.
 This shading will highlight the entire object leaving no completely "blacked out" areas.
@@ -251,11 +251,11 @@ The display function obviously holds many variables, but will only pass the foll
 \end{itemize}
 
 The warm and cool colors are determined by the developer and the object color is supplied by the python file passed into OpenRave.
-The camera and object position are needed to determine the object’s world coordinates (which is done in the vertex shader).
+The camera and object position are needed to determine the object's world coordinates (which is done in the vertex shader).
 All these variables are written in GLSL.
 GLSL can be used if the version of OpenGL on the system is 2.0 or above; the current version on the system will be updated to meet this requirement.
-The vertex shader calculates the light vector using the object’s world coordinates and the light position. 
-Afterwards, it outputs the colors (warm, cool, object), the light vector, and the object’s normal vector to the fragment shader.
+The vertex shader calculates the light vector using the object's world coordinates and the light position. 
+Afterwards, it outputs the colors (warm, cool, object), the light vector, and the object's normal vector to the fragment shader.
 The fragment shader will then determine the diffuse lighting for the object (diffuse lighting is the dot product of the object's normal vector with the light vector).
 Following that, it augments the warm and cool colors (using the formula: color + object\_color*gooch\_shading\_weight), and then linearly interpolates between them using the GLSL mix() function \cite{glslmix}.
 This interpolation determines the shade coloring for that specific fragment of the object.
@@ -289,7 +289,7 @@ The context viewpoint for silhouettes is essentially the same as the one for sha
 That is to say, its end goal is to improve the end user experience by enhancing the images sent to the Amazon Mechanical Turk.
 Additionally, it will also be implemented in OpenRave.
 Where it differs, however, is in how it affects the simulation images.
-Instead of highlighting 3D object geometry like the Gooch Shading will do, silhouettes will emphasize an object’s borders (I.E. where an object begins and ends).
+Instead of highlighting 3D object geometry like the Gooch Shading will do, silhouettes will emphasize an object's borders (I.E. where an object begins and ends).
 These silhouettes are meant to help users differentiate between objects in the simulation images.
 
 \subsection{Compositional Viewpoint}
@@ -337,7 +337,7 @@ glStencilFunc(Pass if value is 2 or 3)
 \subsubsection{Design View}
 The pseudo-code created above was based off of the algorithm available on the opengl silhouette edges webpage \cite{siledges}.
 In general, the algorithm is easily to follow if you know how to manipulate the stencil buffer and the view port (which we do).
-To summarize, glViewport() is the function that will be translating the object in windows coordinates (I.E. pixels), glStencilFunc() is the function that gives the developer control over which fragments to render, and glStencilOp gives the developer control over what happens to the stencil value of the fragment if it’s accepted.
+To summarize, glViewport() is the function that will be translating the object in windows coordinates (I.E. pixels), glStencilFunc() is the function that gives the developer control over which fragments to render, and glStencilOp gives the developer control over what happens to the stencil value of the fragment if it's accepted.
 The Display() function will presumably be somewhere in OpenRave and will be the function that ultimately renders the object.
 Importantly note that in total, Display() is called four times in the algorithm meaning that the object must be rendered four times to create the silhouette.
 If this factor affects the runtime of the system to the point where performance benchmarks are not met, the algorithm should be changed.
@@ -408,10 +408,10 @@ Interface Viewpoint Diagram that shows the interface relations of CodeXL}
 \end{figure}
 
 \subsubsection{Design View}
-To monitor OpenRave, create a debug project in CodeXL and set the OpenRave executable as the debug project’s executable.
+To monitor OpenRave, create a debug project in CodeXL and set the OpenRave executable as the debug project's executable.
 Additionally, provide the python simulation file as a command line argument and set the source file directory to where the python file lives (this is all done in creating the debug project).
 Afterwards, execute the debug project and CodeXL will display debug information such as rendered objects, created threads, and function calls (if you turn that on).
-Note, however, that tracking function calls slows down CodeXL significantly so it shouldn’t be used for basic testing.
+Note, however, that tracking function calls slows down CodeXL significantly so it shouldn't be used for basic testing.
 Past that, CodeXL also provides access to the source code currently running directly on the CodeXL GUI.
 
 \newpage
@@ -700,7 +700,7 @@ Methods of interaction provided by Google Forms include:
 \begin{itemize}
 \item Allowing participants to view attached images for a question
 \item Allowing participants to select a single answer or image for a question
-\item Allowing participants to select multiple answers or images for a question (Check PLES)
+\item Allowing participants to select multiple answers or images for a question  (checkboxes)
 \item Participants responses will be stored as a data file within Google Forms and exportable to Google Sheets(.csv files, comma separated value files)
 \end{itemize}
 
@@ -784,7 +784,7 @@ For ease of understandability and quick visualization, the pie chart charting op
 \section{Conclusion}
 In conclusion, this design document will be used as a plan of action as we go forward with our implementation.
 This document is not set in stone; it may change as needed as we begin making changes to the code.
-However, it is important to note that our requirements will not change; only our approach to tackle the requirments may change.
+However, it is important to note that our requirements will not change; only our approach to tackle the requirements may change.
 
 \end{flushleft}
 
