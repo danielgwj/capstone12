@@ -10,6 +10,9 @@
   {\normalfont\normalsize\bfseries}}
 \makeatother
 
+\newcounter{subparagraph}[paragraph]
+
+\usepackage{listings}
 \usepackage{titlesec}
 \usepackage{float}
 \usepackage{hyperref}
@@ -24,7 +27,7 @@
 \geometry{margin=0.75in}
 
 \setcounter{tocdepth}{4}
-\setcounter{secnumdepth}{4}
+\setcounter{secnumdepth}{5}
 
 %references go here
 \begin{filecontents}{designdoc.bib}
@@ -312,9 +315,12 @@ The amount you move the object will affect how large of a silhouette is made.
 To draw a solid color silhouette (I.E. black), draw the silhouette using a solid color version of the object.
 Additionally, because the stencil buffer gives you control over what fragments of the object are drawn, overlapping objects are dealt with easily.
 
+\newpage
+
 \subsection{Algorithm Viewpoint}
 Silhouette Algorithm pseudo-code implementation
 
+\begin{lstlisting}
 glEnable(stencil buffer)
 glDisable(depth buffer)
 glDisable(color buffer)
@@ -333,6 +339,7 @@ glViewport(Move +x)
 glEnable(color buffer)
 glEnable(depth buffer)
 glStencilFunc(Pass if value is 2 or 3)
+\end{lstlisting}
 
 \subsubsection{Design View}
 The pseudo-code created above was based off of the algorithm available on the opengl silhouette edges webpage \cite{siledges}.
