@@ -1,0 +1,122 @@
+\documentclass[10pt,journal,compsoc,draftclsnofoot]{IEEEtran}
+
+% Definition of \subparagraph
+\makeatletter
+\newcommand\subparagraph{%
+  \@startsection{subparagraph}{5}
+  {\parindent}
+  {3.25ex \@plus 1ex \@minus .2ex}
+  {0.75ex plus 0.1ex}
+  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\newcounter{subparagraph}[paragraph]
+
+\usepackage{listings}
+\usepackage{titlesec}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{tocloft}
+\usepackage{lscape}
+\usepackage{textcomp}
+\usepackage{pgfgantt}
+\usepackage{amsmath}
+
+\usepackage{geometry}
+\geometry{margin=0.75in}
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+\begin{document}
+\onecolumn
+
+\begin{titlepage}
+\null
+\vspace{15mm}
+
+\begin{flushleft}
+\begin{bfseries}
+	\vskip2mm
+	\Huge{Progress Report for\\ Better Graphics For A Robotics Grasping GUI}\\
+	\vspace{15mm}
+	\textbf{\huge Shady Robots} \\
+	\vskip2mm
+	\large{Group 12}
+	\vskip5mm
+	\Large{Justin Bibler \\
+	Matthew Huang \\
+	Daniel Goh \\}
+\end{bfseries}
+
+\vspace{15mm}
+\Large{CS461: Senior Software Engineering Project} \\
+\Large{Fall 2016} \\
+
+\vspace{5mm}
+
+\today
+
+\vfill
+
+\begin{normalsize}
+{\bf Abstract:}
+Our customer is using a simulation to create visuals that are used for online data collection.
+This simulation is using outdated libraries which result in outdated graphics.
+
+
+{\bf Keywords:} OpenInventor, OpenGL, OpenRave, shaders, warm cool shaders, silhouettes, shadows, robotic simulation, geometry, visualization, render, vertex lines
+\end{normalsize}
+\end{flushleft}
+
+\newpage
+
+\end{titlepage}
+
+\begin{flushleft}
+
+\section{Project Purpose and Goals}
+
+
+\newpage
+
+\section{Where we are in project}
+
+
+\newpage
+
+\section{Problems and Solutions}
+
+
+
+
+\section{Interesting Pieces of Code}
+
+
+\newpage
+
+\section{Retrospective}
+
+\begin{center}
+\begin{table}[H]
+\caption{Table showing what went right (Positives), what needs to be changed (Deltas), and implementations to fix said Delta (Actions)}
+\begin{tabular}{ | p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth} | }
+\hline
+\textbf{Positives}  & \textbf{Deltas}  & \textbf{Actions} \\ \hline
+1 & 1 & 1  \\ \hline
+1 & 1 & 1  \\ \hline
+1 & 1 & 1  \\ \hline
+\end{tabular}
+\newline
+\label{table:retro}
+\end{table}
+\end{center}
+
+
+
+
+\end{flushleft}
+
+\end{document}
+
