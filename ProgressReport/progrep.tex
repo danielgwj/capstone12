@@ -94,10 +94,26 @@ We've also attempted to get OpenRave running on our own machines; Justin in part
 Unfortunately, however, we have yet to get the current system running due to dependency issues.
 
 \section{Problems and Solutions}
-
-
-\section{Interesting Pieces of Code}
-
+Throughout the term, we have encountered many problems as we compose the requirements document, technology review document, and design document.
+When writing the requirements document, we were unsure how we could incorporate a project as small as ours and turn it into a full fledged document that follows the IEEE Std 830-1998.
+With the lack of consultation, we ended up writing a poor requirements document.
+To prevent this from happening again, our solution was to assign our individual parts ahead of time, which gives us time to consult our instructors if necessary.
+This was implemented during the technology review assignment.
+We split up our tasks early on, and was able to get feedback from Nels regarding the structure and the expectations for the design document.
+This placed us in a better position as we are more confident and aware of what was expected of us. \\
+\vspace{3mm}
+The other problem that we encountered for this project was regarding the outdated OpenGL libraries, which capabilities to implement modern looking graphics.
+As the existing system utilizes OpenGL 1.0 libraries, we were unsure if we would need to rewrite the system as a whole or if there is an easy way to upgrade the current library to a more modern version of the OpenGL library.
+Our member took the initiative and visited Professor Bailey in his office to inquire about our constraint.
+After consulting Professor Bailey, it appears that upgrading the OpenGL libraries would not be a hard endeavor on our side.
+Knowing that, our team was more relieved of the library upgrading process. \\
+\vspace{3mm}
+The project problem that we are facing even now, is that one of the subsystem that is used for the simulation is not open sourced.
+This is a problem as our client suspects that the main render loop for the visualization is within the subsystem that is not open sourced.
+This would require use to dig into the code base ourselves and figure out a way to do some reverse engineering.
+The solution to this problem is not clear yet, but a preliminary plan is formed.
+This plan is to familiarize ourselves with the existing source code and to identify the render loop.
+This is reflected in the Gantt Chart that we have drawn for the requirements document. \\
 
 \newpage
 
