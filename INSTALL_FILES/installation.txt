@@ -16,9 +16,9 @@ sudo apt-get update
 
 sudo apt-get install libsoqt4-dev libsoqt-dev-common libopenscenegraph-dev liblapack-dev libpcre++-dev libode-dev libbullet-dev libboost-all-dev libxml2-dev 
 
-sudo apt-get libglew-dev 
+sudo apt-get install libglew-dev 
 
-sudo apt-get libglm-dev
+sudo apt-get install libglm-dev
 
 sudo apt-get install cmake g++ git qt4-dev-tools zlib-bin 
  
