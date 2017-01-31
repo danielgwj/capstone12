@@ -1,8 +1,11 @@
 ====================================================================
 Installation guide:
-====================================================================
+====================================================================
+
 Download Ubuntu 14.04 image here and run with VM:
-http://old-releases.ubuntu.com/releases/14.04.1/ubuntu-14.04-desktop-amd64.iso
+http://old-releases.ubuntu.com/releases/14.04.1/ubuntu-14.04-desktop-amd64.iso
+
+Create the VM with the usernam "mcqueen" (temporary fix)
 
 In Terminal:
 sudo gedit /etc/apt/source.list
@@ -25,10 +28,11 @@ sudo apt-get install cmake g++ git qt4-dev-tools zlib-bin
 sudo apt-get install ipython python-dev python-h5py python-numpy python-scipy python-sympy  
 
 git clone --branch latest_stable https://github.com/rdiankov/openrave.git
+(OPTIOANL CHECKOUT)
 git checkout 677ef40c60ae29b3e584dc883a799d126cc55752
 
 --------------------------------------------------------------------------------------------------------------------
-OPTIONAL (DON"T DO THIS)
+[OPTIONAL - NOTE FCL WILL BE DISABLED DURING OPENRAVE INSTALLATION]
 --------------------------------------------------------------------------------------------------------------------
 
 git clone https://github.com/danfis/libccd.git
@@ -44,7 +48,6 @@ In eigen3 folder:
 mkdir build
 cd build
 cmake ..
-make 
 sudo make install
 
 git clone https://github.com/flexible-collision-library/fcl.git
@@ -68,6 +71,8 @@ collada-dom-dev_2.4.4.7-ubuntu1~trusty1_amd64.deb
 
 Replace openrave/plugins/CMakeLists.txt with the file INSTALL_FILES/CMakeLists.txt
 
+turn off fcl in openrave/Cmakelists.c
+
 Replace files from OSUrobotics repo/WarmcoolRave to openrave/plugins/qtcoinrave:
 renderToTexture.cpp (needs to be edited for qtcoin to load the shaders: look for mcqueen or danielgwj)
 renderToTexture.h
@@ -75,10 +80,7 @@ qtcoinviewer.cpp
 qtcoinviewer.h
 shader.cpp
 shader.hpp
-glsl files
-
-
-
+glsl files
 
 In Terminal:
 cd openrave
@@ -106,8 +108,4 @@ from openravepy import *
 env = Environment()
 env.SetViewer( 'qtcoin' )
 env.Load( 'hanoi.env.xml' )
-
-==
-
-==
 
