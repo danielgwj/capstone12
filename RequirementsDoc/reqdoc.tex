@@ -56,12 +56,7 @@
 	\Huge{Requirements Document for\\ Better Graphics For A Robotics Grasping GUI}\\
 	\vspace{30mm}
 	\textbf{\huge Shady Robots} \\
-	\vskip2mm
-	\large{Group 12}
-	\vskip5mm
-	\Large{Justin Bibler \\
-	Matthew Huang \\
-	Daniel Goh \\}
+	
 \end{bfseries}
 
 \vspace{15mm}
@@ -76,20 +71,15 @@
 
 \newpage
 \null
-\vspace{10mm}
+\vspace{35mm}
 
 \begin{flushleft}
 \begin{bfseries}
 	\vskip2mm
 	\Huge{Requirements Document for\\ Better Graphics For A Robotics Grasping GUI}\\
-	\vspace{15mm}
+	\vspace{30mm}
 	\textbf{\huge Shady Robots} \\
-	\vskip2mm
-	\large{Group 12}
-	\vskip5mm
-	\Large{Justin Bibler \\
-	Matthew Huang \\
-	Daniel Goh \\}
+	
 \end{bfseries}
 
 \vspace{15mm}
@@ -106,7 +96,7 @@
 {\bf Abstract:}
 Our customer is using a simulation to create visuals that are used for online data collection.
 This simulation is using outdated libraries which result in outdated graphics.
-We, as the supplier, define the requirements necessary to accomplish our customer's request.
+We, as the supplier define the requirements necessary to accomplish our customer's request.
 The request being to update the simulation's graphics with warm cool shaders, shadows and silhouettes.
 
 {\bf Keywords:} OpenInventor, OpenGL, OpenRave, shaders, warm cool shaders, silhouettes, shadows, robotic simulation, geometry, visualization, render,
@@ -121,7 +111,7 @@ vertex lines, software requirements specification, system requirements specifica
 \section*{Introduction}
 \vspace{3mm}
 Currently, our client is using visualizations, of a robot hand grasping objects, to collect data online.
-These visualizations are created from a simulation program (OpenRave); the data collected is used to create a model of the human grasp.
+These visualizations are created from a simulation program (OpenRave), the data collected is used to create a model of the human grasp.
 However, the current graphics in the simulation are outdated.
 It is hard to see and understand the shapes and contact points represented in the scene.
 Because of this, users aren't confident in giving proper responses to the simulation.
@@ -149,16 +139,16 @@ This includes the external interface requirements, functional requirements, perf
 \section{References}
 \vspace{3mm}
 
-Gooch Shading \footfullcite{gooch}
+Gooch Shading \footnote{\label{note1}ECGLAB. Gooch Shading. Retrieved from: https://lva.cg.tuwien.ac.at/ecg/wiki/doku.php?id=students:gooch}
 \vspace{3mm}
 
-IEEE Std 830-1998, IEEE Recommended Practice for Software Requirements Specifications \footfullcite{ieee830}
+IEEE Std 830-1998, IEEE Recommended Practice for Software Requirements Specifications \footnote{\label{note2}IEEE publications are available from the Institute of Electrical and Electronics Engineers, 445 Hoes Lane, P.O. Box 1331, Piscataway, NJ 08855-1331, USA.}
 \vspace{3mm}
 
-Shadow Mapping \footfullcite{shadow}
+Shadow Mapping \footnote{\label{note3} Shadow Mapping. LearnOpenGL. Retrieved from: http://learnopengl.com/\#!Advanced-Lighting/Shadows/Shadow-Mapping}
 \vspace{3mm}
 
-Silhouette Extraction \footfullcite{silhouette}
+Silhouette Extraction \footnote{\label{note4}Gooch, Bruce. Silhouette Extraction. Retrieved from: http://www.cs.rutgers.edu/~decarlo/readings/gooch-sg03c.pdf}
 
 \section{Definitions}
 
@@ -183,7 +173,6 @@ The person, or persons, who operate or interact directly with the product. The u
 Modern computer defined by the Oregon State University (OSU) EECS minimum laptop requirements: 
 Intel Core i5 or i7, or AMD A8 and AMD A10 APU 8GB RAM
 
-
 \newpage
 
 \section{Specific requirements}
@@ -195,40 +184,13 @@ The purpose of the software's output is to give a visual understanding of the ro
 The software will accept an input simulation file (.py file) through the console.
 The software will then output a simulation onto a new window.
 
-\subsubsection{User interfaces}
+\subsection{Functional requirements}
 \vspace{3mm}
-user interface here
+The system shall render the scene and output to a new window.
+The rendered scene shall include all 3D objects to be displayed in the scene with correct geometry.
+No objects should have clashing vertex lines, and all shapes should be drawn as intended by the user.
+Refer to Fig. 1 below.
 
-\subsubsection{Hardware interfaces}
-\vspace{3mm}
-hardware interface
-
-\subsubsection{Software interfaces}
-\vspace{3mm}
-softwarei interface here
-
-\subsubsection{Communication interfaces}
-\vspace{3mm}
-communication interface
-
-\subsection{System features}
-\vspace{3mm}
-
-\subsubsection{System Feature 1: Warm cool shading}
-	
-\paragraph{Introduction/Purpose of feature}
-The purpose of warm cool shading is to improve visibility of the object on screen.
-Warm cool shading shades an object so that no part of an objects' visibility is hidden from view, due to this the objects' geometry is highlighted.
-
-The method that will be used to implement this feature will be Gooch Shading.
-Gooch shading was developed by Bruce and Amy Gooch, Peter Shirley, and Elaine Cohen in 1998.
-The characterstics of Gooch Shading are as follows:
-
-\paragraph{Stimulus/Response sequence}
-
-\paragraph{Associated functional requirements}
-
-\paragraph{Functional requirements 1}
 \begin{figure} [h]
   \includegraphics[width=\linewidth]{squares.eps}
   \caption
@@ -240,40 +202,19 @@ Square 3: Incorrect vertex line drawing resulting in undesired geometry.}
 \end{figure}
 
 \vspace{3mm}
-The system shall render the scene and output to a new window.
-The rendered scene shall include all 3D objects to be displayed in the scene with correct geometry.
-No objects should have clashing vertex lines, and all shapes should be drawn as intended by the user.
-Refer to Fig. 1 below.
 
-\vspace{3mm}
+The scene shall include:
+\subsubsection{Warm cool shaders}
 Refer to "Description" section of Gooch Shading listed in this document's references section.
+
+\subsubsection{Shadows}
+A dark area or shape produced by a body coming between rays of light and a surface.
+
+\subsubsection{Silhouettes}
+Refer to "Definition of a Silhouette" section of Silhouette Extraction listed in this document's references section.
 
 \vspace{3mm}
 The system shall continuously re-render the scene until completion of the simulation or software termination.
-
-
-\subsubsection{System Feature 2: Shadows}
-
-\paragraph{Introduction/Purpose of feature}
-
-\paragraph{Stimulus/Response sequence}
-
-\paragraph{Associated functional requirements}
-
-\paragraph{Functional requirements 1}
-A dark area or shape produced by a body coming between rays of light and a surface.
-
-
-\subsubsection{System Feature 3: Silhouettes}
-
-\paragraph{Introduction/Purpose of feature}
-
-\paragraph{Stimulus/Response sequence}
-
-\paragraph{Associated functional requirements}
-
-\paragraph{Functional requirements 1}
-Refer to "Definition of a Silhouette" section of Silhouette Extraction listed in this document's references section.
 
 \subsection{Performance requirements}
 \vspace{3mm}
@@ -377,6 +318,3 @@ Daniel Goh & Date\\
 
 
 \end{document}
-
-
-
