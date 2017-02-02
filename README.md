@@ -1,7 +1,10 @@
-# capstone12
-Better graphics for a robotics grasping GUI
+# Better Graphics For a Robotics Grasping GUI
+### Team 12: Shady Robots ###
+=============
 
-Link for VM image: https://drive.google.com/open?id=0BzM4_ayQHUjNUEUyVmlIanl4bVk
+[OneNote Notebook (view-only)](https://1drv.ms/u/s!Av4EOp0PXBcCjGQ96cSX6slmyb54)
+
+[Virtual Machine Image Download](https://drive.google.com/open?id=0BzM4_ayQHUjNUEUyVmlIanl4bVk)
 
 Login: mcqueen
 
