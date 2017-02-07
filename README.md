@@ -9,3 +9,7 @@
 Login: mcqueen
 
 Password: openrave
+
+=============
+
+[Link to OSUrobotics's Grasp Rendering Modification repo](https://github.com/OSUrobotics/Grasp-Rendering-Modification)
