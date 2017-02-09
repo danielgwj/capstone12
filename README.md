@@ -2,15 +2,15 @@
 ### Team 12: Shady Robots ###
 =============
 
-[Link to OSUrobotics's Grasp Rendering Modification repo](https://github.com/OSUrobotics/Grasp-Rendering-Modification)
-
 [OneNote Notebook (view-only)](https://1drv.ms/u/s!Av4EOp0PXBcCjGQ96cSX6slmyb54)
 
-[Virtual Machine Image Download](https://drive.google.com/open?id=0BzM4_ayQHUjNUEUyVmlIanl4bVk)
+[Virtual Machine Image Download](https://drive.google.com/open?id=0BzM4_ayQHUjNdGZpY0NMV21KZm8)
 
 Login: mcqueen
 
 Password: openrave
+
+[Link to OSUrobotics's Grasp Rendering Modification repo](https://github.com/OSUrobotics/Grasp-Rendering-Modification)
 
 =============
 
