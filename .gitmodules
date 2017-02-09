@@ -1,0 +1,3 @@
+[submodule "Grasp-Rendering-Modification"]
+	path = Grasp-Rendering-Modification
+	url = https://github.com/OSUrobotics/Grasp-Rendering-Modification
