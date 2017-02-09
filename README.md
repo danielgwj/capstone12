@@ -24,6 +24,7 @@ cd Grasp-Rendering-Modification
 git submodule init
 git submodule update
 ```
+=============
 
 Working with branches:
 ```
@@ -34,6 +35,7 @@ OR
 git checkout -b <branchname> ### TO CREATE A NEW BRANCH
 ```
 
+=============
 
 To merge your branch changes to the submodule's repo:
 
