@@ -98,6 +98,11 @@ url = {http://www.itestra.de/fileadmin/Redaktion/Documents/07testradefineandmeas
  url      = {https://www.surveymonkey.com/blog/2012/06/28/making-sense-numbers-when-embrace-relativity-when-ignore-it/}
 }
 
+@misc{qualtrics,
+ title = {Qualtrics},
+ url      = {https://www.qualtrics.com/}
+}
+
 \end{filecontents}
 
 \begin{document}
@@ -681,7 +686,7 @@ Thus, our client will need some sort of good reference of how to navigate the co
 \subsection{Software Design Description}
 This requirement is established to allow participants to provide their input to determine if the team's visual enhancement to the robotic simulation has improved from its initial state.
 This will be fulfilled by running online surveys.
-Google Forms is the selected platform to run the online survey.
+Qualtrics is the selected platform to run the online survey.
 
 \subsection{Design Stakeholders}
 Justin Bibler, Matthew Huang, and Daniel Goh
@@ -689,7 +694,7 @@ Justin Bibler, Matthew Huang, and Daniel Goh
 \subsection{Design Views}
 \subsubsection{Interface Viewpoint}
 \paragraph{Design Concern}
-Google Forms is the selected service that will be utilized to carry out the online survey. 
+Qualtrics is the selected service that will be utilized to carry out the online survey. 
 The design concern for the online survey will include if participants will be able to understand the questions of the online survey and select their choice of better visuals. 
 \vspace{3mm}
 
@@ -704,17 +709,17 @@ System used to assess resulting visuals for the robot grasping simulation.
 This element exists to help guide the creation of an online survey that is easily understood and usable by the participants. 
 
 \subparagraph{Function}
-Google Forms \cite{googleforms} is a matured survey platform that allows unlimited number of questions and the function to attach images to the created survey.
+Qualtrics \cite{qualtrics} is a matured survey platform that allows unlimited number of questions and the function to attach images to the created survey.
 Participants will be able to select a picture or answer based on the questions presented. 
 The questions will cover the aesthetic aspects between pictures, the presence of shadows between pictures, and identification of object relativity or position within the picture. 
 
 \subparagraph{Interface}
-Methods of interaction provided by Google Forms include:
+Methods of interaction provided by Qualtrics include:
 \begin{itemize}
 \item Allowing participants to view attached images for a question
 \item Allowing participants to select a single answer or image for a question
 \item Allowing participants to select multiple answers or images for a question  (checkboxes)
-\item Participants responses will be stored as a data file within Google Forms and exportable to Google Sheets(.csv files, comma separated value files)
+\item Participants responses will be stored and will be evaluated using the built-in data analysis and visualization tools.
 \end{itemize}
 
 Users should not be overwhelmed by information in the interface while taking the survey.
@@ -731,7 +736,7 @@ For example, stating the left visual is the improved visual in the question whil
 \subsection{Software Design Description}
 The data collected from the online survey will require analysis to determine if the team's visual enhancement to the robotic simulation has improved from its initial state.
 The data will need to be organized and analyzable by the stakeholders.
-Google Sheets will be used to analyze and visualize the collected data.
+Qualtrics will be used to analyze and visualize the collected data.
 
 \subsection{Design Stakeholders}
 Justin Bibler, Matthew Huang, and Daniel Goh
@@ -739,7 +744,7 @@ Justin Bibler, Matthew Huang, and Daniel Goh
 \subsection{Design Views}
 \subsubsection{Information Viewpoint}
 \paragraph{Design Concerns}
-Google Sheets \cite{googlesheets} is the selected platform to parse and visualize the data collected from the online survey. 
+Qualtrics \cite{qualtrics} is the selected platform to parse and visualize the data collected from the online survey. 
 The design concern includes if the data collected can be analyzed and visualized meaningfully to reflect the collective participants’ responses.
 \vspace{3mm}
 
@@ -748,49 +753,30 @@ The design concern includes if the data collected can be analyzed and visualized
 Data Visualization
 
 \subparagraph{Type}
-System for data parsing and visualization that supports Google Forms 
+System to analyze and visualize collected responses from the survey.
 
 \subparagraph{Purpose}
-The element exists to help guide the use of Google Sheets to create data visualizations.
+The element exists to help guide the use of Qualtrics to create data visualizations.
 
 \subparagraph{Data Attribute}
-As Google Forms and Google Sheets are under one ecosystem, Google Sheets have access to parse the data collected directly into Google Forms. 
-The resulting data content will contain individual responses on a single spreadsheet. 
+As the survey data is collected by Qualtrics, the data analysis and visualization tools will have access to parse the survey data. 
+The resulting data content will be generated as a report within Qualtrics.
 
-Questions asked will be represented on the first horizontal row. 
-Participant's responses are time stamped and is represented as a row for each individual. 
-The participant's responses (answer to each questions) are recorded below the questions. 
+The survey is aimed to determine if the team's graphical enhancement did improve the users understanding of the image.
+With that, the selected data analysis method that will be used to determine the project's success will be based on frequency among all respondents \cite{SManalysis}. 
 
-\begin{center}
-\begin{table}[H]
-\caption{Spreadsheet example with data}
-\begin{tabular}{ | m{5em} | m{15em} | m{7em} | m{7em} | m{7em} |  m{7em} | } 
-\hline
-\textbf{Respondent}  & \textbf{Time stamp}  & \textbf{Question 1} & \textbf{Question 2} & \textbf{...} & \textbf{Question N} \\ \hline
-1 & 11/12/2016 20:28:39 & Choice 1 & Choice 2 & ... & Choice 2 \\ \hline
-2 & 11/13/2016 1:55:37 & Choice 1 & Choice 2 & ... & Choice 1 \\ \hline
-3 & 11/13/2016 11:56:02 & Choice 2 & Choice 2 & ... & Choice 2 \\ \hline 
-4 & 11/15/2016 23:52:12 & Choice 1 & Choice 2 & ... & Choice 1 \\ \hline 
-5 & 11/18/2016 15:51:32 & Choice 1 & Choice 1 & ... & Choice 2 \\ \hline 
-\end{tabular}
-\newline
-\label{table:Example}
-\end{table}
-\end{center}
+The aim of the performance metrics is to get at least 80\% responses to select the image with the team's enhancements.
+The visualizations will be created with the percentage function within Qualtrics.
 
-The selected data analysis method that will be used to determine the project's success will be based on frequency among all respondents \cite{SManalysis}. 
-An example model that represents the frequency method is as follow:
-
-\begin{equation}
-\frac{Number Of Choice 1 Occurrence For Question 1}{Total Respondents} = x\%
-\end{equation}
+\begin{figure} [H]
+  \includegraphics[scale=0.8]{Report_example.eps}
+  \caption
+{ \newline \hspace{\linewidth}
+An example survey in which the responses are shown in percentage form. This will allow the team to easily determine if the aesthetic performance metrics are met.}
+  \label{fig:Report_example}
+\end{figure}
 
 \vspace{3mm}
-In this example, Choice 1 for Question 1 is the visuals with enhanced shadows implementation. 
-x will need to be more than 79 in order for shadow implementations to be considered a success.
-
-The data collected will be converted into visualizations using the charting functions provided in Google Sheets. 
-For ease of understandability and quick visualization, the pie chart charting option will be used to display the collective responses. 
 
 \newpage
 
