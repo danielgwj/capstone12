@@ -190,7 +190,9 @@ Frequency (statistics) - Frequency of a particular data value is the number of t
 
 \normalsize
 \subsection{Design Concerns}
-Our team is assuming that the rendering for the 3D scene is done by OpenRave and not the Qt GUI.
+The rendering of the scene is done by an API call from the qtcoinrave plugin (which OpenRave uses as a viewer).
+This means that we have no direct access to the actual rendering main loop.
+As a result, we'll have to use the qtcoin3D API to implement our changes.
 The OpenGL Shading Language (GLSL) will be used to implement Gooch Shading. 
 Gooch Shading requires use of both the vertex buffer and fragment buffer.
 In its implementation, Gooch Shading makes use of a warm and cool color to highlight its objects.
@@ -210,7 +212,7 @@ Context Viewpoint Diagram that shows relation of Gooch Shading to OpenRave}
 \end{figure}
 
 \subsubsection{Design View}
-Gooch Shading will be implemented into OpenRave assuming that OpenRave is indeed the renderer.
+Gooch Shading will be implemented by passing vertex and fragment shaders to qtcoinviewer.
 A successful Gooch Shading implementation will use warm and cool coloring to help improve object geometry (which will be displayed by Qt).
 Improved object geometry means improved simulation images for users of the Amazon Mechanical Turk.
 The updated images will aid user confidence in how they answer the mechanical turk questions which will improve the data collected.
@@ -226,8 +228,9 @@ Compositional Viewpoint Diagram that shows the flow of Gooch Shading implementat
 \end{figure}
 
 \subsubsection{Design View}
-This implementation of Gooch Shading makes use of the following entities: the vertex buffer, the fragment buffer, and the renderer (OpenRave). 
-OpenRave will supply relevant variables (camera position, object position, light position, colors, etc.) to the vertex shader.
+This implementation of Gooch Shading makes use of the following entities: the vertex shader, the fragment shader, and qtcoinviewer.
+The shaders will be given to qtcoinviewer using the SoShaderProgram widget provided in the qtcoin3D API.
+Both shaders will have all relevant variables (camera position, model coordinates, light position, colors, etc.) by default.
 The vertex shader calculates the light position and passes its variables to the fragment shader.
 The fragment shader is the entity that shades the 3D objects.
 In it, it calculates the diffuse lighting along with the augmented warm and cool colors that will shade the object.
@@ -249,24 +252,32 @@ Logical Viewpoint Diagram that shows the implementations of Gooch Shading}
 \end{figure}
 
 \subsubsection{Design View}
-In the code, the Gooch Shading inputs will come from the display function of the renderer.
-The display function obviously holds many variables, but will only pass the following variables to the vertex shader:
+In the code, the Gooch Shading will be implemented by passing vertex and fragment shaders to qtcoinviewer.
+For the initial Gooch Shading implementation, we will use Julio Medina's vertex and fragment shaders.
+From there, we will modify it to assure that the object's original color is not completely lost. 
+Julio makes use of the following variables in his Vertex Shader:
 \begin{itemize}
-\item Camera position.
+\item Eye position (eposition.
 \item Object normal vector.
-\item Light position.
-\item Object position (model coordinates).
-\item Colors (warm, cool, object original).
+\item Specular Color (from object).
+\item Shininess (from object).
+\item diffuse color (from object).
+\item Ambient color (from object).
 \end{itemize}
 
 The warm and cool colors are determined by the developer and the object color is supplied by the python file passed into OpenRave.
-The camera and object position are needed to determine the object's world coordinates (which is done in the vertex shader).
-All these variables are written in GLSL.
-GLSL can be used if the version of OpenGL on the system is 2.0 or above; the current version on the system will be updated to meet this requirement.
-The vertex shader calculates the light vector using the object's world coordinates and the light position. 
-Afterwards, it outputs the colors (warm, cool, object), the light vector, and the object's normal vector to the fragment shader.
-The fragment shader will then determine the diffuse lighting for the object (diffuse lighting is the dot product of the object's normal vector with the light vector).
-Following that, it augments the warm and cool colors (using the formula: color + object\_color*gooch\_shading\_weight), and then linearly interpolates between them using the GLSL mix() function \cite{glslmix}.
+Both shaders will be using GLSL version 1.2.
+The vertex shader is used to retrieve the object's color, calculate the eye position, calculate the normal vector, and set up clipping.
+The vertex shader will retrieve the object's color using the gl\_FrontMaterial call.
+The eye position will be computed by multiplying the model view matrix with gl\_Vertex.
+The normal vector will be computed by multiplying the model view matrix with gl\_Normal.
+World clipping will be computed by multiplying the model view projection matrix with gl\_Vertex.
+After this, the vertex shader outputs the colors, the eye position, and the object's normal vector to the fragment shader.
+The fragment shader must then compute the ambient, diffuse, and specular lighting along with the augmented warm and cool colors.
+The ambient lighting for the object is determined by multiplying the ambient color with the ambient lighting.
+The diffuse lighting for the object is determined using the equation diffuseColor*NT*LightColor where NT is the dot product of the normal and light vectors.
+The specular lighting for the object is determined by multiplying the specular color with the light color along with a shininess value.
+Following that, the augmented warm and cool colors are determined using the formula: color + object\_color*gooch\_shading\_weight, and then linearly interpolated using the GLSL mix() function \cite{glslmix}.
 This interpolation determines the shade coloring for that specific fragment of the object.
 
 \newpage
@@ -296,7 +307,7 @@ Context Viewpoint Diagram that that shows relation of silhouettes to OpenRave}
 \subsubsection{Design View}
 The context viewpoint for silhouettes is essentially the same as the one for shaders.
 That is to say, its end goal is to improve the end user experience by enhancing the images sent to the Amazon Mechanical Turk.
-Additionally, it will also be implemented in OpenRave.
+Additionally, it will also be implemented in the qtcoinrave plugin.
 Where it differs, however, is in how it affects the simulation images.
 Instead of highlighting 3D object geometry like the Gooch Shading will do, silhouettes will emphasize an object's borders (I.E. where an object begins and ends).
 These silhouettes are meant to help users differentiate between objects in the simulation images.
