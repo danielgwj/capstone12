@@ -815,7 +815,7 @@ GLSL-Debugger was not chosen because it was too simple (in terms of features) an
 
 \newpage
 
-\section{Usability inspection methods, how to carry out the selected inspection method, and the tools to analyze the gathered data}
+\section{Usability inspection methods, tool to carry out the selected inspection method, and the tools to analyze the gathered data}
 \large{By Daniel Goh}
 
 \normalsize
@@ -931,7 +931,7 @@ Thus, the \textbf{online survey method} will be utilized as a usability inspecti
 
 \newpage
 
-\subsection{How to carry out selected inspection method: Online Surveys}
+\subsection{Tool to carry out selected inspection method: Online Surveys}
 There are many survey tools available online.
 This section reviews the various survey tools that are free to use.
 The reviews are done after using the survey tools first-handedly.
@@ -990,6 +990,30 @@ Cons of Typeform for our project purpose:
 \item Uses keyboard as main input for survey questions
 \end{itemize}
 
+\subsubsection{Qualtrics}
+This section covers the pros and cons of Qualtrics.
+Oregon State University provides a campus-wide license to the Qualtrics survey platform.
+As the Qualtrics license is provided by the institution, features of the survey platform are not constrained from use.
+
+Pros of Qualtrics for our project purpose:
+\begin{itemize}
+\item Contains a variety of different survey types from the Qualtrics Library
+\item Provides training resources to use Qualtrics
+\item Allows unlimited questions for a survey
+\item Allows survey interface customization
+\item Spell checking functionality included
+\item Allows preview of survey for both laptop and mobile devices
+\item Provides various data analytics tools
+\item Analytical reports can be generated within Qualtrics
+\item Collected data can be exported as a .csv file to be use with other data analysis tools
+\item Provides skip and display logic for the survey
+\end{itemize}
+
+Cons of Qualtrics for our project purpose:
+\begin{itemize}
+\item Data export format only include: PDF, Word, Powerpoint, and comma separated value files
+\end{itemize}
+
 \subsubsection{Goals}
 The goal of selecting a survey tool is to allow the team to carry out the online survey inspection method as efficiently as possible.
 
@@ -1012,9 +1036,10 @@ The criteria of selecting a suitable online survey platform is as follows:
 Google Forms & Included  & Supports Google Sheets, .xlsx, .ods, .tsv and .csv export & Unlimited \\ \hline
 Survey Monkey & Included & Supports .xls, .xlsx, Google Sheets, .spss and .csv export & 10 \\ \hline
 Typeform & Included & Supports .xlsx and .csv export &  Unlimited \\ \hline 
+Qualtrics & Included & Supports .pdf, .docx, .pptx, and .csv export &  Unlimited \\ \hline 
 \end{tabular}
 \newline
-\caption{Comparing the survey tool features provided in Google Sheets, Survey Monkey and Typeform}
+\caption{Comparing the survey tool features provided in Google Sheets, Survey Monkey, Typeform and Qualtrics}
 \label{table:surveytool}
 \end{table}
 \end{center}
@@ -1022,26 +1047,27 @@ Typeform & Included & Supports .xlsx and .csv export &  Unlimited \\ \hline
 \newpage
 
 \subsubsection{Discussion}
-All three listed survey tools are commonly used in both professional and non-professional settings.
-Google Forms and TypeForm allows unlimited questions, and does not limit the number of respondents.
-However, Google Forms supports the most data export option as Google Forms is tightly integrated with Google Sheets, which allows various sheet export options.
+All four listed survey tools are commonly used in both professional and non-professional settings.
+Google Forms, TypeForm and Qualtrics allows unlimited questions, and does not limit the number of respondents.
+Google Forms supports the most data export option as Google Forms is tightly integrated with Google Sheets, which allows various sheet export options.
 Survey Monkey offers a simpler version for free from it's paid counterpart.
 The free version only allows 10 questions and 100 respondents in the free version, and this might pose to be an issue if the team decides to increase the number of questions in the survey.
 Similar to Survey Monkey, Typeform is a survey tool that offers free and PRO tiers based on the needs of the survey.
-Both Survey Monkey's and Typeforms' premium offerings (Logic jumps, priority customer support) are not vital for the survey.
+Both Survey Monkey's and Typeforms' premium offerings (Logic jumps, priority customer support) which are not vital for the survey.
+As Oregon State University provides licenses to Qualtrics, premium features can be utilized in our survey without further costs.
+Qualtrics allow interface customization to the survey. 
+An "Oregon State University" theme with the institution's logo as the survey header is also provided. 
+This would improve the surrey's validity, which improves survey participant's confidence to contribute to the survey.
 
 \subsubsection{Choice}
-After reviewing various survey tools, \textbf{Google Forms} comes in as the best choice that fits the selected usability inspection method.
-Our survey will not collect sensitive information (e.g. social security numbers, credit card numbers etc.), thus it is safe if Google make the data accessible to the public.
-The purpose of the survey (to compare the simulation visuals prior to enhancement and after enhancement) is unrelated to the original research, and does not need to be kept confidential.
-
+After reviewing the survey tools, \textbf{Qualtrics} comes in as the best choice that fits the selected usability inspection method.
+Qualtrics should be utilized as the license is provided free of charge by Oregon State University, allowing various premium features such as survey logic and interface customization. 
 \newpage
 
 \subsection{Data analysis tools to analyze and visualize collected data}
 Data analysis and visualization tools are used in enterprise situations to allow massive data to be processed into meaningful data.
 With the inspection method and survey tools selected, a suitable data analysis and visualization tool will be needed to process the raw data.
-As the selected survey tool allows csv (comma separated value files) to be exported, the review will only include tools that can process csv files and that are free of charge.
-The reviews for data analysis and visualization tools are done after using the applications first-handedly. 
+The review will only include tools that are free to use.
 
 \subsubsection{Google Forms, Google Sheets}
 Google has a wide range of applications in their portfolio, and the survey tool selected, Google Forms come with an integrated pie chart visualizer.
@@ -1052,7 +1078,7 @@ Pros of using Google's visualization for our project purpose:
 \item Easily transferable across Google platforms
 \item Easily shared across multiple collaborators
 \item Simple, light weight and easy to use
-\item Work can be done in a web browser
+\item Work can be done on any web browser
 \item Keeps records of previous spreadsheet versions for reverting purposes
 \end{itemize}
 
@@ -1098,6 +1124,27 @@ Cons of using D3.js for our project purpose:
 \item Has a steep learning curve to get things running
 \end{itemize}
 
+\subsubsection{Qualtrics}
+Qualtrics is a survey platform that includes built-in data analysis and reporting functionalities.
+Besides carrying out reporting within Qualtrics, all data visualizations can be and exported to various file formats.
+
+Pros of using Qualtrics for our project purpose:
+\begin{itemize}
+\item Work can be done on any web browser
+\item Provides training resources to use Qualtrics
+\item Provides various visualization options
+\item Provides various dynamic display options and customization to visualization
+\item Notes can be added to visualizations to further explain the visualization
+\item Allows generation of visualization as reports
+\item Reports can be generated as PDF, Word, or Powerpoint slides
+\item Generated reports from an earlier date are retrievable from the Qualtrics servers 
+\end{itemize}
+
+Cons of using Qualtrics for our project purpose:
+\begin{itemize}
+\item Importing .csv files that are not generated by Qualtrics will require modifications to be made to the .csv files
+\end{itemize}
+
 \subsubsection{Goals}
 The goal of selecting a good data analyzer/visualizer tool is allow the team to analyze and visualize data collected from the survey.
 This should be done in the most efficient manner without sacrificing the quality of the analyzed data and data visualization.
@@ -1119,30 +1166,33 @@ The criteria of selecting a data analysis/visualizer tool is as follows:
 Google Sheets & Yes  & Yes (Moderately detailed) & Yes \\ \hline
 Microsoft Excel & Yes & Yes (Very detailed) & Yes \\ \hline
 D3.js & Yes & Yes (Moderately detailed) & No \\ \hline 
+Qualtrics & Yes & Yes (Very detailed) & No \\ \hline 
 \end{tabular}
 \newline
-\caption{Comparing the features between Google Sheets, Microsoft Excel and D3.js}
+\caption{Comparing the features between Google Sheets, Microsoft Excel, D3.js and Qualtrics}
 \label{table:datatools}
 \end{table}
 \end{center}
 
-\newpage
-
 \subsubsection{Discussion}
-All three listed data analysis/visualizer tools are the more commonly used tools available.
-All three tools supports .csv file importing.
-Google Sheets and Microsoft Excel (Office 365) allow cloud editing, this provides the team the convenience of accessing the data anywhere.
-With cloud editing, comes cloud backup.
-Both Google Sheets and Microsoft Excel (Office 365) backs up the data file periodically.
-This allows easy recovery from unforeseen circumstances.
-Both Microsoft Excel and D3.js offer various type of chart and visualization support, whereas Google Sheets only carries a limited number of chart types.
-However, the chart type variants does not have a significant impact on the tool choice as the provided charts within Google Sheets accommodates the conventional chart types.
+All four listed data analysis/visualizer tools are the more commonly used tools available.
+Google Sheets, Microsoft Excel, D3.js and Qualtrics supports .csv file importing.
+Google Sheets, Microsoft Excel (Office 365) and Qualtrics allow cloud editing, this provides the team the convenience of accessing the data anywhere.
+Cloud backup is provided for Google Sheets and Office 365.
+Google Sheets, Microsoft Excel (Office 365) and Qualtrics backs up work to the data file periodically.
+This allows easy recovery from unforeseen circumstances. 
+Microsoft Excel, D3.js and Qualtrics offer various type of chart and visualization support, whereas Google Sheets only carries a limited number of chart types.
+The chart type variants does not have a significant impact on the tool choice as the provided charts within Google Sheets accommodates the conventional chart types.
+Visualization customization options provided by Qualtrics is easy to use and intuitive compared to Google Sheets, Microsoft Excel, or D3.js.
+Google Sheets and Microsoft Excel visualizations can be downloaded as Excel files or PDFs.
+Qualtrics, on the other hand, can generate reports with data, visualizations and notes to PDFs, Word documents, and Powerpoint slides.
+Generated reports from an earlier date can be retrieved as the reports are stored on the Qualtrics servers.
 
 \subsubsection{Choice}
-After reviewing the different data analysis and visualization tools, \textbf{Google Sheets} will be used for data analysis and visualization purposes.
-As many of the project documents reside in a collaborative Google Drive, migrating the data analysis portion out from a well constructed ecosystem is not necessary.
-With Google Sheets, the spreadsheet can be worked on collaboratively and can be shared with the client for better transparency on the ongoing data analysis. 
-
+After reviewing the pros and cons of different data analysis and visualization tools, \textbf{Qualtrics} will be used for data analysis and visualization purposes.
+The built-in features that allow direct data analysis and visualization without further actions (exporting/importing .csv files) would make the reporting effort more efficient.
+Finally, Qualtrics allows full reports to be generated to various file formats.
+This will allow us to easily transfer visualizations across applications if needed.
 \newpage
 
 \subsection{Conclusion}
@@ -1153,8 +1203,9 @@ Gooch shading will be implemented for non photorealistic shading.
 The stencil buffer technique will be used to implement silhouettes.
 CodeXL will be used for run time analysis.
 Online surveys will be used to carry out usability inspection.
-Google Forms will be used to carry out the online survey.
-And Google Sheets will be used to do the data analysis and visualization.
+Qualtrics will be used to carry out the online survey and to do the data analysis and visualization.
+
+\newpage
 
 \bibliographystyle{IEEEtran}
 \bibliography{techreview}
