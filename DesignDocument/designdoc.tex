@@ -1,4 +1,4 @@
-﻿\documentclass[10pt,journal,compsoc,draftclsnofoot]{IEEEtran}
+\documentclass[10pt,journal,compsoc,draftclsnofoot]{IEEEtran}
 
 % Definition of \subparagraph
 \makeatletter
@@ -103,7 +103,7 @@ url = {http://www.itestra.de/fileadmin/Redaktion/Documents/07testradefineandmeas
  url      = {https://www.qualtrics.com/}
 }
 
-@misc{shadow,
+@misc{shadowmap,
  title = {Shadow mapping},
  url      = {http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-16-shadow-mapping/}
 }
@@ -542,6 +542,7 @@ current fragment is blocked by another object.
 The test is done by checking to see if our current fragment is further from the light then the shadowmap that we generated.
 If the fragment is within that shadowmap we know that a shadow is being casted by another object onto our current location.
 Thus, a shadow should be draw at this fragment. \cite{shadow}
+
 \newpage
 
 \section{Requirement: Measuring the Simulation's FPS}
@@ -753,7 +754,7 @@ Justin Bibler, Matthew Huang, and Daniel Goh
 \subsubsection{Information Viewpoint}
 \paragraph{Design Concerns}
 Qualtrics \cite{qualtrics} is the selected platform to parse and visualize the data collected from the online survey. 
-The design concern includes if the data collected can be analyzed and visualized meaningfully to reflect the collective participants’ responses.
+The design concern includes if the data collected can be analyzed and visualized meaningfully to reflect the collective participants' responses.
 \vspace{3mm}
 
 \paragraph{Design Elements}
