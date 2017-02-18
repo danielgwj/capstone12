@@ -1,4 +1,4 @@
-\documentclass[10pt,journal,compsoc,draftclsnofoot]{IEEEtran}
+﻿\documentclass[10pt,journal,compsoc,draftclsnofoot]{IEEEtran}
 
 % Definition of \subparagraph
 \makeatletter
@@ -103,6 +103,11 @@ url = {http://www.itestra.de/fileadmin/Redaktion/Documents/07testradefineandmeas
  url      = {https://www.qualtrics.com/}
 }
 
+@misc{shadow,
+ title = {Shadow mapping},
+ url      = {http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-16-shadow-mapping/}
+}
+
 \end{filecontents}
 
 \begin{document}
@@ -170,7 +175,7 @@ The context of this document is focused primarily on the visuals of the project.
 
 \subsection{Summary}
 In clauses 3 to 5, Matthew Huang outlines the design of Gooch shading, silhouettes, and run-time analysis with CodeXL respectively.
-In clauses 6 to 8, Justin Bibler outlines the design of shadow volumes, performance benchmarks using FRAPS \cite{fraps}, and methods of code maintainability.
+In clauses 6 to 8, Justin Bibler outlines the design of shadow mapping, performance benchmarks using FRAPS \cite{fraps}, and methods of code maintainability.
 In clauses 9 and 10, Daniel Goh outlines the methods and guidelines to create the online survey, and methods to analyze and visualize the collected data.
 
 \newpage
@@ -491,20 +496,21 @@ Visual, or Graphic.
 Shadows with the simulation exist to better help users understand an objects location within a 3D space.
 
 \subparagraph{Relationship}
-The quality of the visuals rely heavily on the design discussed later within the Algorithmic implementation of shadows.
+The quality of the visuals are primarily determined by how the shadows are implemented in the shadow group class.
 
 \subparagraph{Interface attribute}
-Depending on the implementation in the algorithm viewpoint, every 3D model within the simulation should have a shadow.
-Whether or not the shadow is visible is dependent on if there is a surface that the shadow volume collides with.
+As long as an object is within the spotlight, the object should cast a shadow onto it's surrounding objects.
+Whether or not the shadow is visible is dependent on if there is a surface that is blocking another surface from a light source.
 These shadows should have minimal pixelation.
 In addition, the shadows should be relatively close in shape to their original models, as to not confuse what shadow is projected out from what object.
+The shadows should also have a realistic coloration to them, meaning a shadow's dark spot should be clearly visible on all objects it's projecting onto.
 All of this is done so that the users will easily be able to understand what shadow is related to what object, and to receive a better understanding of the 3D environment in the simulation.
 
 \newpage
 
 \subsubsection{Algorithm Viewpoint}
-The idea of the shadow volume algorithm is to extend the silhouettes of objects that are in contact with light sources into volumes.
-And whenever another object falls within the shadow objects volume, it is rendered in a different way. \cite{shadow}
+The algorithm for calculating the shadows is done in the shadow group class within coin3d.
+This class creates shadows by using the dynamic shadow mapping technique.
 
 \paragraph{Design Concerns}
 Algorithm design concerns:
@@ -523,28 +529,26 @@ Algorithm, or method.
 Shaders, and the Shadow Interface.
 
 \subparagraph{Design Constraints}
-The implementation of shadows will most likely rely on the knowledge we gain from implementing warm cool shaders into the simulation.
-That knowledge will allow us to better understand how the simulation is being rendered, making it easier for us to adjust and change certain shaders.
-Another constraint that we have is that there is a relatively small amount of documentation related to OpenRave and OpenInventor.
-This makes it difficult to find exactly where we need to implement shaders to get our desired results.
+The major concern about using the algorithm within the shadow group class is that it uses it's own built in vertex, and fragment shaders.
+This introduces a problem when attempting to run multiple different shaders.
+Essentially, by using the shadow group class we lock our shaders down to the default ones created within the class.
+It is however possible to override the default shaders with custom shaders, meaning knowledge of how the algorithm works is important for when we have to create new
+shaders that will work with all our other implementations.
+Another constraint is that we wish to not edit anything within the coin3d library.
+We wish to treat it primarily as a black box where we construct modules and pass them in to be rendered.
+This introduces a problem in which we must create a shader that has an algorithm that interacts with the shadow group class shadowing algorithm.
+Finally, there is minimal documentation about how to use the shadow group class.
+Therefore, it may prove difficult to work with the shadow group class.
 
 \subparagraph{Processing Attribute}
-The bases of the algorithm will be using the depth fail test.
-This will be done by first rendering all the objects in the scene into the depth buffer.
-From here, we create shadow volumes for each object based on the objects silhouette projected into infinity relative to where the light is striking the object.
-Then we render the volume into the stencil buffer based off the depth fail test.
-
-Depth fail test:
-\begin{enumerate}
-\item If the depth test fails while rendering back facing polygons of the shadow volume, we increment the stencil buffer.
-\item If the depth test fails while rendering the front facing polygons of the shadow volume, we decrement the stencil buffer.
-\item Nothing happens if the test passes, or the stencil test fails.
-\end{enumerate}
-
-This depth fail test is conducted for each shadow volume.
-Once the tests have concluded, the scene will be rendered into the viewport.
-However, only the objects, or parts of objects, that have a stencil buffer value of zero will be rendered without alterations. \cite{shadow}
-
+The bases of the algorithm depends on the use of the depth buffer to test whether or not a fragment is in between a shadow casting fragment.
+In the first render the depth of each fragment is calculated from the point of view of the light source.
+In this case it will be from the spotlight class that is placed in the scene, and is bound to the shadow group class.
+On the second render, the scene will be rendered as normal except with a test that will examine if our
+current fragment is blocked by another object.
+The test is done by checking to see if our current fragment is further from the light then the shadowmap that we generated.
+If the fragment is within that shadowmap we know that a shadow is being casted by another object onto our current location.
+Thus, a shadow should be draw at this fragment. \cite{shadow}
 \newpage
 
 \section{Requirement: Measuring the Simulation's FPS}
