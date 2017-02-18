@@ -57,9 +57,9 @@ url = {https://open.gl/depthstencils}
 }
 
 @misc{siledges,
-author = {David Blythe},
-title = {Silhouette Edges},
-url = {ftp://ftp.sgi.com/opengl/contrib/blythe/advanced99/notes/node108.html}
+author = {Sun & Black Cat},
+title = {Non-photorealitic Rendering(Cel shading)},
+url = {http://sunandblackcat.com/tipFullView.php?l=eng&topicid=15}
 }
 
 @misc{shadow,
@@ -310,7 +310,7 @@ Cindy Grimm, Justin Bibler, Matthew Huang, and Daniel Goh
   \includegraphics[scale=0.8]{Silhouettes_context.eps}
   \caption
 { \newline \hspace{\linewidth}
-Context Viewpoint Diagram that that shows relation of silhouettes to OpenRave}
+Context Viewpoint Diagram that that shows relation of silhouettes to qtcoin and OpenRave}
   \label{fig:Silhouettes_context}
 \end{figure}
 
@@ -333,49 +333,42 @@ Compositional Viewpoint Diagram that show relationship of Silhouettes}
 \end{figure}
 
 \subsubsection{Design View}
-Silhouettes will be implemented using a combination of the Stencil Buffer along with manipulation of the view port.
-The Stencil Buffer is an optional extension of the depth buffer; both of them can be enabled in OpenRave using the glEnable() function (I.E. glEnable(GL\_STENCIL\_TEST) \cite{depthstencils}.
-The Stencil Buffer gives you control over which fragments of the object should be drawn and which shouldn’t.
-The viewport allows you to translate your objects in windows coordinates (I.E. pixels).
-The basic algorithm to implement these silhouettes is to move the object in one direction (x, y, -x, or -y), draw the object with the stencil buffer enabled, and then repeat until you have drawn in all four directions.
-The amount you move the object will affect how large of a silhouette is made.
-To draw a solid color silhouette (I.E. black), draw the silhouette using a solid color version of the object.
-Additionally, because the stencil buffer gives you control over what fragments of the object are drawn, overlapping objects are dealt with easily.
-
+Due to the fact that we don't have direct access to the main rendering loop, we will be using a simpler method for implementing silhouettes called cel shading silhouettes.
+These silhouettes make use of the vertex and fragment shader similar to Gooch shading.
+In the vertex shader, the object (robot grasping arm and the shapes it picks up) are enlarged in the direction of their normals.
+The normals can be calculated within the vertex shader using the equation gl\_Position = gl\_ModelViewProjectionMatrix*vec4(gl\_vertex.xyz*scaler, 1.).
+The amount that the scene is scaled is based on the scaler variable.
+The fragment shader will color the silhouette by assigning a vec4 to gl\_FragColor.
+Each shader will be loaded into qtcoinviewer.cpp using the SoShaderProgram object provided in the Coin3D API.
 \newpage
 
 \subsection{Algorithm Viewpoint}
 Silhouette Algorithm pseudo-code implementation
 
 \begin{lstlisting}
-glEnable(stencil buffer)
-glDisable(depth buffer)
-glDisable(color buffer)
-Clear(stencil buffer)
-glStencilFunc(Always Pass)	//tell the stencil buffer to let all fragments pass
-glStencilOp(Increment)		//tell stencil buffer to increment on acceptance
-glViewPort(Move +y)	//Move object by some amount of pixels in the y direction
-Display(object)		//render object
-glViewport(Move -y)
-Display(object)
-glViewport(Move +x, +y)
-Display(objecT)
-glViewport(Move -x)
-Display(object)
-glViewport(Move +x)
-glEnable(color buffer)
-glEnable(depth buffer)
-glStencilFunc(Pass if value is 2 or 3)
+SoShaderObject->FragmentShader = silhouetteFrag.glsl
+SoShaderObject->VertexShader = silhouetteVert.glsl
+glEnable(GL\_CULL\_FACE)	\\enable culling
+glCullFace(GL\_FRONT)		\\enable culling of front faces
+glDepthMask(GL\_TRUE)		\\enable z-buffer writes.
+GLRender()
+SoShaderObject->FragmentShader = warmcoolFrag.glsl
+SoShaderObject->VertexShader = warmcoolVert.glsl
+glCullFace(GL\_BACK)		\\enable culling of back faces
+glEnable(GL\_DEPTH\_TEST);
+GLRender()
 \end{lstlisting}
 
 \subsubsection{Design View}
-The pseudo-code created above was based off of the algorithm available on the opengl silhouette edges webpage \cite{siledges}.
-In general, the algorithm is easily to follow if you know how to manipulate the stencil buffer and the view port (which we do).
-To summarize, glViewport() is the function that will be translating the object in windows coordinates (I.E. pixels), glStencilFunc() is the function that gives the developer control over which fragments to render, and glStencilOp gives the developer control over what happens to the stencil value of the fragment if it's accepted.
-The Display() function will presumably be somewhere in OpenRave and will be the function that ultimately renders the object.
-Importantly note that in total, Display() is called four times in the algorithm meaning that the object must be rendered four times to create the silhouette.
-If this factor affects the runtime of the system to the point where performance benchmarks are not met, the algorithm should be changed.
-
+The pseudo-code created above is partially based off of the code available found here \cite{siledges}.
+This silhouette algorithm requires two rendering passes; the first to draw the silhouette and the second to draw the objects (which in our case will be warm cool shaded).
+Thus, to implement this method, we will need to be able to control when qtcoinviewer renders objects.
+As for the algorithm, it uses the z buffer along with the glCullFace function to render the images in a way where the object overlaps with the silhouette.
+The z buffer allows us to have depth in our scene meaning objects can be drawn in the same place while still retaining their individual model coordinates.
+The glCullFace functions culls either the front faces, or the back faces depending on how you set it.
+Culling the front faces means that only the back faces of the object will be rendered (the front faces will be discarded).
+By culling the front faces during silhouette rendering, we can ensure that the silhouettes remain in the background while the warm cool scene sits in the foreground.
+Culling the back faces during the warm cool scene render is done to improve efficiency. 
 \newpage
 
 \section{Requirement: Runtime Analysis using CodeXL}
