@@ -1688,8 +1688,13 @@ SoShadowGroupP::setFragmentShader(SoState * state)
   if (this->numtexunitsinscene > 1) {
     gen.addMainStatement("if (coin_texunit1_model != 0) texcolor *= texture2D(textureMap1, gl_TexCoord[1].xy);\n");
   }
-			//Changed the entire color, did not effected the shadows
-  gen.addMainStatement(//"vec3 color = perVertexColor;\n"
+
+gen.setVersion("#version 130");
+
+	//Warm cool shading happens here
+
+gen.addMainStatement(  //"vec3 color = perVertexColor;\n"
+	     	       "vec3 color;\n"
 		       "const vec3 lightColor = vec3(1.0);\n"
                        "const vec3 specColor  = vec3(1.0);\n"
 		       "const vec3 globalAmbient = vec3(0.2);\n"
@@ -1698,17 +1703,66 @@ SoShadowGroupP::setFragmentShader(SoState * state)
                        "vec3 myAmb = ambientColor * globalAmbient;\n"
 		       "vec3 light_direction = normalize(vec3(gl_LightSource[0].position) - position_eyespace);\n"
 		       "float NL = max(dot(normal_eyespace, light_direction), 0);\n"
-		       "vec3 myDiff = diffuseColor * lightColor * NL;\n"
+		       "vec3 myDiff = vec3(1.,1.,1.) * lightColor * NL;\n"
                        "float coolScalar = 0.25;\n"
-		       "float warmScalar = 0.5;\n"
-		       "vec3 Kcool = vec3(0.0, 0.0, 0.9) + coolScalar * diffuseColor.xyz;\n"
-	               "vec3 Kwarm = vec3(0.9, 0.5, 0.0) + warmScalar * diffuseColor.xyz;\n"
+		       "float warmScalar = 0.25;\n"
+		       "vec3 Kcool;\n"
+		       "vec3 Kwarm;\n"
+		       "vec3 coolcolor = vec3(0.,0.,0.);\n"
+		       "vec3 warmcolor = vec3(0.,0.,0.);\n"
 		       "vec3 V = normalize(-position_eyespace);\n"
 		       "vec3 H = normalize(light_direction + V);\n"
-                       //"float newShine = 100 * shininess;\n"
-		       "float specularLight = pow(max(dot(normal_eyespace, H),0), shininess);\n"
+                       
+                       "if(diffuseColor.x >= diffuseColor.y + 0.15 && diffuseColor.x >= diffuseColor.z+0.15){\n"
+		//Warmcool for Red
+		       "coolcolor = vec3(1.,0.,0.);\n"
+		       "warmcolor = vec3(1.,1.,0.); }\n"
+
+		       "else if(diffuseColor.y >= diffuseColor.x + 0.15 && diffuseColor.y >= diffuseColor.x + 0.15){\n"
+		//Warmcool for Green
+		       "coolcolor = vec3(0.,0.,1.);\n"
+		       "warmcolor = vec3(0.,1.,0.); }\n"
+
+	               "else if(diffuseColor.z >= diffuseColor.x + 0.15 && diffuseColor.z >= diffuseColor.y + 0.15){\n"
+		//Warmcool for Blue
+	 	       "coolcolor = vec3(1.,0.,1.);\n"
+		       "warmcolor = vec3(0.,0.,1.); }\n"
+
+		       "else if(diffuseColor.x > diffuseColor.z+0.15 && diffuseColor.y > diffuseColor.z+0.15 && abs(diffuseColor.x - diffuseColor.y) < 0.15){\n"
+		//Warmcool for yellow
+		       "coolcolor = vec3(1.,1.,1.);\n"
+		       "warmcolor = vec3(0.,1.,1.); }\n"
+
+	 	       "else if(diffuseColor.x > diffuseColor.y+0.15 && diffuseColor.z > diffuseColor.y+0.15 && abs(diffuseColor.x - diffuseColor.z) < 0.15){\n"
+		//Warmcool for purple
+		       "coolcolor = vec3(0.,1.,1.);\n"
+		       "warmcolor = vec3(0.,0.,1.); }\n"
+
+		       "else if(diffuseColor.z > diffuseColor.x+0.15 && diffuseColor.y > diffuseColor.x+0.15 && abs(diffuseColor.z - diffuseColor.y) < 0.15){\n"
+		//Warmcool for cyan
+		       "coolcolor = vec3(0.,0.,1.);\n"
+		       "warmcolor = vec3(0.,1.,1.); }\n"
+
+		       "else if(diffuseColor.x > 0.5 && diffuseColor.y > 0.5 && diffuseColor.z > 0.5){\n"
+		//Warmcool for white
+		       "coolcolor = vec3(0.,0.,1.);\n"
+		       "warmcolor = vec3(1.,1.,1.); }\n"
+
+		       "else if(diffuseColor.x <= 0.5 && diffuseColor.y <=0.5 && diffuseColor.z <= 0.5){\n"
+		//Warmcool for black
+		       "coolcolor = vec3(0., 0., 1.);\n"
+		       "warmcolor = vec3(0.8,0.8,0.8); }\n"	
+
+		       "Kcool = coolcolor + coolScalar * diffuseColor.xyz;\n"
+		       "Kwarm = warmcolor + warmScalar * diffuseColor.xyz;\n"
+
+		       "float newShine = shininess;\n"
+
+		       "newShine = 10.0f * newShine;\n"
+
+		       "float specularLight = pow(max(dot(normal_eyespace, H),0), newShine);\n"
 		       "vec3 mySpec = specColor * lightColor * specularLight; \n"
-		       "vec3 color = mix(Kcool,Kwarm, myDiff) + mySpec + myAmb;\n"
+		       "color = mix(Kcool,Kwarm, myDiff) + mySpec + myAmb;\n"
                        "vec3 scolor = vec3(0.0);\n"
                        "float dist;\n"
                        "float shadeFactor;\n"
@@ -1791,9 +1845,13 @@ SoShadowGroupP::setFragmentShader(SoState * state)
       }
       //Changed this around
       //Could be optimized
-      gen.addMainStatement("shadeFactor = pow(shadeFactor, 50);\n");
-      //gen.addMainStatement("shadeFactor = shadeFactor * shadeFactor * shadeFactor * shadeFactor * shadeFactor * shadeFactor * shadeFactor * shadeFactor * shadeFactor * shadeFactor * shadeFactor * shadeFactor * shadeFactor * shadeFactor * shadeFactor * shadeFactor * shadeFactor;\n");
-      gen.addMainStatement("color += shadeFactor * diffuse.rgb * myDiff.rgb;\n");
+      //gen.addMainStatement("shadeFactor = pow(shadeFactor, 50);\n");
+      gen.addMainStatement("float tempShade = shadeFactor;\n"
+			   "tempShade = pow(tempShade, 50);\n"
+			   "if(tempShade >= 0.90f){\n"
+			   "color += shadeFactor * diffuse.rgb * myDiff.rgb;}\n"
+                           "else {\n" 
+                           "color -= vec3(0.3f,0.3f,0.3f); }\n");
       //gen.addMainStatement("color += shadeFactor * diffuse.rgb * mydiffuse.rgb;");
       gen.addMainStatement("scolor += shadeFactor * gl_FrontMaterial.specular.rgb * specular.rgb;\n");
      // gen.addMainStatement("color += ambient.rgb * gl_FrontMaterial.ambient.rgb;\n");
@@ -1876,13 +1934,13 @@ SoShadowGroupP::setFragmentShader(SoState * state)
     break;
   case SoEnvironmentElement::FOG:
     gen.addMainStatement("float fog = exp(-gl_Fog.density * gl_FogFragCoord);\n");
-    gen.setVersion("#version 110");
+    gen.setVersion("#version 130");
     break;
   case SoEnvironmentElement::SMOKE:
     gen.addMainStatement("float fogfrag =  gl_FogFragCoord;");
     gen.addMainStatement("float fogdens =  gl_Fog.density;");
     gen.addMainStatement("float fog = exp(-fogdens * fogdens * fogfrag * fogfrag);\n");
-    gen.setVersion("#version 110");
+    gen.setVersion("#version 130");
     break;
   }
   if (fogType != SoEnvironmentElement::NONE) {
