@@ -1,0 +1,80 @@
+Installation Guide:
+
+$ git clone https://github.com/danielgwj/capstone12.git
+$ cd capstone12/Grasp-Rendering-Modification
+$ git submodule init
+$ git submodule update
+$ git checkout master
+
+====================================================================
+Install OpenRAVE using either these two guides (READ NOTE BELOW):
+====================================================================
+
+For Ubuntu 14.04:
+https://scaron.info/teaching/installing-openrave-on-ubuntu-14.04.html
+
+For 14.04, you will need to checkout from this branch instead:
+git checkout 9c79ea260e1c009b0a6f7c03ec34f59629ccbe2c
+
+Also, turn off fcl in openrave/Cmakelists.txt
+(option(OPT_FCL_COLLISION "Use FCL collision checker if available" OFF))
+
+
+For Ubuntu 16.04:
+https://scaron.info/teaching/installing-openrave-on-ubuntu-16.04.html
+
+--------------------------------------------------------------------
+NOTE!!!
+--------------------------------------------------------------------
+Before running the cmake command in the guides, copy files from
+capstone12/Grasp-Rendering-Modification/WarmcoolRave 
+into openrave/plugins/qtcoinrave:
+
+- item.cpp
+- ivmodelloader.cpp
+- ivselector.cpp
+- qtcoinviewer.cpp
+- qtcoinviewer.h
+- silhouetteFrag.glsl
+- silhouetteVert.glsl
+- warmcoolFrag.glsl
+- warmcoolVert.glsl
+--------------------------------------------------------------------
+
+====================================================================
+Install Coin3D (For updated shadows)
+====================================================================
+$ sudo apt-get install mercurial
+
+$ hg clone https://bitbucket.org/Coin3D/coin -r CMake
+
+Copy SoShadowGroup.cpp from capstone12 folder and paste to coin/src/shadows
+
+$ cd coin
+$ cmake .
+$ make
+$ sudo make install
+
+--------------------------------------------------------------------
+Test run installed OpenRAVE
+--------------------------------------------------------------------
+openrave.py --example hanoi --viewer=qtcoin
+openrave.py --example pr2turnlever --viewer=qtcoin
+openrave.py --example fastgrasping --viewer=qtcoin
+openrave.py --example collision --viewer=qtcoin
+openrave.py --example collision2 --viewer=qtcoin
+openrave.py --example movehandstraight --viewer=qtcoin
+openrave.py --example testphysics --viewer=qtcoin
+openrave.py --example cubeassembly --viewer=qtcoin
+
+--------------------------------------------------------------------
+To load a specific environment into OpenRAVE
+--------------------------------------------------------------------
+go to openrave/src/data
+
+With python interpreter:
+from openravepy import *
+env = Environment()
+env.SetViewer( 'qtcoin' )	
+env.Load( 'wam_cabinet.env.xml' )
+
