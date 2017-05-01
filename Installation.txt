@@ -69,4 +69,4 @@ With python interpreter:
 from openravepy import *
 env = Environment()
 env.SetViewer( 'qtcoin' )	
-env.Load( 'wam_cabinet.env.xml' )
+env.Load( 'hanoi.env.xml' )
