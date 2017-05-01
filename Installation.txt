@@ -10,7 +10,7 @@ $ git submodule update
 $ git checkout master
 
 ====================================================================
-Install OpenRAVE using either these guides (READ NOTE BELOW):
+Install OpenRAVE using this guide (READ NOTE BELOW):
 ====================================================================
 
 For Ubuntu 16.04:
@@ -19,7 +19,7 @@ https://scaron.info/teaching/installing-openrave-on-ubuntu-16.04.html
 --------------------------------------------------------------------
 NOTE!!!
 --------------------------------------------------------------------
-Before running the cmake command in the guides, copy files from
+Before running the cmake command in the guide, copy files from
 capstone12/Grasp-Rendering-Modification/WarmcoolRave 
 into openrave/plugins/qtcoinrave:
 
@@ -52,13 +52,6 @@ $ sudo make install
 Test run installed OpenRAVE
 --------------------------------------------------------------------
 openrave.py --example hanoi --viewer=qtcoin
-openrave.py --example pr2turnlever --viewer=qtcoin
-openrave.py --example fastgrasping --viewer=qtcoin
-openrave.py --example collision --viewer=qtcoin
-openrave.py --example collision2 --viewer=qtcoin
-openrave.py --example movehandstraight --viewer=qtcoin
-openrave.py --example testphysics --viewer=qtcoin
-openrave.py --example cubeassembly --viewer=qtcoin
 
 --------------------------------------------------------------------
 To load a specific environment into OpenRAVE
