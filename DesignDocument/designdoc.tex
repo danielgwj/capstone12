@@ -245,6 +245,8 @@ The vertex shader calculates the light position and passes its variables to the 
 The fragment shader is the entity that shades the 3D objects.
 In it, it calculates the diffuse lighting along with the augmented warm and cool colors that will shade the object.
 The augmented warm and cool colors are determined by the object's original color and the Gooch Shading weight.
+For example, if the object's color is red, then its warm and cool colors will be red and yellow respectively.
+This is done to prevent bad mixes of colors (like orange and blue).
 After that, linear interpolation is done on the two augmented colors to determine what the final color will be for that fragment.
 In GLSL, linear interpolation can be done using the mix() function.
 This shading will highlight the entire object leaving no completely "blacked out" areas.
@@ -275,7 +277,7 @@ Julio makes use of the following variables in his Vertex Shader:
 \item Ambient color (from object).
 \end{itemize}
 
-The warm and cool colors are determined by the developer and the object color is supplied by the python file passed into OpenRave.
+The warm and cool colors are determined by the object's original color which is supplied by the python file passed into OpenRave.
 Both shaders will be using GLSL version 1.2.
 The vertex shader is used to retrieve the object's color, calculate the eye position, calculate the normal vector, and set up clipping.
 The vertex shader will retrieve the object's color using the gl\_FrontMaterial call.
@@ -285,8 +287,10 @@ World clipping will be computed by multiplying the model view projection matrix 
 After this, the vertex shader outputs the colors, the eye position, and the object's normal vector to the fragment shader.
 The fragment shader must then compute the ambient, diffuse, and specular lighting along with the augmented warm and cool colors.
 The ambient lighting for the object is determined by multiplying the ambient color with the ambient lighting.
-The diffuse lighting for the object is determined using the equation diffuseColor*NT*LightColor where NT is the dot product of the normal and light vectors.
+The diffuse lighting for the object is determined using the equation vec3(1.,1.,1.)*NT*LightColor where NT is the dot product of the normal and light vectors.
+Note, since this diffuse value is used for linear interpolation, the color white must be used so that we have a full range of interpolation values (I.E. from vec3(0.,0.,0.) to vec3(1.,1.,1.)). 
 The specular lighting for the object is determined by multiplying the specular color with the light color along with a shininess value.
+Afterwards, the warm and cool colors are set using a series of if statements that catch colors based on their vec3 values.
 Following that, the augmented warm and cool colors are determined using the formula: color + object\_color*gooch\_shading\_weight, and then linearly interpolated using the GLSL mix() function \cite{glslmix}.
 This interpolation determines the shade coloring for that specific fragment of the object.
 
@@ -333,13 +337,14 @@ Compositional Viewpoint Diagram that show relationship of Silhouettes}
 \end{figure}
 
 \subsubsection{Design View}
-Due to the fact that we don't have direct access to the main rendering loop, we will be using a simpler method for implementing silhouettes called cel shading silhouettes.
-These silhouettes make use of the vertex and fragment shader similar to Gooch shading.
-In the vertex shader, the object (robot grasping arm and the shapes it picks up) are enlarged in the direction of their normals.
-The normals can be calculated within the vertex shader using the equation gl\_Position = gl\_ModelViewProjectionMatrix*vec4(gl\_vertex.xyz*scaler, 1.).
-The amount that the scene is scaled is based on the scaler variable.
+Due to the fact that we don't have direct access to the main rendering loop, we will be using a simpler method for implementing silhouettes called silhouette line shaders.
+These silhouettes are drawn using lines so that they have a consistent width for every object.
+The silhouettes also make use of the vertex and fragment shader.
+In the vertex shader, the scene will be set to clip space using the the call gl\_Position = gl\_ModelViewProjectionMatrix*gl\_vertex.xyz.
 The fragment shader will color the silhouette by assigning a vec4 to gl\_FragColor.
+The silhouette color that will be used will be black (I.E. vec4(0.,0.,0.,1.).
 Each shader will be loaded into qtcoinviewer.cpp using the SoShaderProgram object provided in the Coin3D API.
+The draw style and the polygonal offset used to prevent overlapping silhouettes will also be set in qtcoinviewer.cpp.
 \newpage
 
 \subsection{Algorithm Viewpoint}
@@ -351,6 +356,8 @@ SoShaderObject->VertexShader = silhouetteVert.glsl
 glEnable(GL\_CULL\_FACE)	\\enable culling
 glCullFace(GL\_FRONT)		\\enable culling of front faces
 glDepthMask(GL\_TRUE)		\\enable z-buffer writes.
+SoShaderObject->DrawStyle = GL\_LINES
+SoShaderObject->PolygonalOffset = 6.
 GLRender()
 SoShaderObject->FragmentShader = warmcoolFrag.glsl
 SoShaderObject->VertexShader = warmcoolVert.glsl
@@ -368,18 +375,20 @@ The z buffer allows us to have depth in our scene meaning objects can be drawn i
 The glCullFace functions culls either the front faces, or the back faces depending on how you set it.
 Culling the front faces means that only the back faces of the object will be rendered (the front faces will be discarded).
 By culling the front faces during silhouette rendering, we can ensure that the silhouettes remain in the background while the warm cool scene sits in the foreground.
-Culling the back faces during the warm cool scene render is done to improve efficiency. 
+Setting the shader object's draw style to GL\_LINES will tell the system to draw the silhouettes using geometry lines.
+The polygonal offset line is done to fix depth-buffer clashing which prevents silhouettes from overlapping with each other and the objects.
+Culling the back faces during the warm cool scene render is done to improve efficiency.
 \newpage
 
-\section{Requirement: Runtime Analysis using CodeXL}
+\section{Requirement: Runtime Analysis using QT}
 \large{By Matthew Huang}
 
 \normalsize
 \subsection{Design Concerns}
 The modifications made to the current OpenRave system (Gooch Shading, silhouettes, and shadows) may slow the system down.
-As a requirement, the modified system must run at a minimum 30 frames per second (fps).
 As a requirement, the modified system must render the initial simulation image within 30 seconds.
-To assist with these requirements, the debugger shall have the ability to track function calls.
+Ideally, we wouldn't want the system to run below 10 fps for viewing purposes.
+To assist with these requirements, QT's built in fps tracker will be used to track our runtime performance.
 
 \subsection{Design Stakeholders}
 Cindy Grimm, Justin Bibler, Matthew Huang, and Daniel Goh
@@ -390,14 +399,15 @@ Cindy Grimm, Justin Bibler, Matthew Huang, and Daniel Goh
   \includegraphics[scale=0.9]{CodeXL_Context.eps}
   \caption
 { \newline \hspace{\linewidth}
-Context Viewpoint Diagram that shows relationship of CodeXL}
+Context Viewpoint Diagram that shows relationship of QT with the rest of our system}
   \label{fig:CodeXL_Context}
 \end{figure}
 
 \subsubsection{Design View}
-CodeXL will be primarily used to track our Gooch Shading, silhouette, and shadow implementations.
+QT will be primarily used to track our Gooch Shading, silhouette, and shadow implementations.
 Its main goal is to monitor the effect that these three implementation have on the OpenRave simulation.
-If the implementations cause the robotic hand simulation to drop below 30 frames per second, CodeXL should be able to pinpoint where the cause originated from.
+QT's built in fps tracker will allow us to track the fps of the scene at runtime.
+If the frames consistently drop below 10 fps on our machines (laptops with 4-8 cores), we will attempt to find a way to improve our implementations.
 The goal of this is to ensure a pleasant and smooth experience for the users of the robotic hand simulation.
 
 \subsection{Dependancy Viewpoint}
@@ -406,40 +416,23 @@ The goal of this is to ensure a pleasant and smooth experience for the users of 
   \includegraphics[scale=0.9]{CodeXL_Dependency.eps}
   \caption
 { \newline \hspace{\linewidth}
-Dependancy Viewpoint Diagram that shows dependencies of CodeXL}
+Dependancy Viewpoint Diagram that shows dependencies of QT}
   \label{fig:CodeXL_Dependency}
 \end{figure}
 
 \subsubsection{Design View}
-How CodeXL monitors the three implementations will depend on the performance benchmarks for the whole system.
-If the implementations are in and the performance benchmarks are met, inefficient function calls or other issues brought up by CodeXL may be ignored.
-If the implementations bring the system down below performance benchmarks, CodeXL will have to display what is happening in the system that is causing it to slow down.
-Causes like large amounts of the same function calls, long running functions, and other bugs should be tracked.
-Specifically, if the frames drop below 30fps, CodeXL should be able track which implementation (or which combination of implementations) is causing the most performance loss.
-If the silhouettes are causing significant performance loss, they will be the first to be refactored since there are many ways to implement silhouettes. 
-Gooch Shading is less flexible in its implementation so refactoring it will have a lower priority (shadows is somewhere between silhouettes and Gooch Shading).
+QT allows us to directly monitor the fps of the scene while it is running.
+Additionlly, it tracks the fps during the times where we zoom in and out.
+If QT shows our scene averaging around 15 - 20 fps with all our implementations in, then minimal refactoring will be done.
+If the implementations bring the system down below 10 fps, then we will have to try to refactor at least one of our implementations.
+The silhouettes will be looked at first since there are many ways to implement silhouettes. 
+Gooch Shading is less flexible in its implementation so refactoring it will have a lower priority.
+Finally, shadows are the least flexible since its implementation is based on a very large library file within COIN3D.
 
 If OpenRave takes more than 30 seconds to render, problems likely exist in how we initialize our scene.
-In this situation, CodeXL will be used to primarily track activity in the Display function since that is the function the renders the initial scene.
+In this situation, we will have to try to clean up as much code in our constructor (within qtcoinviewer) as we can.
 Other object initialization functions will not be tracked since we assume that they are pulled from libraries we have no control over.
 Additionally, performance benchmarks will only be changed as a last resort (I.E. we cannot refactor our implementations anymore).
-
-\subsection{Interface Viewpoint}
-
-\begin{figure} [H]
-  \includegraphics[scale=0.9]{CodeXL_Interface.eps}
-  \caption
-{ \newline \hspace{\linewidth}
-Interface Viewpoint Diagram that shows the interface relations of CodeXL}
-  \label{fig:CodeXL_Interface}
-\end{figure}
-
-\subsubsection{Design View}
-To monitor OpenRave, create a debug project in CodeXL and set the OpenRave executable as the debug project's executable.
-Additionally, provide the python simulation file as a command line argument and set the source file directory to where the python file lives (this is all done in creating the debug project).
-Afterwards, execute the debug project and CodeXL will display debug information such as rendered objects, created threads, and function calls (if you turn that on).
-Note, however, that tracking function calls slows down CodeXL significantly so it shouldn't be used for basic testing.
-Past that, CodeXL also provides access to the source code currently running directly on the CodeXL GUI.
 
 \newpage
 
