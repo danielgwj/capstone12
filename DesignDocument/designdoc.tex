@@ -380,62 +380,6 @@ The polygonal offset line is done to fix depth-buffer clashing which prevents si
 Culling the back faces during the warm cool scene render is done to improve efficiency.
 \newpage
 
-\section{Requirement: Runtime Analysis using QT}
-\large{By Matthew Huang}
-
-\normalsize
-\subsection{Design Concerns}
-The modifications made to the current OpenRave system (Gooch Shading, silhouettes, and shadows) may slow the system down.
-As a requirement, the modified system must render the initial simulation image within 30 seconds.
-Ideally, we wouldn't want the system to run below 10 fps for viewing purposes.
-To assist with these requirements, QT's built in fps tracker will be used to track our runtime performance.
-
-\subsection{Design Stakeholders}
-Cindy Grimm, Justin Bibler, Matthew Huang, and Daniel Goh
-
-\subsection{Context Viewpoint}
-
-\begin{figure} [H]
-  \includegraphics[scale=0.9]{CodeXL_Context.eps}
-  \caption
-{ \newline \hspace{\linewidth}
-Context Viewpoint Diagram that shows relationship of QT with the rest of our system}
-  \label{fig:CodeXL_Context}
-\end{figure}
-
-\subsubsection{Design View}
-QT will be primarily used to track our Gooch Shading, silhouette, and shadow implementations.
-Its main goal is to monitor the effect that these three implementation have on the OpenRave simulation.
-QT's built in fps tracker will allow us to track the fps of the scene at runtime.
-If the frames consistently drop below 10 fps on our machines (laptops with 4-8 cores), we will attempt to find a way to improve our implementations.
-The goal of this is to ensure a pleasant and smooth experience for the users of the robotic hand simulation.
-
-\subsection{Dependancy Viewpoint}
-
-\begin{figure} [H]
-  \includegraphics[scale=0.9]{CodeXL_Dependency.eps}
-  \caption
-{ \newline \hspace{\linewidth}
-Dependancy Viewpoint Diagram that shows dependencies of QT}
-  \label{fig:CodeXL_Dependency}
-\end{figure}
-
-\subsubsection{Design View}
-QT allows us to directly monitor the fps of the scene while it is running.
-Additionlly, it tracks the fps during the times where we zoom in and out.
-If QT shows our scene averaging around 15 - 20 fps with all our implementations in, then minimal refactoring will be done.
-If the implementations bring the system down below 10 fps, then we will have to try to refactor at least one of our implementations.
-The silhouettes will be looked at first since there are many ways to implement silhouettes. 
-Gooch Shading is less flexible in its implementation so refactoring it will have a lower priority.
-Finally, shadows are the least flexible since its implementation is based on a very large library file within COIN3D.
-
-If OpenRave takes more than 30 seconds to render, problems likely exist in how we initialize our scene.
-In this situation, we will have to try to clean up as much code in our constructor (within qtcoinviewer) as we can.
-Other object initialization functions will not be tracked since we assume that they are pulled from libraries we have no control over.
-Additionally, performance benchmarks will only be changed as a last resort (I.E. we cannot refactor our implementations anymore).
-
-\newpage
-
 %Justin's section
 \section{Requirement: Shadows}
 \large{By Justin Bibler}
@@ -535,71 +479,6 @@ current fragment is blocked by another object.
 The test is done by checking to see if our current fragment is further from the light then the shadowmap that we generated.
 If the fragment is within that shadowmap we know that a shadow is being casted by another object onto our current location.
 Thus, a shadow should be draw at this fragment. \cite{shadow}
-
-\newpage
-
-\section{Requirement: Measuring the Simulation's FPS}
-\large{By Justin Bibler}
-
-\normalsize
-\subsection{Software Design Description}
-Our project requires us to measure and analyze the runtime and FPS of our altered simulation.
-This is done so that we can ensure that our additions fulfill our performance metrics: the simulation must maintain an average 30 FPS.
- If we are unable to reach this metric our implementations will be considered incorrect, and will require revisions.
-
-\subsection{Design Stakeholders}
-Justin Bibler, Matthew Huang, and Daniel Goh
-
-\subsection{Design Concerns}
-All stakeholders share similar design concerns.
-
-Requirement design concerns:
-\begin{enumerate}
-\item Failing to meet our target FPS and runtime will result in revisions of our implementations.
-\item Will our measurements be accurate for the majority of computers.
-\item Software used for measuring may cost money.
-\end{enumerate}
-
-\newpage
-
-\subsection{Design Views}
-\subsubsection{Information Viewpoint}
-The purpose of this viewpoint is describe how information will be gathered, and how it will be analyzed.
-Our team will be using an external tool to obtain data related to the simulation's FPS.
- FRAPS will be used to examine the FPS and export the information into a file to be analyzed.
-
-\paragraph{Design Concern}
-Interface viewpoint concerns:
-\begin{enumerate}
-\item FRAPS is paid software.
-\item Will our measurements be accurate for the majority of computers.
-\end{enumerate}
-
-\paragraph{Design Elements}
-\subparagraph{Name}
-Method of analyzing and collecting FPS data.
-
-\subparagraph{Type}
-Method.
-
-\subparagraph{Purpose}
-Data collected will be analyzed to ensure that our implementations into the simulation meet our requirements.
-
-\subparagraph{Data attribute}
-FRAPS will be used to capture data related to FPS, this will be done by using the benchmarking tools that come with the software.
-We will run this test for one minute ten times, on five different sample simulations with our updated graphics.
-This data will be exported into a file, from here we will analyze the data by finding the mean and median across all executions.
-If these values are within a certain standard deviation of 30 FPS, our implementation will be considered correct.
-
-\subparagraph{Author}
-FRAPS is owned by Beepa.\cite{fraps}
-
-\subsection{Rational}
-Even though FRAPS is a paid software I've decided that it be best if we use it.
-It's ability to export data into a file allows our group to easily obtain and analyze data.
-Furthermore, our concern related to the validity of the data stems from the fact that our group members own above average computers.
-Thus, testing on our computers would most likely be inaccurate relative to the average computer.
-To circumvent this problem we plan to do most of our testing on the computers on the OSU campus.
 
 \newpage
 
