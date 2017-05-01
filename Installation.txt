@@ -1,4 +1,7 @@
-Installation Guide:
+Installation Guide for Ubuntu 16.04
+
+ISO for Ubuntu 16.04:
+http://releases.ubuntu.com/16.04/ubuntu-16.04.2-desktop-amd64.iso
 
 $ git clone https://github.com/danielgwj/capstone12.git
 $ cd capstone12/Grasp-Rendering-Modification
@@ -7,18 +10,8 @@ $ git submodule update
 $ git checkout master
 
 ====================================================================
-Install OpenRAVE using either these two guides (READ NOTE BELOW):
+Install OpenRAVE using either these guides (READ NOTE BELOW):
 ====================================================================
-
-For Ubuntu 14.04:
-https://scaron.info/teaching/installing-openrave-on-ubuntu-14.04.html
-
-For 14.04, you will need to checkout from this branch instead:
-git checkout 9c79ea260e1c009b0a6f7c03ec34f59629ccbe2c
-
-Also, turn off fcl in openrave/Cmakelists.txt
-(option(OPT_FCL_COLLISION "Use FCL collision checker if available" OFF))
-
 
 For Ubuntu 16.04:
 https://scaron.info/teaching/installing-openrave-on-ubuntu-16.04.html
@@ -77,4 +70,3 @@ from openravepy import *
 env = Environment()
 env.SetViewer( 'qtcoin' )	
 env.Load( 'wam_cabinet.env.xml' )
-
