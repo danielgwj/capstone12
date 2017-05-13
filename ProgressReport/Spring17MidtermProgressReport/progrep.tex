@@ -111,9 +111,19 @@ placeholder placeholder placeholder placeholder placeholder placeholder
 \subsection{Matthew Huang}
 \textbf{Problem1}
 \par
-placeholder placeholder placeholder placeholder placeholder placeholder
+By the end of our beta release, we had implemented warm cool shaders, silhouettes, and shadows together.
+As a reminder, this required 2 render passes since the silhouettes need to be rendered separate from the other shaders.
+Additionally, due to API limitations, we had to inject the warm cool shader code into the SoShadowGroup library so that the shadows would not override the augmented warm cool colors.
+At this point, we were feature complete and all that was left to do was polishing based on client feedback.
+When we demoed the project to Cindy, she suggested that we make alterations to each feature so that they were all more consistent across examples.
+Specifically, she wanted the warm cool colors to adapt based on object color, more consistent silhouette widths across different shapes, and darker shadows.
 \par
-placeholder placeholder placeholder placeholder placeholder placeholder
+To implement the warm cool color adaptation, we set color ranges that would catch each different object color we wanted to account for.
+The colors we ended up accounting for were red, green, blue, yellow, purple, cyan, white, and grey/black.
+After we caught one of the colors, we would then set specific warm cool colors that would blend well with object color.
+For example, the warm cool colors for red are yellow and red respectively while the warm cool colors for green are green and blue respectively.
+This allowed the scene to retain much of its original colors while also having the warm cool color ranges.
+Additionally, this prevented bad color combinations such as blue and orange.
 
 \vspace{3mm}
 
