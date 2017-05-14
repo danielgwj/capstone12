@@ -117,7 +117,11 @@ Additionally, due to API limitations, we had to inject the warm cool shader code
 At this point, we were feature complete and all that was left to do was polishing based on client feedback.
 When we demoed the project to Cindy, she suggested that we make alterations to each feature so that they were all more consistent across examples.
 Specifically, she wanted the warm cool colors to adapt based on object color, more consistent silhouette widths across different shapes, and darker shadows.
-\par
+Since I am responsible for the warm cool shaders and silhouettes, I will outline how those features were repolished; I will leave the darker shadows for Justin to explain.
+Do note, however, that Justin and I largely colaborated in implementing all 3 feature changes.
+\vspace{3mm}
+
+\textbf{Adapative Warm Cool Shaders}
 To implement the warm cool color adaptation, we set color ranges that would catch each different object color we wanted to account for.
 The colors we ended up accounting for were red, green, blue, yellow, purple, cyan, white, and grey/black.
 After we caught one of the colors, we would then set specific warm cool colors that would blend well with object color.
@@ -127,10 +131,31 @@ Additionally, this prevented bad color combinations such as blue and orange.
 
 \vspace{3mm}
 
-\textbf{Problem2}
-\par
-placeholder placeholder placeholder placeholder placeholder placeholder
+\textbf{More consistent Silhouettes}
 
+For the more consistent silhouettes, we found that the solution was to render the silhouette using polygonal lines (GL\_LINES) instead of solid polygons.
+By doing this, every shape in the scene would have its own silhouette who's width was based on the set line width.
+Then, changing the line width was simple; all we had to do was increase the line width value within our draw style module.
+Additionally, to fix the silhouette overlapping issue, we also added a polygonal offset module to our silhouette render. 
+This prevented the silhouettes from being at the same depth as the warm cool shaded model so any overlapping issue was largely resolved.
+Also note that front and back face culling for the warm cool render and the silhouettes respectively were still being done.
+Finally, the final silhouette color we choose was black.
+This was our choice, despite the fact that they blended into the background, because silhouette are meant to simply help differentiate objects from each other.
+
+
+\textbf{Testing Performance}
+\par
+\vspace{3mm}
+While implementing silhouettes, we ran into a line width runtime error that was causing our line widths to be immutable meaning our line widths would be stuck at 1.
+What was interesting, though, was that this error only occurred while running the simulation on Justin and Daniel's machines, not mine.
+What we found was that our virtual machines were accessing our laptop's hardware differently.
+Namely, there's was using 3D hardware acceleration while mine was not.
+Turning this option off fixed the line width problem, but hurt our program's performance.
+Specifically, it dropped our frames per second from around 30-40 fps to 10 fps.
+Our intuition told us that this was caused by our virtual machines being unable to properly use all of the hardware on our laptops.
+To fix this, we had to install Ubuntu 16.04 natively on one of our laptops.
+We switched to 16.04 from 14.04 because 14.04 had driver issues that prevented us from being able to access the internet.
+This fixed our fps issues (now sitting at around 40 - 50 fps average) while still retaining the mutable line widths for our silhouettes.
 \newpage
 
 \subsection{Daniel Goh}
