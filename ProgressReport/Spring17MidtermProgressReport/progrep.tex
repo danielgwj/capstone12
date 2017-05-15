@@ -100,15 +100,44 @@ As the three required features are completed, we will support the client wheneve
 
 \section{Problems and Solutions}
 \subsection{Justin Bibler}
-\textbf{Problem1}
+
+\textbf{Darker Shadows}
 \par
-placeholder placeholder placeholder placeholder placeholder placeholder
-placeholder placeholder placeholder placeholder placeholder placeholder
+One of the features our client had a problem with was the darkness of the shadows.
+On objects with lighter material colors some shadows were barely appearing on their surface.
+This was a problem because our client wanted shadows to help users better understand where certain objects were within the simulation.
+Therefore, with light shadows there was nothing highlighting the objects location resulting in the feature essentially being incomplete.
+To fix this problem I adjusted the shadowmap's value to a smaller number.
+This made it so that if there was supposed to be a shadow cast in a certain area it would always hit my following threshold.
+If there was no shadow to be cast, the color would simply be set to the default color with the default ambient light.
+In the case that a shadow should be cast in a location, the color would be set to it's original value with a gray color subtracted from it.
+This made all shadows that are cast be very close to the same darkness regardless of what the current color is.
+Subtracting the gray color also makes it so that shadows still maintain the warm cool color even while shadowed.
+\vspace{3mm}
+
+\textbf{Injecting Warm Cool Shading into SoShadowGroup Class}
 \par
-placeholder placeholder placeholder placeholder placeholder placeholder
-placeholder placeholder placeholder placeholder placeholder placeholder
+During development we ran into a problem by using the SoShadowGroup class.
+SoShadowGroup class' run-time created shaders would overlap our warm cool shaders fragment shader or vice-versa depending on how we decided to have the scene rendered.
+Resulting in an inability to render shadows and warm cool shading at the same time.
+To fix this problem we were forced to inject our warm cool shading code into the SoShadowGroup class.
+After we demoed our previous build to our client she expressed that she wanted warm cool colorations based off of the objects current colors.
+Thus Matthew created new code to fulfill the task; which he describes thoroughly in his section.
+I was primarily in charge of injecting that code into the shadows class.
+To do this I simply went to where I previously injected the code and added Matthew's new code to it.
+The major difficulty that I ran into was debugging the shader, because when the SoShadowGroup class' shader fails it does so silently with no specific error message.
+\vspace{3mm}
+
+\textbf{Running Openrave on Ubuntu 16.04}
 \par
-placeholder placeholder placeholder placeholder placeholder placeholder
+Due to problems with how our VMs interacted with our computers hardware.
+We noticed a significant decline in FPS while running the simulation with our added features.
+There was also problems specifically with Daniel's and my computer in which the OpenGL line width was not properly working.
+I believed this was probably due to buggy VM and hardware interaction and Ubuntu 14.04 on VM being locked to an older version of OpenGL.
+In attempts to fix this problem I found a way to install and run Openrave on 16.04.
+However, this turned out to be a fruitless effort as the FPS did not increase, but the line width problem was solved by upgrading the OS to a newer version.
+In the end we ended up changing Daniel's laptop to run Ubuntu 16.04 natively which fixed our FPS problems.
+\vspace{3mm}
 
 \newpage
 
