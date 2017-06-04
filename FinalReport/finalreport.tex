@@ -1,5 +1,40 @@
 \documentclass[10pt,journal,compsoc,draftclsnofoot]{IEEEtran}
 
+\makeatletter    
+    \if@compatibility
+\renewenvironment{titlepage}
+    {%
+      \cleardoublepage
+      \if@twocolumn
+        \@restonecoltrue\onecolumn
+      \else
+        \@restonecolfalse\newpage
+      \fi
+      \thispagestyle{empty}%
+      %\setcounter{page}\z@
+    }%
+    {\if@restonecol\twocolumn \else \newpage \fi
+    }
+\else
+\renewenvironment{titlepage}
+    {%
+      \cleardoublepage
+      \if@twocolumn
+        \@restonecoltrue\onecolumn
+      \else
+        \@restonecolfalse\newpage
+      \fi
+      \thispagestyle{empty}%
+      %\setcounter{page}\@ne
+    }%
+    {\if@restonecol\twocolumn \else \newpage \fi
+     \if@twoside\else
+       % \setcounter{page}\@ne
+     \fi
+    }
+\fi
+\makeatother
+
 % Definition of \subparagraph
 \makeatletter
 \newcommand\subparagraph{%
@@ -10,7 +45,21 @@
   {\normalfont\normalsize\bfseries}}
 \makeatother
 
+\makeatletter
+\newcommand\subsubparagraph{%
+  \@startsection{subsubparagraph}{6}
+  {\parindent}
+  {3.25ex \@plus 1ex \@minus .2ex}
+  {0.75ex plus 0.1ex}
+  {\normalfont\normalsize\bfseries}}
+\makeatother
+
 \newcounter{subparagraph}[paragraph]
+\newcounter{subsubparagraph}[subparagraph]
+
+\makeatletter
+\def\toclevel@subsubparagraph{6}
+\makeatother
 
 \usepackage{listings}
 \usepackage{titlesec}
@@ -74,12 +123,20 @@ This document goes over the project's background, requirements, designs used, te
 
 \begin{flushleft}
 
+\tableofcontents
+
+\newpage
+
 \section{Introduction}
 
 
+\newpage
+
 \section{Requirements Document}
 
+\newpage
 
+\include{reqdoc_v1/reqdoc_v1-content}
 
 \section{Requirements Document Update}
 
@@ -96,31 +153,68 @@ placeholder placeholder \\ \hline
 
 \end{tabular}
 \newline
-\label{table:retro}
+\label{table:RequirementsDocumentUpdate}
 \end{table}
 \end{center}
 
 The original Gantt chart was not modified.
 
+\newpage
+
 \section{Design Document}
 
-\subsection{Original}
+\newpage
+
+\include{designdoc_v1/designdoc_v1-content}
+
+\section{Design Document Update}
+
+\begin{center}
+\begin{table}[H]
+\caption{Table showing the design that is changed (Requirement), what happened to it (Change Details), and comments for the change(Comments).}
+\begin{tabular}{ | p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth} | }
+\hline
+\textbf{Requirement}  & \textbf{Change Details}  & \textbf{Comments} \\ \hline
+
+placeholder placeholder & 
+placeholder placeholder & 
+placeholder placeholder \\ \hline
+
+\end{tabular}
+\newline
+\label{table:DesignDocumentUpdate}
+\end{table}
+\end{center}
 
 
-\subsection{Changes}
-
-
-
+\newpage
 
 \section{Tech Review}
 
-\subsection{Original}
+\newpage
 
+\include{techreview_v1/techreview_v1-content}
 
-\subsection{Changes}
+\section{Tech Review Update}
 
+\begin{center}
+\begin{table}[H]
+\caption{Table showing the technology that is changed (Technology), what happened to it (Change Details), and comments for the change(Comments).}
+\begin{tabular}{ | p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth} | }
+\hline
+\textbf{Requirement}  & \textbf{Change Details}  & \textbf{Comments} \\ \hline
 
+placeholder placeholder & 
+placeholder placeholder & 
+placeholder placeholder \\ \hline
 
+\end{tabular}
+\newline
+\label{table:TechReviewUpdate}
+\end{table}
+\end{center}
+
+\newpage
 
 \section{Weekly Blog Posts}
 

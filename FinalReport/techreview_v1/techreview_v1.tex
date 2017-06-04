@@ -1,0 +1,158 @@
+\documentclass[10pt,journal,compsoc,draftclsnofoot]{IEEEtran}
+
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{tocloft}
+\usepackage{lscape}
+\usepackage{textcomp}
+\usepackage{pgfgantt}
+\usepackage{geometry}
+\geometry{margin=0.75in}
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+\begin{filecontents}{techreview.bib}
+@misc{debugging,
+author = {Microsoft},
+title = {Standard Debugging Techniques},
+url = {https://msdn.microsoft.com/en-us/library/windows/hardware/hh439390(v=vs.85).aspx}
+}
+
+@misc{maintainability,
+author = {Markus Pizka, Florian Deißenböck},
+title = {How to effectively define and measure maintainability},
+url = {http://www.itestra.de/fileadmin/Redaktion/Documents/07\_itestra\_define\_and\_measure\_maintainability.pdf}
+}
+
+@misc{version,
+author = {git},
+title = {Getting Started - About Version Control},
+url = {https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control}
+}
+
+@misc{refactoring,
+author = {c2},
+title = {What Is Refactoring},
+url = {http://wiki.c2.com/?WhatIsRefactoring}
+}
+
+@misc{lightmapping,
+author = {Alan Baylis},
+title = {Lightmapping Tutorial},
+url = {http://www.alsprogrammingresource.com/lightmapping\_tutorial.html}
+}
+
+@misc{volume,
+author = {Josh Beam},
+title = {Tutorial - Stenciled Shadow Voumes in OpenGL},
+url = {http://joshbeam.com/articles/stenciled\_shadow\_volumes\_in\_opengl/}
+}
+
+@misc{shadowMapping,
+author = {opengl-tutorial},
+title = {Tutorial 16 : Shadow mapping},
+url = {http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-16-shadow-mapping/}
+}
+
+@misc{gooch,
+ author = {ECG Wiki},
+ title = {Gooch Shading},
+ url      = {https://lva.cg.tuwien.ac.at/ecg/wiki/doku.php?id=students:gooch}
+}
+
+@article{gooch2,
+ author = {Amy Gooch, Bruce Gooch},
+ title = {A Non-Photorealistic Lighting Model For Automatic Technical Illustration},
+ url      = {http://artis.imag.fr/~Cyril.Soler/DEA/NonPhotoRealisticRendering/Papers/p447-gooch.pdf}
+}
+
+@article{celshading,
+ author = {Raul Reyes Luque},
+ title = {The Cel Shading Technique},
+ url      = {https://raulreyesfinalproject.files.wordpress.com/2012/12/dissertation\_cell-shading-raul\_reyes\_luque.pdf}
+}
+
+@article{nonphotshading,
+ author = {Marc ten Bosch},
+ title = {Non-photorealistic Shading},
+ url      = {http://marctenbosch.com/npr\_shading/}
+}
+
+@article{hatch,
+ author = {Igor Dykhta},
+ title = {Hatching and Gooch shading in GLSL},
+ url      = {http://www.sunandblackcat.com/tipFullView.php?l=eng\&topicid=27}
+}
+
+@article{silhouette,
+ author = {OpenGL.org},
+ title = {Silhouette Edges},
+ url      = {https://www.opengl.org/archives/resources/code/samples/advanced/advanced97/notes/node204.html}
+}
+
+@article{nonphotorealisticsilhouette,
+ author = {Igor Dykhta},
+ title = {Non-photorealistic Rendering (Cel shading)},
+ url      = {http://sunandblackcat.com/tipFullView.php?l=eng\&topicid=15}
+}
+
+@article{edgedetector,
+ author = {DanielRakos},
+ title = {Frei-Chen edge detector},
+ url      = {http://rastergrid.com/blog/2011/01/frei-chen-edge-detector/}
+}
+
+@article{toonshading,
+ author = {Sergiu Craitoiu},
+ title = {Toon Shading Effect And Simple Contour Detection},
+ url      = {http://rastergrid.com/blog/2011/01/frei-chen-edge-detector/}
+}
+
+@article{siledges,
+ author = {OpenGL.org},
+ title = {Silhouette Edges},
+ url      = {https://www.usability.gov/how-to-and-tools/methods/user-research/index.html}
+}
+
+@misc{codexl,
+ author = {gpuopen.com},
+ title = {CodeXL},
+ url      = {http://gpuopen.com/compute-product/codexl/}
+}
+
+@misc{glsl,
+ author = {GLSLDebugger},
+ title = {GLSLDebugger},
+ url      = {http://glsl-debugger.github.io/}
+}
+
+@misc{userResearch,
+ author = {usability.gov},
+ title = {User Research Methods},
+ url      = {https://www.usability.gov/how-to-and-tools/methods/user-research/index.html}
+}
+
+@article{usabilitynet,
+ author = {John Brooke},
+ title = {SUS - A quick and dirty usability scale},
+ url      = {http://www.usabilitynet.org/trump/documents/Suschapt.doc}
+}
+
+@misc{google,
+ author = {Google},
+ title = {Google Terms of Service},
+ url      = {https://www.google.com/policies/terms/}
+}
+
+@misc{surveymonkey,
+ author = {SurveyMonkey},
+ title = {SurveyMonkey and IRB Guidelines},
+ url      = {http://help.surveymonkey.com/articles/en\_US/kb/How-does-SurveyMonkey-adhere-to-IRB-guidelines}
+}
+\end{filecontents}
+
+\begin{document}
+\include{techreview_v1-content}
+\end{document}

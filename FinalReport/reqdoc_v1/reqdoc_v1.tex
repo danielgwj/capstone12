@@ -1,0 +1,45 @@
+\documentclass[10pt,journal,compsoc,draftclsnofoot]{IEEEtran}
+
+\usepackage{tocloft}
+\usepackage{lscape}
+\usepackage{textcomp}
+\usepackage{pgfgantt}
+\usepackage{geometry}
+\geometry{margin=0.75in}
+
+\usepackage[backend=biber]{biblatex}
+
+\bibliography{reqdoc}
+ \begin{filecontents}{reqdoc.bib}
+@misc{gooch,
+ author = {ECG Wiki},
+ title = {Gooch Shading},
+ url      = {https://lva.cg.tuwien.ac.at/ecg/wiki/doku.php?id=students:gooch}
+}
+
+@article{ieee830,
+ author = {IEEE Computer Society},
+ title = {IEEE Recommended Practice for Software Requirements Specifications},
+ publisher = {The Institute of Electrical and Electronics Engineers, Inc.},
+ year      = 1998,
+ month     = 10,
+ isbn      = {0-7381-0332-2}
+}
+
+@misc{shadow,
+ author = {LearnOpenGL},
+ title = {Shadow Mapping},
+ url      = {http://learnopengl.com/\#!Advanced-Lighting/Shadows/Shadow-Mapping}
+}
+
+@misc{silhouette,
+ author = {Bruce Gooch},
+ title = {Silhouette Extraction},
+ url      = {http://www.cs.rutgers.edu/~decarlo/readings/gooch-sg03c.pdf}
+}
+
+\end{filecontents}
+
+\begin{document}
+\include{reqdoc_v1-content}
+\end{document}

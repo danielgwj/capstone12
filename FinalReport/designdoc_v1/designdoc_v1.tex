@@ -1,0 +1,106 @@
+\documentclass[10pt,journal,compsoc,draftclsnofoot]{IEEEtran}
+
+% Definition of \subparagraph
+\makeatletter
+\newcommand\subparagraph{%
+  \@startsection{subparagraph}{5}
+  {\parindent}
+  {3.25ex \@plus 1ex \@minus .2ex}
+  {0.75ex plus 0.1ex}
+  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\newcounter{subparagraph}[paragraph]
+
+\usepackage{listings}
+\usepackage{titlesec}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{tocloft}
+\usepackage{lscape}
+\usepackage{textcomp}
+\usepackage{pgfgantt}
+\usepackage{amsmath}
+
+\usepackage{geometry}
+\geometry{margin=0.75in}
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{5}
+
+%references go here
+\begin{filecontents}{designdoc.bib}
+
+@misc{fraps,
+author = {Fraps},
+title = {FRAPS},
+url = {http://www.fraps.com/}
+}
+
+@misc{freq,
+author = {mathsteacher.com},
+title = {Frequency and Frequency Tables},
+url = {http://www.mathsteacher.com.au/year8/ch17_stat/03_freq/freq.htm}
+}
+
+@misc{glslmix,
+author = {Igor Dykhta},
+title = {Hatching and Gooch shading in GLSL},
+url = {http://www.sunandblackcat.com/tipFullView.php?l=eng&topicid=27}
+}
+
+@misc{depthstencils,
+author = {Open.GL},
+title = {Depth and stencils},
+url = {https://open.gl/depthstencils}
+}
+
+@misc{siledges,
+author = {David Blythe},
+title = {Silhouette Edges},
+url = {ftp://ftp.sgi.com/opengl/contrib/blythe/advanced99/notes/node108.html}
+}
+
+@misc{shadow,
+author = {OGLdev},
+title = {Stencil Shadow Volume},
+url = {http://ogldev.atspace.co.uk/www/tutorial40/tutorial40.html}
+}
+
+@misc{maintain,
+author = {F. D. Markus Pizka},
+title = {How to effectively define and measure maintainability},
+url = {http://www.itestra.de/fileadmin/Redaktion/Documents/07testradefineandmeasuremaintainability.pdf}
+}
+
+@misc{googleforms,
+ author = {Google},
+ title = {Google Forms},
+ url      = {https://www.google.com/forms/about/}
+}
+
+@misc{SMquestions,
+ author = {Survey Monkey},
+ title = {Writing Good Survey Questions},
+ url      = {https://www.surveymonkey.com/mp/writing-survey-questions/}
+}
+
+@misc{googlesheets,
+ author = {Google},
+ title = {Google Sheets},
+ url      = {https://www.google.com/sheets/about/}
+}
+
+@misc{SManalysis,
+ author = {Survey Monkey},
+ title = {Making Sense of the Numbers: When to Embrace Relativity, and When to Ignore It},
+ url      = {https://www.surveymonkey.com/blog/2012/06/28/making-sense-numbers-when-embrace-relativity-when-ignore-it/}
+}
+
+\end{filecontents}
+
+\begin{document}
+\include{designdoc_v1-content}
+\end{document}
+
