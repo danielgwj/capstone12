@@ -152,18 +152,58 @@ This document goes over the project's background, requirements, designs used, te
 Warm Cool Shading. & 
 None. & 
 Requirement did not change. \\ \hline
+
 Silhouettes. & 
 None. & 
 Requirement did not change. \\ \hline
+
 Shadows. & 
 None. & 
 Requirement did not change. \\ \hline
+
 Initial render must be done within 30s. & 
 None. & 
 Requirement did not change. \\ \hline
+
 Scene must run at a constant 30 fps. & 
 Removed. & 
 Requirement was not necessary for the client's purposes. \\ \hline
+
+The system will work on an average modern computer. &
+None. &
+Requirement did not change. \\ \hline
+
+The system will only run one simulation per window. &
+None. &
+Requirement did not change \\ \hline
+
+The system shall run properly created simulations. &
+None.
+This means that the system will always run valid environment files. \\ \hline
+
+System shall be easily maintained and upgraded.
+Have well documented and easily testable functions.
+Have functions with single, clear purposes. &
+None. &
+After speaking with Mike Bailey we discovered that testing graphics is primarily done be ensuring that separate computers create the same render. 
+Opposed to unit testing which is very difficult and only analyzes fragment positions.
+This process can be done by rendering the scene and examining it. 
+In our implementations we have minimal amount of new functions.
+This is because most of the work done was hacked into the initializations and uses built in coin3d modules. \\ \hline
+
+The system shall continuously re-render the scene until completion of the simulation or software termination. &
+None. &
+Requirement did not change. \\ \hline
+
+The system shall work on Linux operating systems. &
+None. &
+Operating systems became limited due to Openrave.
+Our current implementation does work on Linux, within Ubuntu 16.04. \\ \hline
+
+Outdated OpenGL libraries will be updated to utilize OpenGL 3.0 libraries. &
+None. &
+We were unable to directly import new libraries as this was abstracted out from us.
+However, we did update the environment that was given to us to Ubuntu 16.04 which utilizes OpenGL 3.0 while rendering. \\ \hline
 
 \end{tabular}
 \newline
