@@ -293,7 +293,27 @@ Lastly, the fps requirement was removed in our requirements document so optimiza
 
 
 
-\section{Documentation}
+\section{Project Documentation}
+
+\subsection{How does it work?}
+
+OpenRave is a program that runs robotic simulations.
+However, OpenRave doesn't do everything.
+It simply contains the environment (object collisions, etc...) and executes the calculations.
+Operations such as scene rendering are offloaded onto plugins; in our case we use the qtcoinrave plugin to render a visual representation of the scene.
+Qtcoinrave is an amalgamation of Qt, coin3d, and OpenRave.
+Qt is the window creation library, and handles the rendering.
+Coin3d is the API that retrieves modules from OpenInventor.
+Note, that OpenInventor, as far as we know, is closed source.
+We primarily worked with the coin3d API within qtcoinviewer.
+The Qt render works by adding objects to a scene graph which is then loaded and rendered by Qt.
+The objects are defined within the python environment file and then shaded within qtcoinviewer.
+We used coin3d libraries to implement warm cool shading, silhouettes, and shadows.
+Each of these are implemented using their own GLSL vertex and fragment shader.
+The silhouettes are the only shader that are individually implemented into qtcoinviewer.cpp.
+Both the shadows and warm cool shading shaders are generated at run-time using the built in SoShadowGroup class.
+We implement multi-rendering by adding two instances of the objects to the scene graph.
+Which forces Qt to render multiple times.
 
 \subsection{Installation Guide}
 
@@ -301,10 +321,7 @@ Lastly, the fps requirement was removed in our requirements document so optimiza
 
 \subsection{Requirements for OpenRAVE}
 
-\subsection{Guide For Graphical Implementations}
-
-
-\section{Resources Used for Project}
+\section{Resources Used for Project (API documentation)}
 
 
 
