@@ -265,9 +265,18 @@ Additionally, CodeXL only works on Windows (our system runs on Ubuntu 16.04) and
 \hline
 \textbf{Technology}  & \textbf{Change Details}  & \textbf{Comments} \\ \hline
 
-placeholder placeholder & 
-placeholder placeholder & 
-placeholder placeholder \\ \hline
+Shading Method & 
+Technology did not change (still uses Warm Cool shading), only implementation & 
+As stated in the design doc., now adapts to the object's original color and is now implemented using the SoShadowGroup library. \\ \hline
+Silhouettes &
+Now uses GL\_LINES method instead of the silhouette edge algorithm. &
+The silhouette edge algorithm required direct control over some OpenGL tools (like the view port and the depth buffer) that we did not have access to.
+The GL\_LINES method was chosen because it has consistent silhouette widths throughout objects (cel shaded silhouettes did not). \\ \hline
+Debugger  &
+Went from CodeXL to testing using multiple machines to render the scene &
+Firstly, as stated in the design doc. table, CodeXL only works on Windows while our system runs on Ubuntu 16.04 so we can not even use it.
+Secondly, it's easier to test and debug this system by running the simulations on different computers and then examining the scene.
+Lastly, the fps requirement was removed in our requirements document so optimization was not a focus. \\ \hline
 
 \end{tabular}
 \newline
