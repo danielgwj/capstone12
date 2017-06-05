@@ -229,9 +229,17 @@ The original Gantt chart was not modified.
 \begin{tabular}{ | p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth} | }
 \hline
 \textbf{Design}  & \textbf{Change Details} \\ \hline
-
-placeholder placeholder & 
-placeholder placeholder \\ \hline
+Warm Cool Shading & 
+Warm Cool shading is still done in vertex and fragment shaders, but those shaders are now created by SoShadowGroup.cpp. 
+Therefore, the Warm Cool shading code is now in the SoShadowGroup library. 
+Additionally, the Warm Cool shaders now adapt to the object's original color. 
+This was necessary to prevent bad color mixtures such as blue and orange. 
+Further details on how this was done can be found in the design document. \\ \hline
+Silhouettes & Silhouettes are now done using the silhouette lines method. 
+In other words, the silhouettes are rendered using GL\_LINES instead of polygons. 
+This was done to keep consistent silhouette widths throughout all the rendered objects. \\ \hline
+CodeXL & Removed since the fps requirement was removed. 
+Additionally, CodeXL only works on Windows (our system runs on Ubuntu 16.04) and testing was done better by simply running the system on different machines. \\ \hline
 
 \end{tabular}
 \newline
