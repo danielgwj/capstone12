@@ -1,0 +1,116 @@
+\subsubsection{OpenRAVE for Ubuntu 16.04 with Shady Robot's Shaders}
+
+ISO for Ubuntu 16.04: http://releases.ubuntu.com/16.04/ubuntu-16.04.2-desktop-amd64.iso
+
+Clone Shady Robot's Senior Project GitHub repository:
+
+\begin{lstlisting}
+    $ git clone https://github.com/danielgwj/capstone12.git
+    $ cd capstone12/Grasp-Rendering-Modification
+    $ git submodule init
+    $ git submodule update
+    $ git checkout master
+\end{lstlisting}
+
+\paragraph{Install dependancies for OpenRAVE}
+
+\begin{lstlisting}
+    $ sudo apt-get install cmake g++ git ipython minizip python-dev python-h5py python-numpy python-scipy python-sympy qt4-dev-tools
+
+    $ sudo apt-get install libassimp-dev libavcodec-dev libavformat-dev libavformat-dev libboost-all-dev libboost-date-time-dev libbullet-dev libfaac-dev libglew-dev libgsm1-dev liblapack-dev liblog4cxx-dev libmpfr-dev libode-dev libogg-dev libpcrecpp0v5 libpcre3-dev libqhull-dev libqt4-dev libsoqt-dev-common libsoqt4-dev libswscale-dev libswscale-dev libvorbis-dev libx264-dev libxml2-dev libxvidcore-dev
+
+    $ git clone https://github.com/rdiankov/collada-dom.git
+    $ cd collada-dom && mkdir build && cd build
+    $ cmake ..
+    $ make -j4
+    $ sudo make install
+\end{lstlisting}
+
+Install OpenSceneGraph:
+
+\begin{lstlisting}
+    $ sudo apt-get install libcairo2-dev libjasper-dev libpoppler-glib-dev libsdl2-dev libtiff5-dev libxrandr-dev
+    $ git clone --branch OpenSceneGraph-3.4 https://github.com/openscenegraph/OpenSceneGraph.git
+    $ cd OpenSceneGraph && mkdir build && cd build
+    $ cmake .. -DDESIRED_QT_VERSION=4
+    $ make -j4
+    $ sudo make install
+\end{lstlisting}
+
+Install Flexible Collision Library:
+
+\begin{lstlisting}
+    $ apt-get install libccd-dev
+    $ git clone https://github.com/flexible-collision-library/fcl.git
+    $ cd fcl
+    $ git checkout 0.5.0  # use FCL 0.5.0
+    $ mkdir build && cd build
+    $ cmake ..
+    $ make -j4
+    $ sudo make install
+\end{lstlisting}
+
+Due to a bug: "Eigen/Dense: No such file or directory", add the following symlink to get FCL to compile:
+\begin{lstlisting}
+    $ sudo ln -sf /usr/include/eigen3/Eigen /usr/include/Eigen
+\end{lstlisting}
+
+\paragraph{Building OpenRAVE}
+
+Clone OpenRAVE from GitHub:
+
+\begin{lstlisting}
+    $ git clone --branch latest_stable https://github.com/rdiankov/openrave.git
+\end{lstlisting}
+
+Checkout the commit:
+\begin{lstlisting}
+    $ git checkout 9c79ea260e1c009b0a6f7c03ec34f59629ccbe2c
+\end{lstlisting}
+
+{\setstretch{1.0}
+Copy files from capstone12/Grasp-Rendering-Modification/WarmcoolRave into openrave/plugins/qtcoinrave:
+\begin{itemize}
+  \item item.cpp
+  \item ivmodelloader.cpp
+  \item ivselector.cpp
+  \item qtcoinviewer.cpp
+  \item qtcoinviewer.h
+  \item silhouetteFrag.glsl
+  \item silhouetteVert.glsl
+  \item warmcoolFrag.glsl
+  \item warmcoolVert.glsl
+\end{itemize}
+
+}
+
+Building OpenRAVE from source:
+\begin{lstlisting}
+    $ cd openrave && mkdir build && cd build
+    $ cmake .. -DOSG_DIR=/usr/local/lib64/
+    $ make -j4
+    $ sudo make install
+\end{lstlisting}
+
+Add OpenRAVE to your PATH:
+\begin{lstlisting}
+    $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(openrave-config --python-dir)/openravepy/_openravepy_
+    $ export PYTHONPATH=$PYTHONPATH:$(openrave-config --python-dir)
+\end{lstlisting}
+
+\paragraph{Install Coin3D (For Shady Robots' warm cool shading)}
+\begin{lstlisting}
+    $ sudo apt-get install mercurial
+    $ hg clone https://bitbucket.org/Coin3D/coin -r CMake
+\end{lstlisting}
+
+Copy SoShadowGroup.cpp from capstone12 folder and paste to coin/src/shadows:
+
+\begin{lstlisting}
+    $ cd coin
+    $ cmake .
+    $ make
+    $ sudo make install
+\end{lstlisting}
+
+After installing Coin3D, recompile OpenRAVE by making a change to qtcoinviewer.cpp in openrave/plugins/qtcoinrave to link the updated Coin3D to OpenRAVE.

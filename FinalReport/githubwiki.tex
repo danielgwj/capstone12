@@ -798,7 +798,7 @@
 
 \subparagraph{Problems Encountered}
 \begin{itemize}
-  \item We spent a lot of time trying to find the original main loop so that we could do double buffering. Ultimately we decided that this was a fruitless effort. For now, we'll have to use the provided qt submodules to implement silhouettes & shadows.
+  \item We spent a lot of time trying to find the original main loop so that we could do double buffering. Ultimately we decided that this was a fruitless effort. For now, we'll have to use the provided qt submodules to implement silhouettes \& shadows.
   \item Although shadow shaders have a specific submodule to implement them, silhouettes don't.
 \end{itemize}
 
@@ -998,7 +998,7 @@
 
 \subparagraph{Progress made this week}
 \begin{itemize}
-  \item Researched different ways to implement shadows on top of warm/cool shaders. Found an issue regarding reassigning the gl_fragcolor.
+  \item Researched different ways to implement shadows on top of warm/cool shaders. Found an issue regarding reassigning the gl\_fragcolor.
 \end{itemize}
 
 \subparagraph{Problems Encountered}
@@ -1028,7 +1028,7 @@
 }
 
 \newpage
-%%%%%%%%%%NOTCOMPLETE
+
 {\setstretch{1.0}
 \subsubsection{Week 9}
 \paragraph{Justin Bibler}
@@ -1044,44 +1044,640 @@
 
 \subparagraph{Problems Encountered}
 \begin{itemize}
-  \item I've been really busy with other school work this week so I didn't get much done in implementing the shadows. However, when our team went to work on it we discovered that our plans to implement shadows may not work at all. We are currently trying to devise a way to implement them.
+  \item  As the term comes to an end things have become extremely busy. Making it difficult to find time, and willingness to work on the project. I'll hopefully have more time this week to work on the project.
 \end{itemize}
 \vspace{3mm}
 
 \paragraph{Matt Huang}
 \subparagraph{Plans for next week}
 \begin{itemize}
-  \item Continue to try to implement shadows.
+  \item Continue to work on shadows.
 \end{itemize}
 
 \subparagraph{Progress made this week}
 \begin{itemize}
-  \item Researched different ways to implement shadows on top of warm/cool shaders. Found an issue regarding reassigning the gl_fragcolor.
+  \item Continued working on shadows. Haven't found a solution yet.
 \end{itemize}
 
 \subparagraph{Problems Encountered}
 \begin{itemize}
-  \item We can't use both the warm/cool shaders and the shadows at the same time due to them overwriting each other's colors.
+  \item Other classes got in the way of our usual work time.
 \end{itemize}
 \vspace{3mm}
 
 \paragraph{Daniel Goh}
 \subparagraph{Plans for next week}
 \begin{itemize}
-  \item Attend IRB Student Advising Hours to discuss about Oversight Determination Form for our team's survey.
-  \item In-Office Review for the Oversight Determination Form (Appointment on Wednesday).
+  \item Meet up with team to work on shadow implementation.
+  \item Report to client on progress if needed.
 \end{itemize}
 
 \subparagraph{Progress made this week}
 \begin{itemize}
-  \item Created sample survey for the IRB review.
-  \item Visited Research Office in Kerr for review.
+  \item Presented and reviewed project in the Research office to determine the IRB process required for our team's online survey (Online survey will be used to determine our team's performance).
+  \item Completed Collaborative Institutional Training Initiative (CITI) module for research and compiled documentations required for IRB exempt review (Category 2).
+  \item Checked in with client to discuss about survey data use.
+  \item Reviewed and submitted oversight determination form to the Human Research Protection Program, Institutional Review Board office.
 \end{itemize}
 
 \subparagraph{Problems Encountered}
 \begin{itemize}
-  \item Visited Research Office, however, due to nonavailability for walk-in in-office review, I had to schedule an appointment for next Wednesday instead.
+  \item As the term is approaching it's end, the time spent on the project has slightly decreased due to assignments/finals/projects for other classes.
+  \item The sudden notice of assignments has thrown my mental schedule for our project out the window.
 \end{itemize}
+
+}
+
+\newpage
+
+{\setstretch{1.0}
+\subsubsection{Week 10}
+\paragraph{Justin Bibler}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Write all the things that need to be written.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Implemented everything to work together.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item  The shadows are too light.
+\end{itemize}
+\vspace{3mm}
+
+\paragraph{Matt Huang}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Write progress report by Friday.
+  \item Record progress report video by Friday.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Shadows are now implemented on top of the warm cool shaders and silhouettes. This was done by in-lining the warm cool shader code into the SoShadowGroup library.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item We found no other alternative for adding shadows other than directly modifying the SoShadowGroup.cpp file. So, even though it's very much a hack job at this point, at least it works.
+\end{itemize}
+\vspace{3mm}
+
+\paragraph{Daniel Goh}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Complete Winter Progress Report
+  \item Record Winter Progress Report video
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Got confirmation from the Research office determining the our survey is not research, allowing us to carry out the survey without IRB review.
+  \item Created poster draft.
+  \item The team was able to combine the shadows and warm cool shaders.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item The shadows in the combined implementation are not as visible as desired.
+\end{itemize}
+
+}
+
+\newpage
+
+\subsection{Spring 2017}
+
+{\setstretch{1.0}
+\subsubsection{Week 1}
+\paragraph{Justin Bibler}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Work on fixing shadows.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Planned meetings this week.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item None.
+\end{itemize}
+\vspace{3mm}
+
+\paragraph{Matt Huang}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Work on improving shadows.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Discussed weekly meeting times moving forward.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item None.
+\end{itemize}
+
+\vspace{3mm}
+\paragraph{Daniel Goh}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Work on code with team.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Communicated with team regarding meetup times for the term.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item None.
+\end{itemize}
+
+}
+
+\newpage
+
+{\setstretch{1.0}
+\subsubsection{Week 2}
+\paragraph{Justin Bibler}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Discuss progress with Cindy.
+  \item With on tests.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Fixed shadows.
+  \item Adjusted sillhouttes.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item Failed to meet Cindy.
+  \item Finding a way to test has turned out to be difficult.
+\end{itemize}
+\vspace{3mm}
+
+\paragraph{Matt Huang}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Discuss progress with Cindy.
+  \item Think of more testing strategies.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Improved shadows; made them darker/more visible.
+  \item Reduced silhouettes.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item Cindy wasn't in her office the couple times we visited her so we couldn't get her input on the poster.
+  \item There is no real standard way of unit testing shaders.
+\end{itemize}
+
+\vspace{3mm}
+\paragraph{Daniel Goh}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Get input from Cindy regarding our team's work.
+  \item Make changes to the project per Cindy's feedback.
+  \item Finalize survey and run survey.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Team was able to improve shadows.
+  \item Worked on poster draft with team.
+  \item Took videos demos of barebone OpenRAVE, and initial warm-cool OpenRAVE (Julio's implementation). This will be used to take visuals for survey and poster.
+  \item Tested installation guide and tried to implement our team's changes on a fresh new Linux installation.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item Visited Cindy a couple of times, but we were not able to get the chance to update her. Instead, an email about our progress was sent to her.
+  \item Coming up with a tagline for the poster is hard.
+  \item In the fresh installation, silhouette and shadows were implemented successfully, except for the warm-cool shading. This problem will be further discussed with the team next week.
+\end{itemize}
+
+}
+
+\newpage
+
+{\setstretch{1.0}
+\subsubsection{Week 3}
+\paragraph{Justin Bibler}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Finish new sillhouttes.
+  \item Finish warm cool shading changes.
+  \item Darken shadows.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Met with Cindy for input, and suggestion for what to improve.
+  \item Found a new proccess to create sillhouttes.
+  \item Worked on method to shade based off of object color.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item The sillhouttes method needs bigger lines.
+  \item The fragment shader for warm cool is giving buggy output.
+\end{itemize}
+\vspace{3mm}
+
+\paragraph{Matt Huang}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Finish implementing color changes and silhouette change.
+  \item Make shadows darker if possible.
+  \item Meet with Cindy to assess changes.
+  \item Finish poster.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Met with Cindy; she suggested that we alter the colors and the silhouettes.
+  \item Altered warm cool color computation so that object colors blend with better colors.
+  \item Altered silhouettes to draw using lines for more consistent silhouette width.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item Cindy requested additional tweaks so we have a short window to implement them.
+\end{itemize}
+
+\vspace{3mm}
+\paragraph{Daniel Goh}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Present demo to TA on Monday.
+  \item Continue to make changes to the program per Cindy's feedback.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Got input from Cindy regarding our team's work.
+  \item Recorded demos and screenshots, and worked on the survey.
+  \item Tweaked the program to client's suggestion with team.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item More work has popped up after our client's evaluation, which shortens the time we have for running the survey. Will try to push out the survey asap after the tweaks are completed.
+\end{itemize}
+
+}
+
+\newpage
+
+{\setstretch{1.0}
+\subsubsection{Week 4}
+\paragraph{Justin Bibler}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Work on documentation.
+  \item Final code submission.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Conducted survey.
+  \item Created poster.
+  \item New sillhouttes.
+  \item Adaptive warm cool.
+  \item Got everything working on Ubuntu 16.04.
+  \item Demoed to Cindy, recieved approval.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item Ubuntu 14.04 has a bug not allowing it to run newer versions of OpenGL on VMs. Meaning it graphics cards would not work, resulting in very low fps and wrong renders when using accelerated graphics.
+\end{itemize}
+\vspace{3mm}
+
+\paragraph{Matt Huang}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Make sure installation guide works.
+  \item Make final edits to docs and code to prepare for code freeze.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Finished new warm cool shaders that adapt to object color.
+  \item Finished new silhouettes which are more consistent.
+  \item Added polygonal offset to silhouettes to fix silhouette overlap problems.
+  \item Darkened shadows.
+  \item Trimmed code and removed unused files.
+  \item Demoed with Cindy. She approved.
+  \item Created and distributed survey.
+  \item Finished poster.
+  \item Participated in Kirsten's extra credit.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item Our virtual machines block line width functionality if hardware acceleration is turned on. Without hardware acceleration, performance while using shadows takes a rather large hit.
+\end{itemize}
+
+\vspace{3mm}
+\paragraph{Daniel Goh}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Revise documentation and code for code freeze.
+  \item Do WIRED review.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Team was able to complete the implementation.
+  \item Demo the team's implementation, Cindy approved of work.
+  \item Reviewed Poster and Survey with Cindy, received feedback on improvements that can be done.
+  \item Participated in Kirsten's extra credit opportunity.
+  \item Revised survey and ran the survey.
+  \item Compiled and analyze data for poster use.
+  \item Revised Poster per Kirsten's extra credit session, Cindy's feedback, and research based on the flow of poster reading.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item Ubuntu 14.04 on VMWare Workstation 12 Player (what we've been working on) did not support 3D acceleration, which prevents us from changing line widths, causing us to not be able to implement thicker silhouettes. A lot of time was spent on testing multiple machines with different virtual machine programs, with different Ubuntu builds.
+\end{itemize}
+
+}
+
+\newpage
+
+{\setstretch{1.0}
+\subsubsection{Week 5}
+\paragraph{Justin Bibler}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Depends on meeting next week.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Met WIRED partner.
+  \item Finished WIRED assignment.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item None.
+\end{itemize}
+\vspace{3mm}
+
+\paragraph{Matt Huang}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Meet with TA.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Met Wired Partner.
+  \item Wrote WIRED article.
+  \item Prepared github repo for code freeze.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item None.
+\end{itemize}
+
+\vspace{3mm}
+\paragraph{Daniel Goh}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item TA meeting, and will determine what to do for the week based on the meeting.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Organized github repo for code freeze.
+  \item Tested implementation on native Ubuntu, OpenRAVE runs around 50fps natively.
+  \item Met up with WIRED partner to hold wired interview.
+  \item Wrote up WIRED review, verified by partner, and sent to Kirsten.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item None.
+\end{itemize}
+
+}
+
+\newpage
+
+{\setstretch{1.0}
+\subsubsection{Week 6}
+\paragraph{Justin Bibler}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Work on progress report video and report.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Started progress report.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item None.
+\end{itemize}
+\vspace{3mm}
+
+\paragraph{Matt Huang}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Do and finish progress report paper.
+  \item Record progress report video.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Wrote part of progress report.
+  \item Scheduled time to work on the weekend.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item None.
+\end{itemize}
+
+\vspace{3mm}
+\paragraph{Daniel Goh}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Complete progress report (paper and video).
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Started progress report write up.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item None.
+\end{itemize}
+
+}
+
+\newpage
+
+{\setstretch{1.0}
+\subsubsection{Week 7}
+\paragraph{Justin Bibler}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Start on new reports.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Went to expo.
+  \item Finished progress report, and video.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item None.
+\end{itemize}
+\vspace{3mm}
+
+\paragraph{Matt Huang}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Go to class.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Finished progress report.
+  \item Attended Expo.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item None.
+\end{itemize}
+
+\vspace{3mm}
+\paragraph{Daniel Goh}
+\subparagraph{Plans for next week}
+\begin{itemize}
+  \item Go to class.
+\end{itemize}
+
+\subparagraph{Progress made this week}
+\begin{itemize}
+  \item Completed progress report.
+  \item Filmed and put together midterm progress report presentation video.
+  \item Attended Expo.
+\end{itemize}
+
+\subparagraph{Problems Encountered}
+\begin{itemize}
+  \item None.
+\end{itemize}
+
+}
+
+\newpage
+
+{\setstretch{1.0}
+\subsubsection{Week 8}
+\paragraph{Justin Bibler}
+If you were to redo the project from Fall term, what would you tell yourself? \\ \par \vspace{3mm}
+
+I would tell myself to research more into Openrave before trying to install it. 
+The installation process took us significantly longer the it should have. 
+I would also tell myself to look into coin3d a bit more, as that was the main way we interacted with the rendering. \\ \par \vspace{3mm}
+
+What's the biggest skill you've learned? \\ \par \vspace{3mm}
+
+I learned how to use an API that is old and outdated with minimal documentation. 
+This is a skill that will be used in the future. 
+As it is quite normal for code to be extremely undocumented, so the only way to learn it is by using it and finding small examples. \\ \par \vspace{3mm}
+
+What did you like about the project, and what did you not? \\ \par \vspace{3mm}
+
+I liked that it was about graphics, but I didn't like that it wasn't working with OpenGL. 
+It was more working with coin3d, and coin3d had access to the OpenGL render. \\ \par \vspace{3mm}
+
+What did you learn form your teammates? \\ \par \vspace{3mm}
+
+I learned how to work with other people better. \\ \par \vspace{3mm}
+
+If you were the client for this project, would you be satisfied with the work done? \\ \par \vspace{3mm}
+
+I would be satisfied with the work done. \\ \par \vspace{3mm}
+
+If your project were to be continued next year, what do you think needs to be worked on? \\ \par \vspace{3mm}
+
+Our client still has some ideas she wants to implement such as the best view algorithm. 
+Also the function that selected the best warm cool color could be made more expansive. 
+Which would cause it to default less to blue/white. 
+If possible, it would be great to separate the warm cool code out from the coin3d's SoShadowGroup class. \\ \par \vspace{3mm}
+
+Expo experience: \\ \par \vspace{3mm}
+
+The expo was fun, our project wasn't that interesting so we didn't get many people who wanted to talk about it with us. 
+However, Mike Bailey stopped by and asked us a bunch of questions and that was really nice. \\ \par \vspace{3mm}
+\vspace{3mm}
+
+\paragraph{Matt Huang}
+If I were to redo something from fall term, I would put more time into researching the OpenRave environment. 
+Additionally, I would've also liked to install the initial code base so that we could've gotten to work quicker during winter term.
+The project itself improved how I look at coding problems. 
+Since our project was in such an outdated environment, we were constricted to a very small subset of solutions. 
+Also, the solutions themselves were often strange or unorthodox. 
+An example being our warm cool shaders and shadows which we had to implement in a single library file. \\ \par \vspace{3mm}
+
+I thought the project itself was pretty engaging. 
+The overall requirements were simple and easy to understand, but the actual implementations were challenging. 
+I do wish that the environment was better (more up to date) so that we could've implemented more features however. 
+As for my teammates, they were good at bouncing ideas off of. Whenever I was stuck on something, 
+I could always voice the issue and we could always work through it. \\ \par \vspace{3mm}
+
+Overall, I believe we did a good job on the project. 
+We implemented all of the client's requirements and we kept a consistent work schedule. 
+If this project were to be continued, additional object colors would likely be accounted for. Lastly, 
+I thought our expo was alright; I wish more people were interested in the project, but I'm fine with what we got. \\ \par \vspace{3mm}
+
+\vspace{3mm}
+\paragraph{Daniel Goh}
+The project that was assigned to our group was fitting as Justin and Matt has suitable skillset for the project. 
+I, on the other hand was assigned to take on a more "project manager" role in which I do minimal coding, but take responsibilities in other matters such as documentation, presentation editing etc. 
+Through this role, I've learned a great deal of communication and writing skills, notably during the preparation of the survey in which I needed to go through the OSU Institutional Review Board review process, and keeping constant communication and updates for our client throughout the term. 
+These are good skills to have as when I enter the workforce, chances are, I will be required to report frequently, hold meetings and present presentations to my employers or future clients. \\ \par \vspace{3mm}
+
+The project was not easy, and with my limited knowledge of how to implement the graphical requirements, there are clear limitations in my technical contribution. 
+All I could contribute to the technical side of the project was the initial installation set up, and fixing the hardcoded path that was left by the previous developer. 
+However, through this project, I got to pick up some graphical terminology and knowledge from my teammates, Justin and Matt, during our development meetup sessions. \\ \par \vspace{3mm}
+
+As for the engineering expo, there was nothing much to talk about, as it was difficult for the attendants to appreciate our team's graphical improvements. 
+Our team's main feat to the project was not just making things look prettier, but it was to dig into code that is undocumented, poorly maintained, and deeply abstracted from other developers, in addition to improving the graphics with ancient glsl versions, which granted the team with a limited set of tools. 
+This feat is hard to relay to the general audience and some industry reps as this is a very narrowed project, for a specific purpose. It was definitely still fun to be able to participate in the expo with the team and to see how far we've come in the project.  \\ \par \vspace{3mm}
 
 }
 
