@@ -74,6 +74,7 @@
 \usepackage{amsmath}
 \usepackage{lipsum}
 \usepackage{setspace}
+\usepackage{pdfpages}
 
 \usepackage{geometry}
 \geometry{margin=0.75in}
@@ -156,8 +157,13 @@ This document goes over the project's background, requirements, designs used, te
 \newpage
 
 \section{Introduction}
-
-
+Better Graphics For A Robotics Grasping GUI was requested by Cindy Grimm.
+This project was requested to improve the robotics simulation's (OpenRAVE) graphics, which its visuals are used in a user study that she is involved in.
+The team that worked on this project was Shady Robots, which consists of Justin Bibler, Matthew Huang, and Daniel Goh.
+Justin Bibler and Matthew Huang were responsible for the technical implementations.
+This include implementing warm cool shading, shadows, and silhouettes in OpenRAVE.
+Daniel Goh was responsible for the non-technical aspects of the project, which include communication, documentation, and capstone-related deliverables.
+Cindy Grimm was our advisor throughout the project, providing supervision and advice throughout the term. 
 \newpage
 
 \section{Requirements Document}
@@ -204,7 +210,7 @@ None. &
 Requirement did not change \\ \hline
 
 The system shall run properly created simulations. &
-None.
+None. &
 This means that the system will always run valid environment files. \\ \hline
 
 System shall be easily maintained and upgraded.
@@ -252,7 +258,7 @@ The original Gantt chart was not modified.
 \begin{center}
 \begin{table}[H]
 \caption{Table showing the design that is changed (Design), what happened to it (Change Details), and comments for the change(Comments).}
-\begin{tabular}{ | p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth} | }
+\begin{tabular}{ | p{0.2\linewidth} | p{0.7\linewidth} | }
 \hline
 \textbf{Design}  & \textbf{Change Details} \\ \hline
 Warm Cool Shading & 
@@ -266,13 +272,18 @@ In other words, the silhouettes are rendered using GL\_LINES instead of polygons
 This was done to keep consistent silhouette widths throughout all the rendered objects. \\ \hline
 CodeXL & Removed since the fps requirement was removed. 
 Additionally, CodeXL only works on Windows (our system runs on Ubuntu 16.04) and testing was done better by simply running the system on different machines. \\ \hline
-
+Online Survey Creation & 
+The online survey creation is changed to use Qualtrics instead of Google Forms.
+Most of the design remain the same, except for some additions that come with Qualtrics' survey features.
+The design of the online survey utilized blocks to separate questions across pages. \\ \hline
+Data Analysis and Visualization & 
+The data analysis and visualization tool is changed to use Qualtrics instead of Google Sheets.
+The design of data analysis and visualization remains the same. \\ \hline
 \end{tabular}
 \newline
 \label{table:DesignDocumentUpdate}
 \end{table}
 \end{center}
-
 
 \newpage
 
@@ -287,22 +298,30 @@ Additionally, CodeXL only works on Windows (our system runs on Ubuntu 16.04) and
 \begin{center}
 \begin{table}[H]
 \caption{Table showing the technology that is changed (Technology), what happened to it (Change Details), and comments for the change(Comments).}
-\begin{tabular}{ | p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth} | }
+\begin{tabular}{ | p{0.2\linewidth} | p{0.2\linewidth} | p{0.5\linewidth} | }
 \hline
 \textbf{Technology}  & \textbf{Change Details}  & \textbf{Comments} \\ \hline
 
 Shading Method & 
-Technology did not change (still uses Warm Cool shading), only implementation & 
+Technology did not change (still uses Warm Cool shading), only implementation. & 
 As stated in the design doc., now adapts to the object's original color and is now implemented using the SoShadowGroup library. \\ \hline
 Silhouettes &
 Now uses GL\_LINES method instead of the silhouette edge algorithm. &
 The silhouette edge algorithm required direct control over some OpenGL tools (like the view port and the depth buffer) that we did not have access to.
 The GL\_LINES method was chosen because it has consistent silhouette widths throughout objects (cel shaded silhouettes did not). \\ \hline
 Debugger  &
-Went from CodeXL to testing using multiple machines to render the scene &
+Went from CodeXL to testing using multiple machines to render the scene. &
 Firstly, as stated in the design doc. table, CodeXL only works on Windows while our system runs on Ubuntu 16.04 so we can not even use it.
 Secondly, it's easier to test and debug this system by running the simulations on different computers and then examining the scene.
 Lastly, the fps requirement was removed in our requirements document so optimization was not a focus. \\ \hline
+Survey Platform  &
+Platform to run survey was switched from Google Forms to Qualtrics. &
+Oregon State University provides Qualtrics license to its students, which allows us to utilize the premium features provided.
+This platform allows us to enhance the survey's design and customization. \\ \hline
+Data Analysis and Visualization Tool &
+Data analysis and visualization tool switched from Google Sheets to Qualtrics' built-in data analysis and visualization tools. &
+Qualtrics' built-in features allow direct data analysis and visualization, allowing more efficient data reporting. \\ \hline
+
 
 \end{tabular}
 \newline
@@ -316,8 +335,15 @@ Lastly, the fps requirement was removed in our requirements document so optimiza
 \input{githubwiki}
 
 \section{Final Poster}
-
-
+\vfill
+\begin{figure} [h]
+  \includegraphics[width=\linewidth]{team12.eps}
+  \caption
+{ \newline \hspace{\linewidth}
+Shady Robots' poster that was used in OSU College of Engineering Undergraduate Engineering Expo 2017}
+  \label{fig:poster}
+\end{figure}
+\vfill
 \newpage
 
 \section{Project Documentation}
@@ -373,6 +399,7 @@ Ubuntu 16.04 is required to install OpenRAVE with this method.
 \section{Resources Used for Project (API documentation)}
 
 
+\newpage
 
 \section{Lesson Learned from Project}
 % What technical information did you learn?
@@ -389,8 +416,20 @@ Ubuntu 16.04 is required to install OpenRAVE with this method.
 
 
 \subsection{Daniel Goh}
+Coming into the project with zero graphical technical knowledge, I learned some graphical terminologies and concepts through the group development sessions.
+I also learned how to better communicate and condense ideas, both verbally and in written form. 
+Through the project assigned to our team, I learned that a project can consist of many small pieces.
+The project assigned to the team that I am in, is one of the small piece which focuses on improving a simulation's graphics.
+This small piece will be used and be pieced together into a bigger picture.
+I have also learned that project management is important to allow a project to reach its end goal.
+With that, early coordination of tasks and roles is important to get the project going.
+In terms of working in teams, I've learned that constant communication with team members is important.
+Due to communication issues early in the project, all of the team members suffered from having to rewrite sections of the technology review document.
+I have learned that communicating "what I'm doing", "how I'm doing it" and "what I'm going to do" to the team would allow other team members to be aligned on the same page.
+If I could do it all over, I would insist myself to learn more about graphics during the Fall term prior to the development term.
+With that knowledge, I would have had the chance to play a more active role in researching the OpenRAVE environment, and work on the graphical implementations.
 
-
+\newpage
 
 \section{Appendix 1: Essential Code Listings}
 
