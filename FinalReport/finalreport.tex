@@ -86,6 +86,7 @@
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{light-gray}{gray}{0.95}
 
 \lstdefinestyle{mystyle}{
     backgroundcolor=\color{backcolour},   
@@ -446,25 +447,54 @@ Lastly, I would have demoed the features I implemented to the client earlier so 
 This way, I would have been less stressed during the week leading up to the code freeze.
 \subsection{Daniel Goh}
 Coming into the project with zero graphical technical knowledge, I learned some graphical terminologies and concepts through the group development sessions.
-I also learned how to better communicate and condense ideas, both verbally and in written form. 
+I also learned of the OpenRAVE environment as I was responsible for the set up and installation of the OpenRAVE simulation.
+As we were using a Ubuntu 16.04 as the operating system, I got the chance to familiarize and learn about the Linux distribution, in particular, how to build from source files and how the operating system handles the installation.
+We also ran into framerate issues with the OpenRAVE simulation which impeded our project's progress.
+We learned that this was caused by the fact that we were running Ubuntu as a virtual machine, and thus it was not utilizing our machine's hardware.
+With that, I had to install Ubuntu natively onto my own machine, and through that, I've learned to debug and fix the driver compatibilities, which also taught me more about kernel versions and how it affects some driver compatibilities.  
+\par
+\vspace{3mm}
+I also learned how to better communicate and condense ideas, both verbally and in written form based on the technical level of the other person.
+This was especially useful during the Undergraduate Engineering Expo, as I had the chance to talk to people with varying levels and exposure to graphics.
 Through the project assigned to our team, I learned that a project can consist of many small pieces.
 The project assigned to the team that I am in, is one of the small piece which focuses on improving a simulation's graphics.
 This small piece will be used and be pieced together into a bigger picture.
+\par
+\vspace{3mm}
 I have also learned that project management is important to allow a project to reach its end goal.
 With that, early coordination of tasks and roles is important to get the project going.
 In terms of working in teams, I've learned that constant communication with team members is important.
 Due to communication issues early in the project, all of the team members suffered from having to rewrite sections of the technology review document.
 I have learned that communicating "what I'm doing", "how I'm doing it" and "what I'm going to do" to the team would allow other team members to be aligned on the same page.
-If I could do it all over, I would insist myself to learn more about graphics during the Fall term prior to the development term.
+\par
+\vspace{3mm}
+If I could do it all over, I would insist myself to learn more about graphics during Fall term, prior to the development term.
 With that knowledge, I would have had the chance to play a more active role in researching the OpenRAVE environment, and work on the graphical implementations.
 
 \newpage
 
 \section{Appendix 1: Essential Code Listings}
 
+\subsection{qtcoinviewer.cpp Code Snippet}
+\input{_qtcoinviewerSnip.cpp}
 
+\newpage
+
+\subsection{SoShadowGroup.cpp Code Snippet}
+\input{_SoShadowGroupSnip.cpp}
+
+\newpage
+
+\section{Appendix 2}
+\subsection{OpenRAVE Screens}
+\begin{figure} [H]
+  \includegraphics[scale=0.8]{beforeAfter_1.eps}
+  \caption
+{ \newline \hspace{\linewidth}
+Figure showing original OpenRAVE simulation (left) and OpenRAVE simulation with Shady Robots' shaders implementation (right).}
+  \label{fig:beforeafter}
+\end{figure}
 
 \end{flushleft}
-
 \end{document}
 

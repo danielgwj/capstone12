@@ -211,7 +211,7 @@ Compositional Viewpoint Diagram that show relationship of Silhouettes}
 \paragraph{Design View}
 Silhouettes will be implemented using a combination of the Stencil Buffer along with manipulation of the view port.
 The Stencil Buffer is an optional extension of the depth buffer; both of them can be enabled in OpenRave using the glEnable() function (I.E. glEnable(GL\_STENCIL\_TEST) \cite{depthstencils}.
-The Stencil Buffer gives you control over which fragments of the object should be drawn and which shouldn’t.
+The Stencil Buffer gives you control over which fragments of the object should be drawn and which shouldn't.
 The viewport allows you to translate your objects in windows coordinates (I.E. pixels).
 The basic algorithm to implement these silhouettes is to move the object in one direction (x, y, -x, or -y), draw the object with the stencil buffer enabled, and then repeat until you have drawn in all four directions.
 The amount you move the object will affect how large of a silhouette is made.
@@ -637,7 +637,7 @@ Justin Bibler, Matthew Huang, and Daniel Goh
 \paragraph{Information Viewpoint}
 \subparagraph{Design Concerns}
 Google Sheets \cite{googlesheets} is the selected platform to parse and visualize the data collected from the online survey. 
-The design concern includes if the data collected can be analyzed and visualized meaningfully to reflect the collective participants’ responses.
+The design concern includes if the data collected can be analyzed and visualized meaningfully to reflect the collective participants' responses.
 \vspace{3mm}
 
 \subparagraph{Design Elements}
