@@ -79,7 +79,7 @@
 \usepackage{geometry}
 \geometry{margin=0.75in}
 
-\setcounter{tocdepth}{4}
+\setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{4}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -169,6 +169,8 @@ Cindy Grimm was our advisor throughout the project, providing supervision and ad
 
 \section{Requirements Document}
 
+Refer to next page for the initial requirements document.
+
 \newpage
 
 \include{reqdoc_v1/reqdoc_v1-content}
@@ -250,6 +252,8 @@ The original Gantt chart was not modified.
 
 \section{Design Document}
 
+Refer to next page for the initial design document.
+
 \newpage
 
 \include{designdoc_v1/designdoc_v1-content}
@@ -258,7 +262,7 @@ The original Gantt chart was not modified.
 
 \begin{center}
 \begin{table}[H]
-\caption{Table showing the design that is changed (Design), what happened to it (Change Details), and comments for the change(Comments).}
+\caption{Table showing the design that is changed (Design), and what happened to it (Change Details).}
 \begin{tabular}{ | p{0.2\linewidth} | p{0.7\linewidth} | }
 \hline
 \textbf{Design}  & \textbf{Change Details} \\ \hline
@@ -281,17 +285,17 @@ Data Analysis and Visualization &
 The data analysis and visualization tool is changed to use Qualtrics instead of Google Sheets.
 The design of data analysis and visualization remains the same. \\ \hline
 Shadows &
-The design was changed to use the built in SoShadowGroup class, which creates variance shadow maps. &
+The design was changed to use the built in SoShadowGroup class, which creates variance shadow maps.
 This design change decisions was made because creating our own shadows would turn out to be very difficult.
 When there was already a class in coin3d that generated shadows.
 Thus, it was of our best interest to use resources already available to us instead of wasting time creating our own. \\ \hline
 Measuring FPS &
 Matthew and Justin overlapped their design of the FPS requirement.
-However, the requirement was removed so no testing of the FPS was ever done. &
+However, the requirement was removed so no testing of the FPS was ever done.
 Along with the this design becoming unnecessary the software that was planned to be used was Windows only. \\ \hline
 Code Maintainability &
 We maintained good version control of our code changes throughout the project.
-However, cppcheck was never used on the code. &
+However, cppcheck was never used on the code.
 The usage of cppcheck would prove to be meaningless.
 We were simply adding to existing code, and not making our own completely unique code.
 Thus if we would have used cppcheck we would be refactoring a significant amount of code not written by us, and code that we may not fully understand.
@@ -305,6 +309,8 @@ Thus, it would be dangerous as we might be unable to properly document these cha
 \newpage
 
 \section{Tech Review}
+
+Refer to next page for the initial technology review document.
 
 \newpage
 
@@ -420,8 +426,16 @@ Go to openrave/src/data on the terminal, with python interpreter:
 \subsection{Requirements for OpenRAVE}
 Ubuntu 16.04 is required to install OpenRAVE with this method.
 
-\section{Resources Used for Project (API documentation)}
+\newpage
 
+\section{Resources Used for Project}
+\subsection{Useful Websites}
+Coin3D Documentation - https://grey.colorado.edu/coin3d/ \\
+OpenRAVE Documentation - http://openrave.org/docs/latest\_stable/
+
+\subsection{Campus Personnel}
+Cindy Grimm - Research Associate Professor in Mechanical Engineering \\ 
+Mike Bailey - Professor in Computer Science
 
 \newpage
 
@@ -507,21 +521,23 @@ This way, I would have been less stressed during the week leading up to the code
 \subsection{Daniel Goh}
 Coming into the project with zero graphical technical knowledge, I learned some graphical terminologies and concepts through the group development sessions.
 I also learned of the OpenRAVE environment as I was responsible for the set up and installation of the OpenRAVE simulation.
-As we were using a Ubuntu 16.04 as the operating system, I got the chance to familiarize and learn about the Linux distribution, in particular, how to build from source files and how the operating system handles the installation.
-We also ran into framerate issues with the OpenRAVE simulation which impeded our project's progress.
-We learned that this was caused by the fact that we were running Ubuntu as a virtual machine, and thus it was not utilizing our machine's hardware.
+As we were using Ubuntu 16.04 as the operating system, I got the chance to familiarize and learn about the Linux distribution, in particular, how to build from source files and how the operating system handles the installation.
+We also ran into framerate issues with the OpenRAVE simulation, which impeded our project's progress.
+We learned that this was caused by the fact that we were running Ubuntu as a virtual machine, and thus it was not utilizing our machine's hardware correctly.
 With that, I had to install Ubuntu natively onto my own machine, and through that, I've learned to debug and fix the driver compatibilities, which also taught me more about kernel versions and how it affects some driver compatibilities.  
 \par
 \vspace{3mm}
-I also learned how to better communicate and condense ideas, both verbally and in written form based on the technical level of the other person.
+Additionally, I learned how to better communicate and condense ideas, both verbally and in written form.
+I learned that it is also important to prepare communication based on the different technical levels.
 This was especially useful during the Undergraduate Engineering Expo, as I had the chance to talk to people with varying levels and exposure to graphics.
 Through the project assigned to our team, I learned that a project can consist of many small pieces.
-The project assigned to the team that I am in, is one of the small piece which focuses on improving a simulation's graphics.
-This small piece will be used and be pieced together into a bigger picture.
+The project assigned to the team that I am in, is one of the small piece which focuses on improving a robotic simulation's graphics.
+This small piece will be used and be pieced together into a bigger picture, which results in learning about human grasps.
 \par
 \vspace{3mm}
 I have also learned that project management is important to allow a project to reach its end goal.
 With that, early coordination of tasks and roles is important to get the project going.
+An example of this is that we assigned our responsibilities and roles early during Fall term, and this made it easier to handle as the whole project is clearly divided and assigned to the different team members.
 In terms of working in teams, I've learned that constant communication with team members is important.
 Due to communication issues early in the project, all of the team members suffered from having to rewrite sections of the technology review document.
 I have learned that communicating "what I'm doing", "how I'm doing it" and "what I'm going to do" to the team would allow other team members to be aligned on the same page.
@@ -553,6 +569,12 @@ With that knowledge, I would have had the chance to play a more active role in r
 Figure showing original OpenRAVE simulation (left) and OpenRAVE simulation with Shady Robots' shaders implementation (right).}
   \label{fig:beforeafter}
 \end{figure}
+
+\subsection{End Project Survey}
+Refer to next page for the survey that was used to determine if our implementations was able to improve confidence levels of users.
+
+\includepdf[pages=-]{survey_example.pdf}
+
 
 \end{flushleft}
 \end{document}
