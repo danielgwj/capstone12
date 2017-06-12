@@ -280,6 +280,22 @@ The design of the online survey utilized blocks to separate questions across pag
 Data Analysis and Visualization & 
 The data analysis and visualization tool is changed to use Qualtrics instead of Google Sheets.
 The design of data analysis and visualization remains the same. \\ \hline
+Shadows &
+The design was changed to use the built in SoShadowGroup class, which creates variance shadow maps. &
+This design change decisions was made because creating our own shadows would turn out to be very difficult.
+When there was already a class in coin3d that generated shadows.
+Thus, it was of our best interest to use resources already available to us instead of wasting time creating our own. \\ \hline
+Measuring FPS &
+Matthew and Justin overlapped their design of the FPS requirement.
+However, the requirement was removed so no testing of the FPS was ever done. &
+Along with the this design becoming unnecessary the software that was planned to be used was Windows only. \\ \hline
+Code Maintainability &
+We maintained good version control of our code changes throughout the project.
+However, cppcheck was never used on the code. &
+The usage of cppcheck would prove to be meaningless.
+We were simply adding to existing code, and not making our own completely unique code.
+Thus if we would have used cppcheck we would be refactoring a significant amount of code not written by us, and code that we may not fully understand.
+Thus, it would be dangerous as we might be unable to properly document these changes. \\ \hline
 \end{tabular}
 \newline
 \label{table:DesignDocumentUpdate}
@@ -322,6 +338,13 @@ This platform allows us to enhance the survey's design and customization. \\ \hl
 Data Analysis and Visualization Tool &
 Data analysis and visualization tool switched from Google Sheets to Qualtrics' built-in data analysis and visualization tools. &
 Qualtrics' built-in features allow direct data analysis and visualization, allowing more efficient data reporting. \\ \hline
+Code Maintainability &
+Technology did not change. &
+We continued to use version control and documentation throughout the project to ensure that our code was protected and easily changeable for future programmers. \\ \hline
+Shadows &
+Technology changed to variance shadow mapping. &
+This technology changed from the shadow volume implementation.
+It turned out it would be extremely difficult to create our own shadows, and there was already a built in shadows class that we could us for shadows. \\ \hline
 
 
 \end{tabular}
@@ -411,8 +434,38 @@ Ubuntu 16.04 is required to install OpenRAVE with this method.
 % If you could do it all over, what would you do differently?
 
 \subsection{Justin Bibler}
-
-
+During this project I learned a lot about how to work with the Coin3d API, how to use Open Inventor modules, and how to work with QT.
+I was also able to gain more real world experience working with shaders; a skill that I had previously learned from the computer graphics and computer shaders courses.
+When going into this project I thought that I would mostly be working with OpenGL and GLSL.
+However, once I began diving into the code I quickly realized that I was working in an environment that had black boxed most OpenGL functions and was using, the outdated, GLSL 1.2.
+It then became necessary for me to learn how to interact with Coin3d, Open Inventor, and QT to accomplish my client's requests.
+I even had to go as deep as changing code within the Coin3d library to implement combinations of different shader code.\par
+\vspace{3mm}
+In regards to non-technical information I became very practiced in the art of reading technical descriptions of classes and functions.
+While working on the project it was mandatory for me to use all available resources to research how to use Coin3d.
+Most of the resources were simply brief descriptions of functions and classes with minimal information about how to actually use and implement them.
+I then had to take this minimal knowledge and create small scale versions of what I wanted to accomplish.
+After, I toyed around with my implementation until I felt confident in my understand enough to create a more realistic approach to the solution.
+In this project I also learned how to work better with other people.
+I primarily seclude myself and attempt to do everything by myself even when I am working on group project.
+However, with this project it was simply something that I could not do.
+I had to learn to broaden my own perspectives by not being in control of all the code. \par
+\vspave{3mm}
+From the project work I have learned how to work in conjunction with a large amount of people, client, TAs, teachers, and my own group members, to accomplish one singular goal.
+The scale of this project is larger then any I have done in the past making it a great learning experience.
+Especially in regards to project management.
+In all honesty management is probably my least enjoyed aspect of an overall project.
+Thus, it is also one of my weakest and least practiced skills.
+This project forced me out of my comfort zone and required me to improve in management aspects.
+I became more practiced in writing technical documents, and attending formal meetings with TAs.
+I learned how to keep release schedules, and document code changes for myself and for future programmers.
+These experiences will assuredly help me in the future as these tight schedules and tight documentation are core parts of any software development companies development process.\par
+When it comes to working in teams I have already explained in the non-technical section about how I had learned to not be in control of everything.
+This is not the only thing I had learned.
+I learned a lot about how beneficial working in a good team can be.
+In my group it was easy to get multiple perspectives on a problem which helped me see and understand different approaches to the problems at hand.
+Whenever there was a hang-up in one section of my code I was able to seek assistance and advice from someone else.
+Interactions like these were integral to the completion of my project, and now after being exposed to this type of good team environment I learned a lot about it's benefits.
 \subsection{Matthew Huang}
 From a technical perspective, during this project, I learned a lot about how the Coin3d API operates, how Open Inventor modules operate, and how they interact with QT to ultimately render a scene.
 Additionally, I learned more about how shaders operate (especially older versions I.E. glsl 1.2) and how multiple shaders interact with each other.
